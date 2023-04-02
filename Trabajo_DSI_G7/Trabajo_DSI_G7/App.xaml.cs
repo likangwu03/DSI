@@ -36,7 +36,7 @@ namespace Trabajo_DSI_G7
         /// Se invoca cuando la aplicación la inicia normalmente el usuario final. Se usarán otros puntos
         /// de entrada cuando la aplicación se inicie para abrir un archivo específico, por ejemplo.
         /// </summary>
-        /// <param name="e">Información detallada acerca de la solicitud y el proceso de inicio.</param>
+        /// <param Name="e">Información detallada acerca de la solicitud y el proceso de inicio.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
@@ -76,8 +76,8 @@ namespace Trabajo_DSI_G7
         /// <summary>
         /// Se invoca cuando la aplicación la inicia normalmente el usuario final. Se usarán otros puntos
         /// </summary>
-        /// <param name="sender">Marco que produjo el error de navegación</param>
-        /// <param name="e">Detalles sobre el error de navegación</param>
+        /// <param Name="sender">Marco que produjo el error de navegación</param>
+        /// <param Name="e">Detalles sobre el error de navegación</param>
         void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
         {
             throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
@@ -88,8 +88,8 @@ namespace Trabajo_DSI_G7
         /// sin saber si la aplicación se terminará o se reanudará con el contenido
         /// de la memoria aún intacto.
         /// </summary>
-        /// <param name="sender">Origen de la solicitud de suspensión.</param>
-        /// <param name="e">Detalles sobre la solicitud de suspensión.</param>
+        /// <param Name="sender">Origen de la solicitud de suspensión.</param>
+        /// <param Name="e">Detalles sobre la solicitud de suspensión.</param>
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();

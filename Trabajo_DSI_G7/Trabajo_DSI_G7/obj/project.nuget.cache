@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "bP8VxP/BStSI4uUUlu+00AD0VH9ee3WMwsEX5N+T3wKsN5ciy+RV1YdkFSWrPXuPMo2iqO3YN5+4mio98vB5kg==",
+  "dgSpecHash": "FFv8a2nq88V+Ew2DmuqUPkEx4rVfq6s+xvQoy+XN7Z6tzvEevfii/mepaX9/36EYtVexLjM5YL+jaQnqtA5P5A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\likan\\Desktop\\DSI\\DSI\\Trabajo_DSI_G7\\Trabajo_DSI_G7\\Trabajo_DSI_G7.csproj",
+  "projectFilePath": "C:\\Git\\DSI\\DSI\\Trabajo_DSI_G7\\Trabajo_DSI_G7\\Trabajo_DSI_G7.csproj",
   "expectedPackageFiles": [
     "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\microsoft.net.native.compiler\\2.2.12-rel-31116-00\\microsoft.net.native.compiler.2.2.12-rel-31116-00.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\microsoft.net.uwpcoreruntimesdk\\2.2.14\\microsoft.net.uwpcoreruntimesdk.2.2.14.nupkg.sha512",
