@@ -124,9 +124,15 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\AbilityModel.cs" />
+    <Compile Include="Models\CardModel.cs" />
+    <Compile Include="Models\CardViewModel.cs" />
     <Compile Include="Models\EmeraldModel.cs" />
+    <Compile Include="Models\EmeraldViewModel.cs" />
+    <Compile Include="Models\EnemyModel.cs" />
+    <Compile Include="Models\EnemyViewModel.cs" />
     <Compile Include="Models\model.cs" />
     <Compile Include="Models\PotionModel.cs" />
+    <Compile Include="Models\PotionViewModel.cs" />
     <Compile Include="Pages\MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>

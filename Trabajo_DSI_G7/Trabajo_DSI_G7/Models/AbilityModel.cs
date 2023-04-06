@@ -12,6 +12,6 @@ namespace Trabajo_DSI_G7.Models
         public string description { get; set; }
         public string imagen { get; set; }
 
-        List<model> models { get; set; }
+        List<EmeraldModel> models { get; set; }
     }
 }
