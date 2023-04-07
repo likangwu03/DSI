@@ -132,9 +132,6 @@
     <Compile Include="Models\EnemyViewModel.cs" />
     <Compile Include="Models\PotionModel.cs" />
     <Compile Include="Models\PotionViewModel.cs" />
-    <Compile Include="Pages\ConfirmDialog.xaml.cs">
-      <DependentUpon>ConfirmDialog.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\InGame.xaml.cs">
       <DependentUpon>InGame.xaml</DependentUpon>
     </Compile>
@@ -899,10 +896,6 @@
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Pages\ConfirmDialog.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\InGame.xaml">
       <SubType>Designer</SubType>
