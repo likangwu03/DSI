@@ -17,6 +17,7 @@ namespace Trabajo_DSI_G7.Models
             Id = enemy.Id;
             Name = enemy.Name;
             MaxLife=enemy.MaxLife;
+            ActLife=enemy.ActLife;
             ImageFile = enemy.ImageFile;
             AbilityId=enemy.AbilityId;
             Img = new Image();

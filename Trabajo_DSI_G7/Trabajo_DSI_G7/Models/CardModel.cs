@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace Trabajo_DSI_G7.Models
 {
     public enum CostType { Energy,Magic}
+    public enum CardType { Veneno,Ataque,Defensa,Poder,Cura}
     public class Card
     {
         public int Id { get; set; }
@@ -14,6 +15,7 @@ namespace Trabajo_DSI_G7.Models
         public string ImageFile { get; set; }
         public string Description { get; set; }
         public CostType Type { get; set; }
+        public CardType CardType { get; set; }
         public int Cost { get; set; }
 
         public Card() { }
@@ -29,6 +31,7 @@ namespace Trabajo_DSI_G7.Models
                 ImageFile = "Assets\\cartas\\cura.png",
                 Description="hola",
                 Type=CostType.Magic,
+                CardType=CardType.Cura,
                 Cost=1,
 
              },
@@ -39,6 +42,7 @@ namespace Trabajo_DSI_G7.Models
                 ImageFile = "Assets\\cartas\\defensa.png",
                 Description="hola",
                 Type=CostType.Energy,
+                CardType=CardType.Defensa,
                 Cost=3,
              },
             new Card()
@@ -48,6 +52,7 @@ namespace Trabajo_DSI_G7.Models
                 ImageFile = "Assets\\cartas\\fuerza.png",
                 Description="hola",
                 Type=CostType.Energy,
+                CardType=CardType.Ataque,
                 Cost=2,
              },
              new Card()
@@ -57,6 +62,7 @@ namespace Trabajo_DSI_G7.Models
                 ImageFile = "Assets\\cartas\\veneno.png",
                 Description="hola",
                 Type=CostType.Magic,
+                CardType=CardType.Veneno,
                 Cost=6,
              },
               new Card()
@@ -66,6 +72,7 @@ namespace Trabajo_DSI_G7.Models
                 ImageFile = "Assets\\cartas\\poder.png",
                 Description="hola",
                 Type=CostType.Magic,
+                CardType=CardType.Poder,
                 Cost=5,
              },
                new Card()
@@ -75,6 +82,7 @@ namespace Trabajo_DSI_G7.Models
                 ImageFile = "Assets\\cartas\\aux1.png",
                 Description="hola",
                 Type=CostType.Magic,
+                CardType=CardType.Cura,
                 Cost=1,
 
              },
@@ -85,6 +93,7 @@ namespace Trabajo_DSI_G7.Models
                 ImageFile = "Assets\\cartas\\aux2.png",
                 Description="hola",
                 Type=CostType.Energy,
+                CardType=CardType.Defensa,
                 Cost=3,
              },
             new Card()
@@ -94,6 +103,7 @@ namespace Trabajo_DSI_G7.Models
                 ImageFile = "Assets\\cartas\\aux3.png",
                 Description="hola",
                 Type=CostType.Energy,
+                CardType=CardType.Ataque,
                 Cost=2,
              },
              new Card()
@@ -103,6 +113,7 @@ namespace Trabajo_DSI_G7.Models
                 ImageFile = "Assets\\cartas\\aux5.png",
                 Description="hola",
                 Type=CostType.Magic,
+                CardType=CardType.Poder,
                 Cost=6,
              },
               new Card()
@@ -112,6 +123,7 @@ namespace Trabajo_DSI_G7.Models
                 ImageFile = "Assets\\cartas\\aux4.png",
                 Description="hola",
                 Type=CostType.Magic,
+                CardType=CardType.Cura,
                 Cost=5,
              }
 
@@ -129,4 +141,4 @@ namespace Trabajo_DSI_G7.Models
         }
     }
 }
-}
+

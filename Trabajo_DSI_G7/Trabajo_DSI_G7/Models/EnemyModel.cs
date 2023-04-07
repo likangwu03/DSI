@@ -12,6 +12,7 @@ namespace Trabajo_DSI_G7.Models
         public string Name { get; set; }
         public string ImageFile { get; set; }
         public int MaxLife { get; set; }
+        public int ActLife { get; set; }
         public List<int> AbilityId { get; set; } //para buscar habilidad
         //public List<AbilityVM> Abilities { get; set; } //para buscar habilidad
 
@@ -27,6 +28,7 @@ namespace Trabajo_DSI_G7.Models
                 Name = "Enemy1",
                 ImageFile = "Assets\\enemigos\\pipo-enemy032b.png",
                 MaxLife=200,
+                ActLife=200,
                 AbilityId=new List<int>(){0,1,2}
                 
              },
@@ -34,16 +36,18 @@ namespace Trabajo_DSI_G7.Models
             {
                 Id = 1,
                 Name = "Enemy2",
-                ImageFile = "Assets\\enemigos\\pipo-pipo-enemy040a.png",
+                ImageFile = "Assets\\enemigos\\pipo-enemy040a.png",
                 MaxLife=100,
+                ActLife=100,
                 AbilityId=new List<int>(){0,1}
              },
             new Enemy()
             {
                 Id = 2,
                 Name = "Enemy3",
-                ImageFile = "Assets\\enemigos\\pipo-pipo-enemy045b.png",
+                ImageFile = "Assets\\enemigos\\pipo-enemy045b.png",
                 MaxLife=300,
+                ActLife=300,
                 AbilityId=new List<int>(){2}
              }
           };

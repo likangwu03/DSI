@@ -6,18 +6,52 @@ using System.Threading.Tasks;
 
 namespace Trabajo_DSI_G7.Models
 {
+    public class Potion { 
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string ImageFile { get; set; }
+        //public Image Img;
+        public string Explication { get; set; }
+
+        public Potion() { }
+    }
     public class PotionModel
     {
-        public int Id { get; set; }
-        public string Nombre { get; set; }
-        public string Imagen { get; set; }
-        //public Image Img;
-        public string Explicacion { get; set; }
-        //public estados Estado { get; set; }
-        public int Energia { get; set; }
-        public int X { get; set; }
-        public int Y { get; set; }
-        public int RX { get; set; }
-        public int RY { get; set; }
+        public static List<Potion> Potion = new List<Potion>()
+        {
+            new Potion()
+            {
+                Id = 0,
+                Name = "Potion1",
+                ImageFile = "Assets\\icons\\potion_01a.png",
+                Explication="poción",
+             },
+            new Potion()
+            {
+                Id = 1,
+                Name = "Potion2",
+                ImageFile = "Assets\\icons\\potion_02b.png",
+               Explication="poción",
+             },
+            new Potion()
+            {
+                Id = 2,
+                Name = "Potion3",
+                ImageFile = "Assets\\icons\\potion_03f.png",
+                Explication="poción",
+             }
+          };
+
+
+        public static IList<Potion> GetAllPotions()
+        {
+            return Potion;
+        }
+
+        public static Potion GetPotionById(int id)
+        {
+            return Potion[id];
+        }
+
     }
 }
