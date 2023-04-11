@@ -125,6 +125,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\AbilityModel.cs" />
+    <Compile Include="Models\AbilityViewModel.cs" />
     <Compile Include="Models\CardModel.cs" />
     <Compile Include="Models\CardViewModel.cs" />
     <Compile Include="Models\EmeraldModel.cs" />
@@ -132,11 +133,17 @@
     <Compile Include="Models\EnemyViewModel.cs" />
     <Compile Include="Models\PotionModel.cs" />
     <Compile Include="Models\PotionViewModel.cs" />
-    <Compile Include="Pages\InGame.xaml.cs">
+      <Compile Include="Pages\InGame.xaml.cs">
       <DependentUpon>InGame.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Shop.xaml.cs">
+      <DependentUpon>Shop.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SkillTree.xaml.cs">
+      <DependentUpon>SkillTree.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -897,11 +904,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\InGame.xaml">
+    <Page Include="Pages\MainMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\MainMenu.xaml">
+    <Page Include="Pages\Shop.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SkillTree.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -909,6 +920,12 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.14</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp">
+      <Version>7.1.3</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls">
+      <Version>7.1.3</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup />
