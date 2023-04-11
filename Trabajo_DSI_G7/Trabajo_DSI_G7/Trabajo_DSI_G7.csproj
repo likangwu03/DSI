@@ -133,7 +133,7 @@
     <Compile Include="Models\EnemyViewModel.cs" />
     <Compile Include="Models\PotionModel.cs" />
     <Compile Include="Models\PotionViewModel.cs" />
-      <Compile Include="Pages\InGame.xaml.cs">
+    <Compile Include="Pages\InGame.xaml.cs">
       <DependentUpon>InGame.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\MainMenu.xaml.cs">
@@ -903,6 +903,10 @@
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\InGame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\MainMenu.xaml">
       <SubType>Designer</SubType>
