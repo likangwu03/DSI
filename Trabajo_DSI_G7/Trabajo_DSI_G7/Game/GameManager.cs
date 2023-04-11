@@ -13,8 +13,10 @@ namespace Trabajo_DSI_G7.Game
     public class GameManager
     {
         public ObservableCollection<PotionVM> PotionList { get; } = new ObservableCollection<PotionVM>(); //de la lista
+        public ObservableCollection<AbilityVM> AbilityList { get; } = new ObservableCollection<AbilityVM>(); //de la lista
         public ObservableCollection<EnemyVM> EnemyList { get; } = new ObservableCollection<EnemyVM>(); //de la lista
         public ObservableCollection<CardVM> CardList { get; } = new ObservableCollection<CardVM>(); //de la lista
+
         public int money { get; set; }
         public int actLife { get; set; }
         public int maxLife { get; set; }
@@ -30,6 +32,7 @@ namespace Trabajo_DSI_G7.Game
             inicializePotion();
             inicializeEnemy();
             inicializeCard();
+            inicializeAbility();
 
             this.money = 3210;
             this.maxLife = 200;
@@ -85,7 +88,19 @@ namespace Trabajo_DSI_G7.Game
                     PotionVM VMitem = new PotionVM(dron);
                     PotionList.Add(VMitem);
                 }
+        }
+
+        public void inicializeAbility()
+        {
+            // Cosntruye las listas de ModelView a partir de la lista Modelo 
+            if (PotionList != null)
+                foreach (Ability dron in AbilityModel.GetAllAbilitys())
+                {
+                    AbilityVM VMitem = new AbilityVM(dron);
+                    AbilityList.Add(VMitem);
+                }
 
         }
+
     }
 }

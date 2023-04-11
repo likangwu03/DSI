@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Trabajo_DSI_G7.Game;
+using Trabajo_DSI_G7.Pages;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
@@ -22,6 +24,7 @@ namespace Trabajo_DSI_G7
     /// </summary>
     sealed partial class App : Application
     {
+        GameManager gameManager;
         /// <summary>
         /// Inicializa el objeto de aplicación Singleton. Esta es la primera línea de código creado
         /// ejecutado y, como tal, es el equivalente lógico de main() o WinMain().
@@ -30,6 +33,7 @@ namespace Trabajo_DSI_G7
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            gameManager = new GameManager();    
         }
 
         /// <summary>
@@ -66,7 +70,7 @@ namespace Trabajo_DSI_G7
                     // Cuando no se restaura la pila de navegación, navegar a la primera página,
                     // configurando la nueva página pasándole la información requerida como
                     //parámetro de navegación
-                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                    rootFrame.Navigate(typeof(Shop), gameManager);
                 }
                 // Asegurarse de que la ventana actual está activa.
                 Window.Current.Activate();

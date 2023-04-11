@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Git\\DSI\\DSI\\Trabajo_DSI_G7\\Trabajo_DSI_G7\\Trabajo_DSI_G7.csproj": {}
+    "C:\\Users\\likan\\Desktop\\DSI\\DSI\\Trabajo_DSI_G7\\Trabajo_DSI_G7\\Trabajo_DSI_G7.csproj": {}
   },
   "projects": {
-    "C:\\Git\\DSI\\DSI\\Trabajo_DSI_G7\\Trabajo_DSI_G7\\Trabajo_DSI_G7.csproj": {
+    "C:\\Users\\likan\\Desktop\\DSI\\DSI\\Trabajo_DSI_G7\\Trabajo_DSI_G7\\Trabajo_DSI_G7.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Git\\DSI\\DSI\\Trabajo_DSI_G7\\Trabajo_DSI_G7\\Trabajo_DSI_G7.csproj",
+        "projectUniqueName": "C:\\Users\\likan\\Desktop\\DSI\\DSI\\Trabajo_DSI_G7\\Trabajo_DSI_G7\\Trabajo_DSI_G7.csproj",
         "projectName": "Trabajo_DSI_G7",
-        "projectPath": "C:\\Git\\DSI\\DSI\\Trabajo_DSI_G7\\Trabajo_DSI_G7\\Trabajo_DSI_G7.csproj",
-        "packagesPath": "C:\\Users\\kryst\\.nuget\\packages\\",
-        "outputPath": "C:\\Git\\DSI\\DSI\\Trabajo_DSI_G7\\Trabajo_DSI_G7\\obj\\",
+        "projectPath": "C:\\Users\\likan\\Desktop\\DSI\\DSI\\Trabajo_DSI_G7\\Trabajo_DSI_G7\\Trabajo_DSI_G7.csproj",
+        "packagesPath": "C:\\Users\\likan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\likan\\Desktop\\DSI\\DSI\\Trabajo_DSI_G7\\Trabajo_DSI_G7\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "fallbackFolders": [
@@ -19,7 +19,7 @@
           "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\kryst\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\likan\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -42,6 +42,14 @@
             "Microsoft.NETCore.UniversalWindowsPlatform": {
               "target": "Package",
               "version": "[6.2.14, )"
+            },
+            "Microsoft.Toolkit.Uwp": {
+              "target": "Package",
+              "version": "[7.1.3, )"
+            },
+            "Microsoft.Toolkit.Uwp.UI.Controls": {
+              "target": "Package",
+              "version": "[7.1.3, )"
             }
           },
           "imports": [
