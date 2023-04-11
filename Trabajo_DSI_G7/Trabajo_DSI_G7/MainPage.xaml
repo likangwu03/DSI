@@ -9,6 +9,9 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-
+        <Image x:Name="MiMapa" 
+                       Grid.Row="1" 
+                       Source="Assets/SplashScreen.scale-200.png" 
+                       Stretch="Fill" ></Image>
     </Grid>
 </Page>

@@ -6,9 +6,259 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+   >
+    <Page.Background>
+        <ImageBrush ImageSource="/Assets/bg/bgm.png"></ImageBrush>
+    </Page.Background>
 
+    <Page.Resources>
+        <Style x:Key="ThemeButton" TargetType="Button">
+            <Setter Property="BorderThickness" Value="5" />
+            <Setter Property="Background" Value="#ae8022" />
+            <Setter Property="BorderBrush" Value="#f7bf50"/>
+            <Setter Property="CornerRadius" Value="15"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid x:Name="RootGrid" Background="{TemplateBinding Background}" CornerRadius="{TemplateBinding CornerRadius}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal">
+                                        <Storyboard>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="RootGrid" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="PointerOver">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid" Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#614713" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#ae8022" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#b2b2b2" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="RootGrid" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid" Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlBackgroundBaseMediumLowBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightTransparentBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#b2b2b2" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <PointerDownThemeAnimation Storyboard.TargetName="RootGrid" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid" Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlBackgroundBaseLowBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlDisabledBaseLowBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlDisabledTransparentBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <ContentPresenter x:Name="ContentPresenter" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Content="{TemplateBinding Content}" ContentTransitions="{TemplateBinding ContentTransitions}" ContentTemplate="{TemplateBinding ContentTemplate}" Padding="{TemplateBinding Padding}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" AutomationProperties.AccessibilityView="Raw"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+        <Style x:Key="BackButton" TargetType="Button">
+            <Setter Property="BorderThickness" Value="5" />
+            <Setter Property="Background" Value="#555555" />
+            <Setter Property="BorderBrush" Value="#ffc956"/>
+            <Setter Property="CornerRadius" Value="30"/>
+            <Setter Property="Width" Value="50"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Content" Value="X" />
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#ffc956" />
+        </Style>
+        <Style x:Key="MainMenuButton" TargetType="Button">
+            <Setter Property="Width" Value="80"/>
+            <Setter Property="CornerRadius" Value="10"/>
+        </Style>
+        <Style x:Key="ThemeText" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+
+
+        </Style>
+    </Page.Resources>
     <Grid>
+
+
+
+        <!--PERFIL-->
+        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="80 40 0 0" RenderTransformOrigin="0.37,0.513">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Vertical" Grid.Column="0" >
+                <Button Width="140" Height="140" Style="{StaticResource ThemeButton}"  Padding="0">
+                    <Image Source="/Assets/bg/portrait.png"  Width="120" Height="120" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="-16,0,0,-10"></Image>
+                </Button>
+                <TextBlock HorizontalAlignment="Center" FontSize="30" Style="{StaticResource ThemeText}" Text="{x:Bind GM.name}"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Grid.Column="1"  >
+                <StackPanel Orientation="Horizontal" >
+                    <Image Source="/Assets/icons/heart pixel art 254x254.png"  Width="50" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20 10"/>
+                    <TextBlock HorizontalAlignment="Center" FontSize="30"  VerticalAlignment="Center"  Style="{StaticResource ThemeText}" Text="{x:Bind GM.maxLife}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" >
+                    <Image Source="/Assets/icons/coin_05d.png"  Width="50" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20 10"/>
+                    <TextBlock HorizontalAlignment="Center" FontSize="30"  VerticalAlignment="Center"  Style="{StaticResource ThemeText}" Text="{x:Bind GM.money}"/>
+                </StackPanel>
+            </StackPanel>
+
+        </Grid>
+
+        <!--SUP DR-->
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="40">
+            <Button  Padding="0" Style="{StaticResource MainMenuButton}" Margin="50 0" PointerEntered="onButtonHolding" PointerExited="onButtonExit"  >
+                <Image x:Name="button_about" Source="/Assets/ui/button_yellow/button_about.png"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0"></Image>
+            </Button>
+            <Button  Padding="0" Style="{StaticResource MainMenuButton}" PointerEntered="onButtonHolding" PointerExited="onButtonExit" Click="onSettingClick">
+                <Image x:Name="button_setting" Source="/Assets/ui/button_yellow/button_setting.png"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0" ></Image>
+            </Button>
+
+        </StackPanel>
+
+        <!--INF IZ-->
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="50">
+            <Button  Padding="0" Style="{StaticResource MainMenuButton}"  PointerEntered="onButtonHolding" PointerExited="onButtonExit"  Margin="20 0">
+                <Image x:Name="button_tree" Source="/Assets/ui/button_yellow/button_tree.png"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0"></Image>
+            </Button>
+            <Button  Padding="0" Style="{StaticResource MainMenuButton}" PointerEntered="onButtonHolding" PointerExited="onButtonExit" Margin="20 0"  >
+                <Image x:Name="button_store" Source="/Assets/ui/button_yellow/button_store.png"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0"></Image>
+            </Button>
+            <Button  Padding="0" Style="{StaticResource MainMenuButton}" PointerEntered="onButtonHolding" PointerExited="onButtonExit" Margin="20 0" >
+                <Image x:Name="button_star" Source="/Assets/ui/button_yellow/button_star.png"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0"></Image>
+            </Button>
+
+        </StackPanel>
+
+        <!--JUGAR-->
+        <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="50">
+
+            <TextBlock HorizontalAlignment="Center" FontSize="40"  Text="{x:Bind GM.level}" FontWeight="Bold" FontFamily="Times New Roman" Foreground="#ae8022"/>
+            <Button  Padding="0" Style="{StaticResource ThemeButton}" BorderThickness="10" Click="ShowDialog_Click">
+                <TextBlock  TextAlignment="Center" TextWrapping="Wrap" FontSize="60" Width="380"  Style="{StaticResource ThemeText}" Text="Continuar la aventura"/>
+            </Button>
+
+
+        </StackPanel>
+
+        <!--DIALOG-->
+
+
+        <ContentDialog x:Name="MainMenuOptions" Grid.RowSpan="2" Grid.ColumnSpan="2"
+        Foreground="Black" 
+        FontSize="40"
+        Background="Gray"
+        CornerRadius="15"
+                 >
+
+            <Grid Width="500" Height="600" Margin="0" Padding="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="146*"/>
+                    <RowDefinition Height="81*"/>
+                    <RowDefinition Height="71*"/>
+                    <RowDefinition Height="121*"/>
+                    <RowDefinition Height="181*"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="45*"/>
+                    <ColumnDefinition Width="406*"/>
+                    <ColumnDefinition Width="45*"/>
+
+                </Grid.ColumnDefinitions>
+
+                <Grid Margin="20,40,20,20" Grid.ColumnSpan="3">
+                    <Rectangle Fill="#f7bf50" ></Rectangle>
+                    <TextBlock Grid.ColumnSpan="3" Style="{StaticResource ThemeText}" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="50" Height="57" Width="308">Configuración</TextBlock>
+
+                </Grid>
+                <Button x:Name="OptionsBackButton" Style="{StaticResource BackButton}" HorizontalAlignment="Right" VerticalAlignment="Top" Height="60" Width="60" Grid.ColumnSpan="2" Grid.Column="1" Click="OnCloseMenuOptionsClick" Margin="0,0,2,0"/>
+                <StackPanel Orientation="Horizontal" Grid.ColumnSpan="3" Margin="0,134,0,1" Grid.RowSpan="2">
+                    <TextBlock Style="{StaticResource ThemeText}" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="10,0,20,0" FontSize="30">Música</TextBlock>
+                    <Slider Width="363" Height="30" VerticalAlignment="Center" Foreground="#f7bf50"  CornerRadius="10"  Background="#403738" Maximum="100" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3" Margin="0,72,0,0" Grid.RowSpan="2">
+                    <TextBlock Style="{StaticResource ThemeText}" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,20,0" FontSize="30">Sonido</TextBlock>
+                    <Slider VerticalAlignment="Center" Foreground="#f7bf50" CornerRadius="10" Background="#403738" Maximum="100" Width="365" />
+                </StackPanel>
+                <Button Grid.Row="3" Grid.Column="1"   Padding="0"  VerticalAlignment="Stretch" Margin="0,20,45,21" Background="#933232" CornerRadius="10" BorderBrush="#5f2020" BorderThickness="1,1,0,10" HorizontalAlignment="Stretch" Grid.ColumnSpan="2" >
+                    <TextBlock  TextAlignment="Center" TextWrapping="Wrap" FontSize="30" Width="380"  Style="{StaticResource ThemeText}" Text="Empezar de nuevo"/>
+                </Button>
+                <Button Grid.Row="4"  Grid.Column="1"   Padding="0"  VerticalAlignment="Stretch" Margin="0,20,45,20" Background="#cca035" CornerRadius="10" BorderBrush="#7f6321" BorderThickness="1,1,0,10"   HorizontalAlignment="Stretch" Grid.ColumnSpan="2">
+                    <TextBlock  TextAlignment="Center" TextWrapping="Wrap" FontSize="40" Width="380"  Style="{StaticResource ThemeText}" Text="Salir" Margin="20"/>
+                </Button>
+
+            </Grid>
+
+        </ContentDialog>
+
+        <ContentDialog x:Name="ConfirmMenu" 
+        Foreground="Black" 
+        FontSize="40"
+        Background="Gray"
+        CornerRadius="15"
+>
+
+            <Grid Width="491" Height="326" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+
+                </Grid.RowDefinitions>
+
+                <Grid Margin="20,40,20,20" Grid.ColumnSpan="4">
+                    <Rectangle Fill="#f7bf50" ></Rectangle>
+                    <TextBlock Grid.ColumnSpan="3" Style="{StaticResource ThemeText}" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40" >Continuar la aventura</TextBlock>
+                </Grid>
+                <TextBlock Grid.Row="1" TextWrapping="Wrap" Style="{StaticResource ThemeText}" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="35" >Se ha detectado un combate no acabado, ¿se desea continuar?</TextBlock>
+
+                <Button Style="{StaticResource BackButton}" HorizontalAlignment="Right" VerticalAlignment="Top" Height="60" Width="60" Grid.Column="3" Click="OnCloseConfirmClick"/>
+
+                <Grid HorizontalAlignment="Stretch" Grid.Row="2" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Padding="0"  CornerRadius="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,10,0" Click="OnStartNewGameClick">
+                        <TextBlock  TextAlignment="Center" TextWrapping="Wrap" FontSize="30" Margin="20" Style="{StaticResource ThemeText}" Text="Empezar nuevo combate"/>
+                    </Button>
+                    <Button Grid.Column="1" Padding="0"  CornerRadius="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,0,0,0">
+                        <TextBlock  TextAlignment="Center" TextWrapping="Wrap" FontSize="30" Margin="20" Style="{StaticResource ThemeText}" Text="Continuar combate"/>
+                    </Button>
+                </Grid>
+
+            </Grid>
+
+        </ContentDialog>
+
+
 
     </Grid>
 </Page>

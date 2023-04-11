@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Trabajo_DSI_G7.Game;
+using Trabajo_DSI_G7.Pages;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -22,9 +24,11 @@ namespace Trabajo_DSI_G7
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        GameManager GM = new GameManager();
         public MainPage()
         {
             this.InitializeComponent();
+            Frame.Navigate(typeof(MainMenu),GM);
         }
     }
 }
