@@ -59,5 +59,20 @@ namespace Trabajo_DSI_G7.Pages
             base.OnNavigatedTo(e);
         }
 
+        private void OnCloseBuyClick(object sender, RoutedEventArgs e)
+        {
+            ShopWindow.Hide();
+        }
+        private async void Posion_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            ShopWindow.XamlRoot = this.Content.XamlRoot;
+            await ShopWindow.ShowAsync();
+        }
+
+        private void OptionsBackButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!Frame.CanGoBack) return;
+            Frame.GoBack();
+        }
     }
 }

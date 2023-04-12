@@ -62,9 +62,9 @@ namespace Trabajo_DSI_G7.Models
                 lines=new List<Ability_conx>()
                 {
                     new Ability_conx(){c_exist=true,Root=true,id=1},
-                    new Ability_conx(){c_exist=true,Root=true,id=2},
-                    new Ability_conx(){c_exist=true,Root=true,id=3},
-                    new Ability_conx(){c_exist=true,Root=true,id=4},
+                    new Ability_conx(){c_exist=true,Root=true,id=2,active=true},
+                    new Ability_conx(){c_exist=true,Root=true,id=3,active=true},
+                    new Ability_conx(){c_exist=true,Root=true,id=4,active=true},
                 },
 
              },
@@ -105,7 +105,7 @@ namespace Trabajo_DSI_G7.Models
                 },
                 lines=new List<Ability_conx>()
                 {
-                    new Ability_conx(){c_exist=true,Root=false,id=0},
+                    new Ability_conx(){c_exist=true,Root=false,id=0,active=true},
                     new Ability_conx(){c_exist=false},
                     new Ability_conx(){c_exist=true,Root=true,id=5},
                     new Ability_conx(){c_exist=true,Root=true,id=6},
@@ -130,7 +130,7 @@ namespace Trabajo_DSI_G7.Models
                     new Ability_conx(){c_exist=true,Root=true,id=13},
                     new Ability_conx(){c_exist=true,Root=true,id=14},
                     new Ability_conx(){c_exist=true,Root=true,id=16},
-                    new Ability_conx(){c_exist=true,Root=false,id=0},
+                    new Ability_conx(){c_exist=true,Root=false,id=0, active = true},
                 },
              },
             new Ability()
@@ -151,7 +151,7 @@ namespace Trabajo_DSI_G7.Models
                 {
                     new Ability_conx(){c_exist=true,Root=true,id=9},
                     new Ability_conx(){c_exist=false},
-                    new Ability_conx(){c_exist=true,Root=false,id=0},
+                    new Ability_conx(){c_exist=true,Root=false,id=0, active = true},
                     new Ability_conx(){c_exist=false},
                 },
              },

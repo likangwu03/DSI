@@ -35,8 +35,6 @@ namespace Trabajo_DSI_G7.Pages
         public SkillTree()
         {
             this.InitializeComponent();
-
-            //AddAbiityToGrid();
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -55,24 +53,21 @@ namespace Trabajo_DSI_G7.Pages
             return AbilityList[id].Active() && AbilityList[id].lines[i].c_exist && AbilityList[AbilityList[id].lines[i].id].Active();
         }
 
-        //public void AddAbiityToGrid()
-        //{
-        //    foreach (var ability in AbilityList)
-        //    {
-        //        //AbilityVM_1 abilityVM = new AbilityVM_1(ability);
-        //        Grid a = new Grid();
-        //        TextBlock t = new TextBlock()
-        //        {
-        //            Text = ability.Name,
-        //        };
-        //        a.Children.Add(t,1,1);
-               
-        //        AbilityGrid.Children.Add(t);
-        //    }
+        private void OnCloseClick(object sender, RoutedEventArgs e)
+        {
+            AbilityWindow.Hide();
+        }
 
-        //    Grid grid = new Grid();
-        //    grid.HorizontalAlignment = HorizontalAlignment.Center;
-        //    grid.RowDefinitions.Add(new RowDefinition());
-        //}
+        private async void Ability_Click(object sender, RoutedEventArgs e)
+        {
+            AbilityWindow.XamlRoot = this.Content.XamlRoot;
+            await AbilityWindow.ShowAsync();
+        }
+
+        private void OptionsBackButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!Frame.CanGoBack) return;
+            Frame.GoBack();
+        }
     }
 }

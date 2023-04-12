@@ -17,8 +17,7 @@
             <Setter Property="Background" Value="#555555" />
             <Setter Property="BorderBrush" Value="#ffc956"/>
             <Setter Property="CornerRadius" Value="30"/>
-            <Setter Property="Width" Value="50"/>
-            <Setter Property="Height" Value="50"/>
+
             <Setter Property="Content" Value="X" />
             <Setter Property="FontSize" Value="30"/>
             <Setter Property="FontWeight" Value="Bold"/>
@@ -118,7 +117,7 @@
         </Flyout>
 
         <DataTemplate x:Key="PotionItemTemplate"
-                      x:DataType="Model:PotionVM" >
+                      x:DataType="Model:PotionVM">
             <local:AspectContentControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -201,7 +200,6 @@
         </DataTemplate>
 
         <Style  x:Key="Option" TargetType="Button">
-            <Setter Property="FontStyle" Value="{StaticResource ThemeText}"/>
             <Setter Property="BorderThickness" Value="3"/>
             <Setter Property="Background" Value="#FFBEBEBE"/>
 
@@ -273,36 +271,43 @@
                         <RowDefinition Height="5*"/>
                     </Grid.RowDefinitions>
 
-                    <Border BorderThickness="7" BorderBrush="#FFFFD700" Background="#FFFFFFFF">
-                        <TextBlock Text="Text inside a border" FontSize="18" Foreground="Black" />
-                    </Border>
 
 
                     <Button Grid.Row="1"
-                    Flyout="{StaticResource buy}"
-                    Content="Cartas"
+                    Flyout="{StaticResource buy}"                
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Center"
                     HorizontalContentAlignment="Center"
                     VerticalContentAlignment="Center" 
-                    Style="{StaticResource Option}"
-                            
-                    />
-                    <Button Grid.Row="3"
-                    Content="Pociones"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Center"
-                    HorizontalContentAlignment="Center"
-                    VerticalContentAlignment="Center"
-                    Style="{StaticResource Option}"/>
-                    <Button Grid.Row="5" 
-                    Content="Esmeraldas"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Center"
-                    HorizontalContentAlignment="Center"
-                    VerticalContentAlignment="Center"
+                    Style="{StaticResource Option}"       
+                    >
+                        <Viewbox>
 
-                    Style="{StaticResource Option}"/>
+                            <TextBlock  TextAlignment="Center" VerticalAlignment="Center" FontSize="35"  Style="{StaticResource ThemeText}" Text="Cartas" />
+                        </Viewbox>
+                    </Button>
+                    <Button Grid.Row="3"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Style="{StaticResource Option}">
+                        <Viewbox>
+
+                            <TextBlock  TextAlignment="Center" VerticalAlignment="Center" FontSize="30"  Style="{StaticResource ThemeText}" Text="Pociones" />
+                        </Viewbox>
+
+                    </Button>
+                    <Button Grid.Row="5" 
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Style="{StaticResource Option}">
+                        <Viewbox>
+                            <TextBlock  TextAlignment="Center" VerticalAlignment="Center" FontSize="30"  Style="{StaticResource ThemeText}" Text="Esmeraldas" />
+                        </Viewbox>
+                    </Button>
 
                 </Grid>
 
@@ -310,7 +315,7 @@
 
             <!--der-->
             <Rectangle Grid.Column="2" Grid.Row="1"  Fill="#FFBEBEBE" RadiusX="40" RadiusY="40" Stroke="Black" StrokeThickness="5"  ></Rectangle>
-            <Grid x:Name="___der_" Grid.Column="2" Grid.Row="1">
+            <Grid x:Name="der_" Grid.Column="2" Grid.Row="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="5*"/>
@@ -346,75 +351,103 @@
                     </Grid.RowDefinitions>
                     <controls:AdaptiveGridView Grid.Row="1" Grid.Column="1"
                     ItemsSource="{x:Bind PotionList}"
-                    ItemTemplate="{StaticResource PotionItemTemplate}">
+                    ItemTemplate="{StaticResource PotionItemTemplate}" ItemClick="Posion_ItemClick" IsItemClickEnabled="True">
                     </controls:AdaptiveGridView>
                 </Grid>
-
-
-
             </Grid>
+
+
 
             <Grid  Grid.ColumnSpan="2" Grid.Column="2" Grid.RowSpan="2">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="40*"/>
-                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="45*"/>
+                    <ColumnDefinition Width="5*"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="15*"/>
+                    <RowDefinition Height="0*"/>
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="20*"/>
                 </Grid.RowDefinitions>
-                <Button Grid.Row="1" Grid.Column="1" x:Name="OptionsBackButton" Style="{StaticResource BackButton}" HorizontalAlignment="Right" VerticalAlignment="Top" Height="60" Width="60" Margin="0,0,2,0"/>
+                <Button Click="OptionsBackButton_Click" Grid.Row="0" Grid.Column="1"  Grid.ColumnSpan="2" Grid.RowSpan="2"  x:Name="OptionsBackButton" Style="{StaticResource BackButton}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="60" Width="60" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  />
+
             </Grid>
         </Grid>
 
-        <!--<ContentDialog x:Name="ShopWindow"
+        <ContentDialog x:Name="ShopWindow"
         Foreground="Black" 
         FontSize="40"
         Background="Gray"
         CornerRadius="15">
 
-            <Grid Width="500" Height="600" Margin="0" Padding="0">
+            <Viewbox>
+                
+            <Grid Width="500" Height="350" Margin="0" Padding="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="146*"/>
-                    <RowDefinition Height="81*"/>
-                    <RowDefinition Height="71*"/>
-                    <RowDefinition Height="121*"/>
-                    <RowDefinition Height="181*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="10*"/>
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="45*"/>
-                    <ColumnDefinition Width="406*"/>
-                    <ColumnDefinition Width="45*"/>
-
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
 
-                <Grid Margin="20,40,20,20" Grid.ColumnSpan="3">
-                    <Image Source="/Assets/ui/ribbon.png" Stretch="Fill" VerticalAlignment="Center" />
-                    <TextBlock Grid.ColumnSpan="3" Style="{StaticResource ThemeText}" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="35" Margin="0 0 0 20">Configuración</TextBlock>
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Rectangle Width="120" Height="120"  Fill="#FFF5BF51" RadiusX="10" RadiusY="10" Stroke="Black" HorizontalAlignment="Center" VerticalAlignment="Center" ></Rectangle>
+                    <Rectangle Width="100" Height="100"   Fill="#FFAE8022" RadiusX="10" RadiusY="10" Stroke="Black"  HorizontalAlignment="Center" VerticalAlignment="Center"></Rectangle>
+                    <Image  Source="{x:Bind actPotion.Img.Source}" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" Width="90" Height="90"></Image>
 
+                    <TextBlock Grid.Row="1" TextAlignment="Center" TextWrapping="Wrap" FontSize="30"  Style="{StaticResource ThemeText}" Text="{x:Bind actPotion.Name}"/>
+
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock TextAlignment="Center" TextWrapping="Wrap" FontSize="30"  Style="{StaticResource ThemeText}" Text="{x:Bind actPotion.Price}"/>
+                        <TextBlock TextAlignment="Center" TextWrapping="Wrap" FontSize="30"  Style="{StaticResource ThemeText}" Text="/u"/>
+                    </StackPanel>
+
+
+
+                </Grid >
+
+                <Grid Grid.Column="1" Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                                <RowDefinition Height="3*"/>
+                                <RowDefinition Height="6*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock TextAlignment="Center" TextWrapping="Wrap" FontSize="30"  Style="{StaticResource ThemeText}" Text="Descripción"/>
+                        <TextBlock Grid.Row="1" TextAlignment="Center" TextWrapping="Wrap" FontSize="30"  Style="{StaticResource ThemeText}" Text="{x:Bind actPotion.Description}"/>
+                    </Grid>
+
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Button Grid.Row="1"   Padding="0" Margin="50,10,20,0"  VerticalAlignment="Stretch"  Background="#cca035" CornerRadius="10" BorderBrush="#7f6321" BorderThickness="1,1,0,10"   HorizontalAlignment="Stretch" Grid.ColumnSpan="2">
+                            
+                            <TextBlock  TextAlignment="Center" VerticalAlignment="Center" FontSize="30"  Style="{StaticResource ThemeText}" Text="Comprar" />
+                        </Button>
+                    </Grid>
                 </Grid>
-                <Button x:Name="OptionsBackButton2" Style="{StaticResource BackButton}" HorizontalAlignment="Right" VerticalAlignment="Top" Height="60" Width="60" Grid.ColumnSpan="2" Grid.Column="1" Margin="0,0,2,0"/>
-                <StackPanel Orientation="Horizontal" Grid.ColumnSpan="3" Margin="0,134,0,1" Grid.RowSpan="2">
-                    <TextBlock Style="{StaticResource ThemeText}" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="10,0,20,0" FontSize="30">Música</TextBlock>
-                    <Slider Width="363" Height="30" VerticalAlignment="Center" Foreground="#f7bf50"  CornerRadius="10"  Background="#403738" Maximum="100" />
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3" Margin="0,72,0,0" Grid.RowSpan="2">
-                    <TextBlock Style="{StaticResource ThemeText}" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,20,0" FontSize="30">Sonido</TextBlock>
-                    <Slider VerticalAlignment="Center" Foreground="#f7bf50" CornerRadius="10" Background="#403738" Maximum="100" Width="365" />
-                </StackPanel>
-                <Button Grid.Row="3" Grid.Column="1"   Padding="0"  VerticalAlignment="Stretch" Margin="0,20,45,21" Background="#933232" CornerRadius="10" BorderBrush="#5f2020" BorderThickness="1,1,0,10" HorizontalAlignment="Stretch" Grid.ColumnSpan="2" >
-                    <TextBlock  TextAlignment="Center" TextWrapping="Wrap" FontSize="30" Width="380"  Style="{StaticResource ThemeText}" Text="Empezar de nuevo"/>
-                </Button>
-                <Button Grid.Row="4"  Grid.Column="1"   Padding="0"  VerticalAlignment="Stretch" Margin="0,20,45,20" Background="#cca035" CornerRadius="10" BorderBrush="#7f6321" BorderThickness="1,1,0,10"   HorizontalAlignment="Stretch" Grid.ColumnSpan="2">
-                    <TextBlock  TextAlignment="Center" TextWrapping="Wrap" FontSize="40" Width="380"  Style="{StaticResource ThemeText}" Text="Comprar" Margin="20"/>
-                </Button>
+
+                <Button x:Name="OptionsBackButton2" Style="{StaticResource BackButton}" HorizontalAlignment="Right" VerticalAlignment="Top" Height="60" Width="60" Grid.ColumnSpan="2" Grid.RowSpan="2"  Click="OnCloseBuyClick" Margin="0,0,2,0"/>
 
             </Grid>
+            </Viewbox>
 
-        </ContentDialog>-->
+
+        </ContentDialog>
 
 
     </Grid>
