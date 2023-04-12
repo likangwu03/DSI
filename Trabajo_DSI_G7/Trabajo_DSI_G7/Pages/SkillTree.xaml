@@ -27,9 +27,9 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <Rectangle  Fill="#FF777777"  Width="15" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="{x:Bind LineExist(0)}" ></Rectangle>
-                            <Rectangle  Fill="#fac55d"  Width="15" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind lines[0].c_exist}" ></Rectangle>
+                            <Rectangle  Fill="#fac55d"  Width="15" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind lines[0].active}" ></Rectangle>
                             <Rectangle Grid.Row="1"   Fill="#FF777777"  Width="15" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="{x:Bind LineExist(1)}" ></Rectangle>
-                            <Rectangle Grid.Row="1"   Fill="#fac55d"  Width="15" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind lines[1].c_exist}" ></Rectangle>
+                            <Rectangle Grid.Row="1"   Fill="#fac55d"  Width="15" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind lines[1].active}" ></Rectangle>
                         </Grid>
                     </Viewbox>
 
@@ -40,9 +40,9 @@
                                 <ColumnDefinition Width="5*"/>
                             </Grid.ColumnDefinitions>
                             <Rectangle  Fill="#FF777777" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  Opacity="{x:Bind LineExist(2)}"></Rectangle>
-                            <Rectangle  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  Visibility="{x:Bind lines[2].c_exist}"></Rectangle>
+                            <Rectangle  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  Visibility="{x:Bind lines[2].active}"></Rectangle>
                             <Rectangle Grid.Column="1"  Fill="#FF777777" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="{x:Bind LineExist(3)}"  ></Rectangle>
-                            <Rectangle Grid.Column="1"  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind lines[3].c_exist}" ></Rectangle>
+                            <Rectangle Grid.Column="1"  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind lines[3].active}" ></Rectangle>
                         </Grid>
                     </Viewbox>
                 </Grid>
@@ -70,7 +70,7 @@
                         <Image Margin="3" Source="{x:Bind Img.Source}" VerticalAlignment="Center" HorizontalAlignment="Center" Opacity="{x:Bind Opacity_Img(),Mode=OneWay}" ></Image>
                     </Viewbox>
                     <Viewbox  Grid.Column="1" Grid.Row="2">
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center"  Visibility="{x:Bind TextVisibility_()}">
                             <TextBlock Text="{x:Bind level,Mode=OneWay}" Style="{StaticResource ThemeText}" FontSize="30"  />
 
                             <TextBlock Text="/3" Style="{StaticResource ThemeText}" FontSize="30" />
@@ -115,7 +115,10 @@
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
                     <Rectangle Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="#FFF5BE51" Stretch="UniformToFill"></Rectangle>
-                    <TextBlock Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Arbol de habilidades" Foreground="Black" FontWeight="Bold" FontStyle="Normal" FontSize="40" FontFamily="Rockwell Extra Bold"/>
+                    <Viewbox  Grid.Column="1" Grid.Row="1">
+
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Arbol de habilidades" Foreground="Black" FontWeight="Bold" FontStyle="Normal" FontSize="40" FontFamily="Rockwell Extra Bold"/>
+                    </Viewbox>
                 </Grid>
 
                 <Grid Grid.Row="1">
@@ -153,17 +156,6 @@
                             <RowDefinition Height="1*"/>
                             <RowDefinition Height="1*"/>
                         </Grid.RowDefinitions>
-
-                        <Line Stroke="LightYellow"
-                              X1="0" Y1="0"
-                              X2="1" Y2="0" Stretch="Fill"
-                              StrokeThickness="5"
-                             />
-                        <Line Stroke="LightYellow"
-                              X1="0" Y1="0"
-                              X2="0" Y2="1" Stretch="Fill"
-                              StrokeThickness="5"
-                             />
                         <ContentControl Grid.Column="{x:Bind AbilityList[0].Col}" Grid.Row="{x:Bind AbilityList[0].Row}" DataContext="{x:Bind AbilityList[0]}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
                         <ContentControl Grid.Column="{x:Bind AbilityList[1].Col}" Grid.Row="{x:Bind AbilityList[1].Row}" DataContext="{x:Bind AbilityList[1]}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
                         <ContentControl Grid.Column="{x:Bind AbilityList[2].Col}" Grid.Row="{x:Bind AbilityList[2].Row}" DataContext="{x:Bind AbilityList[2]}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
@@ -306,7 +298,7 @@
                                 </Grid>
                             </Viewbox>
 
-                           
+
                         </Grid>
 
                         <Grid Grid.Row="0" Grid.Column="9">
@@ -317,14 +309,78 @@
                                         <ColumnDefinition Width="5*"/>
                                     </Grid.ColumnDefinitions>
                                     <Rectangle  Fill="#FF777777" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" ></Rectangle>
-                                    <Rectangle  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  Visibility="{x:Bind AbilityList[9].lines[4].active}"></Rectangle>
+                                    <Rectangle  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  Visibility="{x:Bind AbilityList[9].lines[3].active}"></Rectangle>
                                     <Rectangle Grid.Column="1"  Fill="#FF777777" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  ></Rectangle>
-                                    <Rectangle Grid.Column="1"  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind AbilityList[9].lines[4].active}" ></Rectangle>
+                                    <Rectangle Grid.Column="1"  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind AbilityList[9].lines[3].active}" ></Rectangle>
                                 </Grid>
                             </Viewbox>
                         </Grid>
-                        
-                        
+
+                        <Grid Grid.Row="3" Grid.Column="7">
+
+                            <Viewbox>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="5*"/>
+                                        <ColumnDefinition Width="5*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Rectangle  Fill="#FF777777" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" ></Rectangle>
+                                    <Rectangle  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  Visibility="{x:Bind AbilityList[2].lines[3].active}"></Rectangle>
+                                    <Rectangle Grid.Column="1"  Fill="#FF777777" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  ></Rectangle>
+                                    <Rectangle Grid.Column="1"  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind AbilityList[2].lines[3].active}" ></Rectangle>
+                                </Grid>
+                            </Viewbox>
+                        </Grid>
+
+                        <Grid Grid.Row="0" Grid.Column="11">
+                            <Viewbox>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="5*"/>
+                                        <ColumnDefinition Width="5*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Rectangle  Fill="#FF777777" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" ></Rectangle>
+                                    <Rectangle  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  Visibility="{x:Bind AbilityList[10].lines[3].active}"></Rectangle>
+                                    <Rectangle Grid.Column="1"  Fill="#FF777777" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  ></Rectangle>
+                                    <Rectangle Grid.Column="1"  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind AbilityList[10].lines[3].active}" ></Rectangle>
+                                </Grid>
+                            </Viewbox>
+                        </Grid>
+
+                        <Grid Grid.Row="3" Grid.Column="9">
+
+                            <Viewbox>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="5*"/>
+                                        <ColumnDefinition Width="5*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Rectangle  Fill="#FF777777" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" ></Rectangle>
+                                    <Rectangle  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  Visibility="{x:Bind AbilityList[6].lines[3].active}"></Rectangle>
+                                    <Rectangle Grid.Column="1"  Fill="#FF777777" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  ></Rectangle>
+                                    <Rectangle Grid.Column="1"  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind AbilityList[6].lines[3].active}" ></Rectangle>
+                                </Grid>
+                            </Viewbox>
+                        </Grid>
+
+                        <Grid Grid.Row="3" Grid.Column="11">
+
+                            <Viewbox>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="5*"/>
+                                        <ColumnDefinition Width="5*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Rectangle  Fill="#FF777777" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" ></Rectangle>
+                                    <Rectangle  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  Visibility="{x:Bind AbilityList[7].lines[3].active}"></Rectangle>
+                                    <Rectangle Grid.Column="1"  Fill="#FF777777" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  ></Rectangle>
+                                    <Rectangle Grid.Column="1"  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind AbilityList[7].lines[3].active}" ></Rectangle>
+                                </Grid>
+                            </Viewbox>
+                        </Grid>
+
+
+
 
 
                     </Grid>

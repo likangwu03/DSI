@@ -13,6 +13,9 @@ namespace Trabajo_DSI_G7.Models
         public int id { get; set; }
 
         public bool active { get; set; }
+
+
+
         public Ability_conx() { }
     }
     public class emerald_inf
@@ -22,6 +25,7 @@ namespace Trabajo_DSI_G7.Models
     }
     public class Ability
     {
+        public bool rootActive { get; set; }
         public int Id { get; set; }
         public string Name { get; set; }
         public string ImageFile { get; set; }
@@ -43,7 +47,8 @@ namespace Trabajo_DSI_G7.Models
         {
             new Ability()
             {
-                level=1,
+                rootActive = true,
+                level=3,
                 Id = 0,
                 Name = "Ability_0",
                 ImageFile = "Assets\\habilidades\\Icon2.png",
@@ -65,6 +70,7 @@ namespace Trabajo_DSI_G7.Models
              },
              new Ability()
             {
+                rootActive=true,
                 Id = 1,
                 Name = "Ability_1",
                 ImageFile = "Assets\\habilidades\\Icon2.png",
@@ -85,6 +91,8 @@ namespace Trabajo_DSI_G7.Models
              },
             new Ability()
             {
+                level=2,
+                rootActive=true,
                 Id = 2,
                 Name = "Ability_2",
                 ImageFile = "Assets\\habilidades\\Icon3.png",
@@ -105,6 +113,8 @@ namespace Trabajo_DSI_G7.Models
              },
             new Ability()
             {
+                level=1,
+                rootActive=true,
                 Id = 3,
                 Name = "Ability_3",
                 ImageFile = "Assets\\habilidades\\Icon4.png",
@@ -125,6 +135,8 @@ namespace Trabajo_DSI_G7.Models
              },
             new Ability()
             {
+                level = 1,
+                rootActive=true,
                 Id = 4,
                 Name = "Ability_4",
                 ImageFile = "Assets\\habilidades\\Icon5.png",
@@ -145,6 +157,7 @@ namespace Trabajo_DSI_G7.Models
              },
             new Ability()
             {
+                 rootActive=true,
                 Id = 5,
                 Name = "Ability_5",
                 ImageFile = "Assets\\habilidades\\Icon6.png",
@@ -165,6 +178,7 @@ namespace Trabajo_DSI_G7.Models
              },
             new Ability()
             {
+                 rootActive=true,
                 Id = 6,
                 Name = "Ability_6",
                 ImageFile = "Assets\\habilidades\\Icon7.png",
@@ -306,6 +320,7 @@ namespace Trabajo_DSI_G7.Models
              },
                new Ability()
             {
+                   rootActive=true,
                 Id = 13,
                 Name = "Ability_13",
                 ImageFile = "Assets\\habilidades\\Icon14.png",
@@ -326,6 +341,7 @@ namespace Trabajo_DSI_G7.Models
              },
                 new Ability()
             {
+                rootActive=true,
                 Id = 14,
                 Name = "Ability_14",
                 ImageFile = "Assets\\habilidades\\Icon15.png",
@@ -366,6 +382,7 @@ namespace Trabajo_DSI_G7.Models
              },
                   new Ability()
             {
+                rootActive=true,
                 Id = 16,
                 Name = "Ability_16",
                 ImageFile = "Assets\\habilidades\\Icon17.png",

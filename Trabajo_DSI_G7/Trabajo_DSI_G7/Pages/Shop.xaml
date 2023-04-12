@@ -11,6 +11,20 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.Resources>
+
+        <Style x:Key="BackButton" TargetType="Button">
+            <Setter Property="BorderThickness" Value="5" />
+            <Setter Property="Background" Value="#555555" />
+            <Setter Property="BorderBrush" Value="#ffc956"/>
+            <Setter Property="CornerRadius" Value="30"/>
+            <Setter Property="Width" Value="50"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Content" Value="X" />
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#ffc956" />
+        </Style>
+
         <Style x:Key="ThemeText" TargetType="TextBlock">
             <Setter Property="Foreground" Value="Black"/>
             <Setter Property="FontFamily" Value="Times New Roman"/>
@@ -243,7 +257,7 @@
                     <Viewbox Grid.Row="2" Grid.Column="1">
                         <TextBlock   HorizontalAlignment="Left" VerticalAlignment="Center" Text="{x:Bind actLife}" Style="{ThemeResource TitleTextBlockStyle}" FontSize="40" FontWeight="Bold"></TextBlock>
                     </Viewbox>
-                    
+
 
                 </Grid>
 
@@ -259,9 +273,9 @@
                         <RowDefinition Height="5*"/>
                     </Grid.RowDefinitions>
 
-                    <!--<Border BorderThickness="7" BorderBrush="#FFFFD700" Background="#FFFFFFFF">
+                    <Border BorderThickness="7" BorderBrush="#FFFFD700" Background="#FFFFFFFF">
                         <TextBlock Text="Text inside a border" FontSize="18" Foreground="Black" />
-                    </Border>-->
+                    </Border>
 
 
                     <Button Grid.Row="1"
@@ -342,24 +356,66 @@
 
             <Grid  Grid.ColumnSpan="2" Grid.Column="2" Grid.RowSpan="2">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="25*"/>
-                    <ColumnDefinition Width="1.5*"/>
+                    <ColumnDefinition Width="40*"/>
+                    <ColumnDefinition Width="4*"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1.5*"/>
+                    <RowDefinition Height="2*"/>
                     <RowDefinition Height="15*"/>
                 </Grid.RowDefinitions>
-
-
-                <Ellipse Grid.Row="1" Grid.Column="1" Fill="#FF555555" Stretch="Uniform" Stroke="#FFFAC55D" StrokeThickness="4" >
-                </Ellipse>
-                <FontIcon Grid.Row="1" Grid.Column="1" Glyph="&#xE711;" FocusVisualPrimaryBrush="#FFFAC55D" FontWeight="Bold" FontSize="22"  />
-
-
+                <Button Grid.Row="1" Grid.Column="1" x:Name="OptionsBackButton" Style="{StaticResource BackButton}" HorizontalAlignment="Right" VerticalAlignment="Top" Height="60" Width="60" Margin="0,0,2,0"/>
             </Grid>
         </Grid>
+
+        <!--<ContentDialog x:Name="ShopWindow"
+        Foreground="Black" 
+        FontSize="40"
+        Background="Gray"
+        CornerRadius="15">
+
+            <Grid Width="500" Height="600" Margin="0" Padding="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="146*"/>
+                    <RowDefinition Height="81*"/>
+                    <RowDefinition Height="71*"/>
+                    <RowDefinition Height="121*"/>
+                    <RowDefinition Height="181*"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="45*"/>
+                    <ColumnDefinition Width="406*"/>
+                    <ColumnDefinition Width="45*"/>
+
+                </Grid.ColumnDefinitions>
+
+                <Grid Margin="20,40,20,20" Grid.ColumnSpan="3">
+                    <Image Source="/Assets/ui/ribbon.png" Stretch="Fill" VerticalAlignment="Center" />
+                    <TextBlock Grid.ColumnSpan="3" Style="{StaticResource ThemeText}" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="35" Margin="0 0 0 20">Configuración</TextBlock>
+
+                </Grid>
+                <Button x:Name="OptionsBackButton2" Style="{StaticResource BackButton}" HorizontalAlignment="Right" VerticalAlignment="Top" Height="60" Width="60" Grid.ColumnSpan="2" Grid.Column="1" Margin="0,0,2,0"/>
+                <StackPanel Orientation="Horizontal" Grid.ColumnSpan="3" Margin="0,134,0,1" Grid.RowSpan="2">
+                    <TextBlock Style="{StaticResource ThemeText}" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="10,0,20,0" FontSize="30">Música</TextBlock>
+                    <Slider Width="363" Height="30" VerticalAlignment="Center" Foreground="#f7bf50"  CornerRadius="10"  Background="#403738" Maximum="100" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3" Margin="0,72,0,0" Grid.RowSpan="2">
+                    <TextBlock Style="{StaticResource ThemeText}" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,20,0" FontSize="30">Sonido</TextBlock>
+                    <Slider VerticalAlignment="Center" Foreground="#f7bf50" CornerRadius="10" Background="#403738" Maximum="100" Width="365" />
+                </StackPanel>
+                <Button Grid.Row="3" Grid.Column="1"   Padding="0"  VerticalAlignment="Stretch" Margin="0,20,45,21" Background="#933232" CornerRadius="10" BorderBrush="#5f2020" BorderThickness="1,1,0,10" HorizontalAlignment="Stretch" Grid.ColumnSpan="2" >
+                    <TextBlock  TextAlignment="Center" TextWrapping="Wrap" FontSize="30" Width="380"  Style="{StaticResource ThemeText}" Text="Empezar de nuevo"/>
+                </Button>
+                <Button Grid.Row="4"  Grid.Column="1"   Padding="0"  VerticalAlignment="Stretch" Margin="0,20,45,20" Background="#cca035" CornerRadius="10" BorderBrush="#7f6321" BorderThickness="1,1,0,10"   HorizontalAlignment="Stretch" Grid.ColumnSpan="2">
+                    <TextBlock  TextAlignment="Center" TextWrapping="Wrap" FontSize="40" Width="380"  Style="{StaticResource ThemeText}" Text="Comprar" Margin="20"/>
+                </Button>
+
+            </Grid>
+
+        </ContentDialog>-->
+
 
     </Grid>
 </Page>

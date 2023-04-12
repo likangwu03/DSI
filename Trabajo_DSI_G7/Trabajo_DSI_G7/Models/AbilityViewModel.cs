@@ -26,6 +26,7 @@ namespace Trabajo_DSI_G7.Models
             level=p.level;
             lines=p.lines;
             Emerald_list=p.Emerald_list;
+            rootActive=p.rootActive;
 
             Img = new Image();
             string s = System.IO.Directory.GetCurrentDirectory() + "\\" + p.ImageFile;
@@ -47,7 +48,14 @@ namespace Trabajo_DSI_G7.Models
         public double Opacity_Img()
         {
             if (Active()) return 1;
-            else return 0.5;
+            else if (rootActive) return 0.5;
+            return 0;
+        }
+
+        public Visibility TextVisibility_()
+        {
+            if (Active()||rootActive) return Visibility.Visible;
+            return Visibility.Collapsed;
         }
 
         public Visibility Visibility_()
