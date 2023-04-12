@@ -14,7 +14,7 @@ namespace Trabajo_DSI_G7.Models
         public int MaxLife { get; set; }
         public int ActLife { get; set; }
         public List<int> AbilityId { get; set; } //para buscar habilidad
-        //public List<AbilityVM> Abilities { get; set; } //para buscar habilidad
+        public List<AbilityVM> Abilities { get; set; } //para buscar habilidad
 
         public Enemy() { }
     }
@@ -30,7 +30,7 @@ namespace Trabajo_DSI_G7.Models
                 MaxLife=200,
                 ActLife=200,
                 AbilityId=new List<int>(){0,1,2}
-                
+
              },
             new Enemy()
             {
@@ -53,7 +53,7 @@ namespace Trabajo_DSI_G7.Models
           };
 
 
-        public static IList<Enemy> GetAllDrones()
+        public static IList<Enemy> GetAllEnemies()
         {
             return Enemies;
         }
@@ -63,12 +63,7 @@ namespace Trabajo_DSI_G7.Models
             return Enemies[id];
         }
 
-        public static void InitData()
-        {
-           // for (int i = 0; i < Enemies.Count; i++)
-              //  for (int j = 0; j < Enemies[i].AbilityId.Count(); j++)
-                  //  Enemies[i].Abilities.Add(Ability[Enemies[i].AbilityId[j]]);
-        }
+      
     }
 
 }

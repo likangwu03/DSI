@@ -61,7 +61,7 @@ namespace Trabajo_DSI_G7.Game
                     CardList.Add(VMitem);
                 }
         }
-        public void copyCards( ObservableCollection<CardVM> list)
+        public void copyCards(ObservableCollection<CardVM> list)
         {
             if (CardList != null)
                 foreach (Card dron in CardList)
@@ -70,12 +70,15 @@ namespace Trabajo_DSI_G7.Game
                     list.Add(VMitem);
                 }
         }
-            public void inicializeEnemy()
+        public void inicializeEnemy()
         {
             if (EnemyList != null)
-                foreach (Enemy dron in EnemyModel.GetAllDrones())
+                foreach (Enemy enemy in EnemyModel.GetAllEnemies())
                 {
-                    EnemyVM VMitem = new EnemyVM(dron);
+                    EnemyVM VMitem = new EnemyVM(enemy);
+                    VMitem.Abilities = new List<AbilityVM>();
+                    for (int i = 0; i < VMitem.AbilityId.Count; i++) //cargar habilidades
+                        VMitem.Abilities.Add(new AbilityVM(AbilityModel.GetAllAbilitys()[VMitem.AbilityId[i]]));
                     EnemyList.Add(VMitem);
                 }
         }
@@ -96,6 +99,7 @@ namespace Trabajo_DSI_G7.Game
             if (PotionList != null)
                 foreach (Ability dron in AbilityModel.GetAllAbilitys())
                 {
+
                     AbilityVM VMitem = new AbilityVM(dron);
                     AbilityList.Add(VMitem);
                 }

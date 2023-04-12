@@ -30,7 +30,7 @@ namespace Trabajo_DSI_G7.Models
                 level=1,
                 Id = 0,
                 Name = "Ability_0",
-                ImageFile = "Assets\\habilidades\\Icon1.png",
+                ImageFile = "Assets\\habilidades\\Icon2.png",
                 Description="hola",
                 Row=2, Col=6,
              },
@@ -46,7 +46,7 @@ namespace Trabajo_DSI_G7.Models
             {
                 Id = 0,
                 Name = "Ability_1",
-                ImageFile = "Assets\\habilidades\\Icon1.png",
+                ImageFile = "Assets\\habilidades\\Icon3.png",
                 Description="hola",
                 Row=3, Col=6,
              },
@@ -54,7 +54,7 @@ namespace Trabajo_DSI_G7.Models
             {
                 Id = 0,
                 Name = "Ability_1",
-                ImageFile = "Assets\\habilidades\\Icon1.png",
+                ImageFile = "Assets\\habilidades\\Icon4.png",
                 Description="hola",
                 Row=3, Col=8,
              },

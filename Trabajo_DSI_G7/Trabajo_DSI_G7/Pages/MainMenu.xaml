@@ -5,6 +5,7 @@
     xmlns:local="using:Trabajo_DSI_G7.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    
     mc:Ignorable="d"
    >
     <Page.Background>
@@ -13,14 +14,15 @@
 
     <Page.Resources>
         <Style x:Key="ThemeButton" TargetType="Button">
-            <Setter Property="BorderThickness" Value="5" />
-            <Setter Property="Background" Value="#ae8022" />
-            <Setter Property="BorderBrush" Value="#f7bf50"/>
-            <Setter Property="CornerRadius" Value="15"/>
+            <!--<Setter Property="BorderThickness" Value="5" />-->
+            <!--<Setter Property="Background" Value="#ae8022" />-->
+            <!--<Setter Property="BorderBrush" Value="#f7bf50"/>
+            <Setter Property="CornerRadius" Value="15"/>-->
+            <Setter Property="Foreground" Value="Wheat"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Grid x:Name="RootGrid" Background="{TemplateBinding Background}" CornerRadius="{TemplateBinding CornerRadius}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid x:Name="RootGrid" Background="#ae8022" CornerRadius="15" BorderBrush="#f7bf50" BorderThickness="5" >
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup x:Name="CommonStates">
                                     <VisualState x:Name="Normal">
@@ -29,22 +31,24 @@
                                         </Storyboard>
                                     </VisualState>
                                     <VisualState x:Name="PointerOver">
+                                        <VisualState.Setters>
+                                            <Setter Target="RootGrid.Background" Value="#7b5a18"/>
+                                            <Setter Target="RootGrid.BorderBrush" Value="#ae8022"/>
+                                        </VisualState.Setters>
                                         <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid" Storyboard.TargetProperty="Background">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#614713" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#ae8022" />
-                                            </ObjectAnimationUsingKeyFrames>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#b2b2b2" />
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#808080" />
                                             </ObjectAnimationUsingKeyFrames>
-                                            <PointerUpThemeAnimation Storyboard.TargetName="RootGrid" />
+                                            <!--<PointerDownThemeAnimation Storyboard.TargetName="RootGrid" />-->
                                         </Storyboard>
                                     </VisualState>
                                     <VisualState x:Name="Pressed">
+                                        <VisualState.Setters>
+                                            <Setter Target="RootGrid.Background" Value="#7b5a18"/>
+                                            <Setter Target="RootGrid.BorderBrush" Value="#ae8022"/>
+                                        </VisualState.Setters>
                                         <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid" Storyboard.TargetProperty="Background">
+                                            <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid" Storyboard.TargetProperty="Background">
                                                 <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlBackgroundBaseMediumLowBrush}" />
                                             </ObjectAnimationUsingKeyFrames>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
@@ -52,7 +56,7 @@
                                             </ObjectAnimationUsingKeyFrames>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
                                                 <DiscreteObjectKeyFrame KeyTime="0" Value="#b2b2b2" />
-                                            </ObjectAnimationUsingKeyFrames>
+                                            </ObjectAnimationUsingKeyFrames>-->
                                             <PointerDownThemeAnimation Storyboard.TargetName="RootGrid" />
                                         </Storyboard>
                                     </VisualState>
@@ -98,16 +102,11 @@
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontFamily" Value="Times New Roman"/>
             <Setter Property="FontWeight" Value="Bold"/>
-
-
         </Style>
     </Page.Resources>
     <Grid>
-
-
-
         <!--PERFIL-->
-        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="80 40 0 0" RenderTransformOrigin="0.37,0.513">
+        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="80 40 0 0" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -144,10 +143,10 @@
 
         <!--INF IZ-->
         <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="50">
-            <Button  Padding="0" Style="{StaticResource MainMenuButton}"  PointerEntered="onButtonHolding" PointerExited="onButtonExit"  Margin="20 0">
+            <Button  Padding="0" Style="{StaticResource MainMenuButton}"  PointerEntered="onButtonHolding" PointerExited="onButtonExit"  Margin="20 0" Click="OnSkillTreeClick">
                 <Image x:Name="button_tree" Source="/Assets/ui/button_yellow/button_tree.png"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0"></Image>
             </Button>
-            <Button  Padding="0" Style="{StaticResource MainMenuButton}" PointerEntered="onButtonHolding" PointerExited="onButtonExit" Margin="20 0"  >
+            <Button  Padding="0" Style="{StaticResource MainMenuButton}" PointerEntered="onButtonHolding" PointerExited="onButtonExit" Margin="20 0" Click="OnShopClick" >
                 <Image x:Name="button_store" Source="/Assets/ui/button_yellow/button_store.png"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0"></Image>
             </Button>
             <Button  Padding="0" Style="{StaticResource MainMenuButton}" PointerEntered="onButtonHolding" PointerExited="onButtonExit" Margin="20 0" >
@@ -160,7 +159,7 @@
         <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="50">
 
             <TextBlock HorizontalAlignment="Center" FontSize="40"  Text="{x:Bind GM.level}" FontWeight="Bold" FontFamily="Times New Roman" Foreground="#ae8022"/>
-            <Button  Padding="0" Style="{StaticResource ThemeButton}" BorderThickness="10" Click="ShowDialog_Click">
+            <Button  Padding="0" Style="{StaticResource ThemeButton}" Click="ShowDialog_Click">
                 <TextBlock  TextAlignment="Center" TextWrapping="Wrap" FontSize="60" Width="380"  Style="{StaticResource ThemeText}" Text="Continuar la aventura"/>
             </Button>
 
@@ -174,8 +173,7 @@
         Foreground="Black" 
         FontSize="40"
         Background="Gray"
-        CornerRadius="15"
-                 >
+        CornerRadius="15">
 
             <Grid Width="500" Height="600" Margin="0" Padding="0">
                 <Grid.RowDefinitions>
@@ -194,8 +192,8 @@
                 </Grid.ColumnDefinitions>
 
                 <Grid Margin="20,40,20,20" Grid.ColumnSpan="3">
-                    <Rectangle Fill="#f7bf50" ></Rectangle>
-                    <TextBlock Grid.ColumnSpan="3" Style="{StaticResource ThemeText}" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="50" Height="57" Width="308">Configuración</TextBlock>
+                    <Image Source="/Assets/ui/ribbon.png" Stretch="Fill" VerticalAlignment="Center" />
+                    <TextBlock Grid.ColumnSpan="3" Style="{StaticResource ThemeText}" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="35" Margin="0 0 0 20">Configuración</TextBlock>
 
                 </Grid>
                 <Button x:Name="OptionsBackButton" Style="{StaticResource BackButton}" HorizontalAlignment="Right" VerticalAlignment="Top" Height="60" Width="60" Grid.ColumnSpan="2" Grid.Column="1" Click="OnCloseMenuOptionsClick" Margin="0,0,2,0"/>
@@ -218,47 +216,120 @@
 
         </ContentDialog>
 
-        <ContentDialog x:Name="ConfirmMenu" 
-        Foreground="Black" 
+        <ContentDialog 
+        x:Name="ConfirmMenu" 
+          Foreground="Black" 
         FontSize="40"
-        Background="Gray"
         CornerRadius="15"
->
+        Height="500"
 
-            <Grid Width="491" Height="326" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            >
+            <ContentDialog.Background>
+                <ImageBrush ImageSource="/Assets/ui/UI board Medium Set.png"></ImageBrush>
+            </ContentDialog.Background>
+            <Grid Width="491" Height="260" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-
+                    <RowDefinition Height="50*"/>
+                    <RowDefinition Height="31*"/>
+                    <RowDefinition Height="49*"/>
                 </Grid.RowDefinitions>
 
-                <Grid Margin="20,40,20,20" Grid.ColumnSpan="4">
-                    <Rectangle Fill="#f7bf50" ></Rectangle>
-                    <TextBlock Grid.ColumnSpan="3" Style="{StaticResource ThemeText}" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40" >Continuar la aventura</TextBlock>
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="92" Width="500">
+                    <Image Source="/Assets/ui/ribbon.png" Stretch="Fill" VerticalAlignment="Center" />
+                    <TextBlock Grid.ColumnSpan="3" Style="{StaticResource ThemeText}" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="35" Margin="0 0 0 20">Continuar la aventura</TextBlock>
                 </Grid>
-                <TextBlock Grid.Row="1" TextWrapping="Wrap" Style="{StaticResource ThemeText}" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="35" >Se ha detectado un combate no acabado, ¿se desea continuar?</TextBlock>
+                <TextBlock Grid.Row="1" TextWrapping="Wrap" Style="{StaticResource ThemeText}" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center"  FontSize="25" Width="400" Height="57" >Se ha detectado un combate no acabado, ¿se desea continuar?</TextBlock>
+               
+                <!--<Button x:Name="ConfirmBackButton" Style="{StaticResource BackButton}" HorizontalAlignment="Right" VerticalAlignment="Top" Height="60" Width="60" Grid.ColumnSpan="2" Grid.Column="1" Click="OnCloseMenuOptionsClick" Margin="0,0,2,20"/>-->
 
-                <Button Style="{StaticResource BackButton}" HorizontalAlignment="Right" VerticalAlignment="Top" Height="60" Width="60" Grid.Column="3" Click="OnCloseConfirmClick"/>
-
-                <Grid HorizontalAlignment="Stretch" Grid.Row="2" >
+                <Grid Grid.Row="2" >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" Padding="0"  CornerRadius="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,10,0" Click="OnStartNewGameClick">
-                        <TextBlock  TextAlignment="Center" TextWrapping="Wrap" FontSize="30" Margin="20" Style="{StaticResource ThemeText}" Text="Empezar nuevo combate"/>
+                    <Button Grid.Column="0"  CornerRadius="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,10,0" Click="OnStartNewGameClick"  Width="200" Height="90" >
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Grid x:Name="RootGrid" >
+                                    <Image x:Name="ConfirmButtonBg" Source="/Assets/ui/button_yellow/red.png" Stretch="Fill"></Image>
+                                    <TextBlock x:Name="ConfirmButtonTxt" TextAlignment="Center" VerticalAlignment="Center" Foreground="Black" TextWrapping="Wrap" FontSize="25" Margin="10" Style="{StaticResource ThemeText}" Text="Empezar nuevo combate"/>
+
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Normal">
+                                                <VisualState.Setters>
+                                                    <Setter Target="ConfirmButtonBg.Source" Value="/Assets/ui/button_yellow/red.png"/>
+                                                </VisualState.Setters>
+                                                <Storyboard>
+                                                    <PointerUpThemeAnimation Storyboard.TargetName="RootGrid" />
+                                                </Storyboard>
+                                            </VisualState>
+                                            <VisualState x:Name="PointerOver">
+                                                <VisualState.Setters>
+                                                    <Setter Target="ConfirmButtonBg.Source" Value="/Assets/ui/button_hover/red.png"/>
+                                                    <Setter Target="ConfirmButtonTxt.Foreground" Value="#7e7e7e"/>
+                                                </VisualState.Setters>
+
+                                            </VisualState>
+                                            <VisualState x:Name="Pressed">
+                                                <VisualState.Setters>
+                                                    <Setter Target="ConfirmButtonBg.Source" Value="/Assets/ui/button_hover/red.png"/>
+                                                </VisualState.Setters>
+                                                <Storyboard>
+
+                                                    <PointerDownThemeAnimation Storyboard.TargetName="RootGrid" />
+                                                </Storyboard>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                </Grid>
+                            </ControlTemplate>
+                        </Button.Template>
                     </Button>
-                    <Button Grid.Column="1" Padding="0"  CornerRadius="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,0,0,0">
-                        <TextBlock  TextAlignment="Center" TextWrapping="Wrap" FontSize="30" Margin="20" Style="{StaticResource ThemeText}" Text="Continuar combate"/>
+                    <Button Grid.Column="1" Padding="5"  CornerRadius="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,0,0,0" Click="OnStartNewGameClick"  Width="200" Height="90">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Grid x:Name="RootGrid" >
+                                    <Image x:Name="ConfirmButtonBg" Source="/Assets/ui/button_yellow/green.png" Stretch="Fill"></Image>
+                                    <TextBlock x:Name="ConfirmButtonTxt" TextAlignment="Center" VerticalAlignment="Center" Foreground="Black" TextWrapping="Wrap" FontSize="25" Margin="10" Style="{StaticResource ThemeText}" Text="Continuar combate"/>
+
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Normal">
+                                                <VisualState.Setters>
+                                                    <Setter Target="ConfirmButtonBg.Source" Value="/Assets/ui/button_yellow/green.png"/>
+                                                </VisualState.Setters>
+                                                <Storyboard>
+                                                    <PointerUpThemeAnimation Storyboard.TargetName="RootGrid" />
+                                                </Storyboard>
+                                            </VisualState>
+                                            <VisualState x:Name="PointerOver">
+                                                <VisualState.Setters>
+                                                    <Setter Target="ConfirmButtonBg.Source" Value="/Assets/ui/button_hover/green.png"/>
+                                                    <Setter Target="ConfirmButtonTxt.Foreground" Value="#7e7e7e"/>
+                                                </VisualState.Setters>
+
+                                            </VisualState>
+                                            <VisualState x:Name="Pressed">
+                                                <VisualState.Setters>
+                                                    <Setter Target="ConfirmButtonBg.Source" Value="/Assets/ui/button_hover/green.png"/>
+                                                </VisualState.Setters>
+                                                <Storyboard>
+
+                                                    <PointerDownThemeAnimation Storyboard.TargetName="RootGrid" />
+                                                </Storyboard>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                </Grid>
+                            </ControlTemplate>
+                        </Button.Template>
                     </Button>
                 </Grid>
 
             </Grid>
 
         </ContentDialog>
-
-
 
     </Grid>
 </Page>

@@ -92,5 +92,17 @@ namespace Trabajo_DSI_G7.Pages
         {
             ConfirmMenu.Hide();
         }
+
+        private void OnSkillTreeClick(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(SkillTree), GM);
+
+        }
+
+        private void OnShopClick(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(Shop), GM);
+
+        }
     }
 }

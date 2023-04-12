@@ -42,26 +42,55 @@ namespace Trabajo_DSI_G7.Pages
 
             this.InitializeComponent();
             //Play_Confirmation_Dialog.XamlRoot = this.XamlRoot;
-            
+
         }
 
         private void iniciaLizeEnemies()
         {
-            createEnemy(Enemy1,0);
-            createEnemy(Enemy2,1);
-            createEnemy(Enemy3,2);
+            createEnemy(Enemy1, 0);
+            createEnemy(Enemy2, 1);
+            createEnemy(Enemy3, 2);
         }
 
-        private void createEnemy(StackPanel enemy,int i)
+        private void createEnemy(StackPanel enemy, int i)
         {
             EnemyVM enem = GM.getEnemy(i);
+            StackPanel abilStack = new StackPanel();
+            StackPanel enemInfoStack = new StackPanel();
+            enemInfoStack.Orientation = Orientation.Horizontal;
+            abilStack.Orientation = Orientation.Vertical;
+
+            foreach (AbilityVM abil in enem.Abilities)
+            {
+
+                Image a = new Image();
+                a.Source = abil.Img.Source;
+                a.Width = 30;
+                a.Height = 30;
+                a.HorizontalAlignment = HorizontalAlignment.Center;
+                a.VerticalAlignment = VerticalAlignment.Center;
+                a.Margin=new Thickness(0,3,-15,3);
+                abilStack.Children.Add(a);
+
+            }
+
+
+            enemInfoStack.Children.Add(abilStack);
+
+
+            enemInfoStack.HorizontalAlignment = HorizontalAlignment.Center;
+            enemInfoStack.VerticalAlignment = VerticalAlignment.Center;
+
             Image img = new Image();
             img.Source = enem.Img.Source;
-            //img.Width = 180;
-            //img.Height = 180;
+            img.Width = 180;
+            img.Height = 180;
             img.HorizontalAlignment = HorizontalAlignment.Center;
             img.VerticalAlignment = VerticalAlignment.Center;
             img.Margin = new Thickness(10);
+
+            enemInfoStack.Children.Add(img);
+
 
             ProgressBar pb = new ProgressBar();
             pb.HorizontalAlignment = HorizontalAlignment.Stretch;
@@ -72,26 +101,26 @@ namespace Trabajo_DSI_G7.Pages
             pb.Value = enem.ActLife;
             pb.Maximum = enem.MaxLife;
 
-           // Ellipse e=new Ellipse();
-           // e.Width = 200;
-           // e.Height = 40;
-           // e.Margin = new Thickness(20);
-           // e.Fill = new SolidColorBrush(Colors.White);
-           //e.HorizontalAlignment = HorizontalAlignment.Center;
-           //e.VerticalAlignment = VerticalAlignment.Bottom;
-           // e.Fill.Opacity = 40;
+            // Ellipse e=new Ellipse();
+            // e.Width = 200;
+            // e.Height = 40;
+            // e.Margin = new Thickness(20);
+            // e.Fill = new SolidColorBrush(Colors.White);
+            //e.HorizontalAlignment = HorizontalAlignment.Center;
+            //e.VerticalAlignment = VerticalAlignment.Bottom;
+            // e.Fill.Opacity = 40;
 
 
             TextBlock tb = new TextBlock();
             tb.HorizontalAlignment = HorizontalAlignment.Center;
             tb.VerticalAlignment = VerticalAlignment.Center;
             tb.Margin = new Thickness(10);
-            tb.FontSize =20;
-           // tb.Style= (Style)Application.Current.FindResource("myStyle");
+            tb.FontSize = 20;
+            // tb.Style= (Style)Application.Current.FindResource("myStyle");
             tb.Text = $"{enem.ActLife}/{enem.MaxLife}";
-          //  tb.Style = Application.Current.Resources["ThemeText"] as Style;
+            //  tb.Style = Application.Current.Resources["ThemeText"] as Style;
 
-            enemy.Children.Add(img);
+            enemy.Children.Add(enemInfoStack);
             enemy.Children.Add(pb);
             enemy.Children.Add(tb);
         }
@@ -102,20 +131,20 @@ namespace Trabajo_DSI_G7.Pages
                 this.GM = gm;
 
             base.OnNavigatedTo(e);
-           GM.copyCards( unusedCards);
+            GM.copyCards(unusedCards);
             iniciaLizeEnemies();
             inicializeCard();
         }
         private void inicializeCard()
         {
-            if (unusedCards.Count() < 5)  reinicializeCard();
-            
-          else for(int i=0; i < 5; i++) drawCard(i);
-            
+            if (unusedCards.Count() < 5) reinicializeCard();
+
+            else for (int i = 0; i < 5; i++) drawCard(i);
+
         }
         private void reinicializeCard()
         {
-            GM.copyCards( unusedCards);
+            GM.copyCards(unusedCards);
         }
         private void drawCard(int i)
         {
@@ -123,9 +152,9 @@ namespace Trabajo_DSI_G7.Pages
             (Cards.Children[i] as ContentControl).Width = 200;
             (Cards.Children[i] as ContentControl).HorizontalAlignment = HorizontalAlignment.Center;
             (Cards.Children[i] as ContentControl).VerticalAlignment = VerticalAlignment.Bottom;
-            (Cards.Children[i] as ContentControl).RenderTransformOrigin= new Point(0.5,1);
+            (Cards.Children[i] as ContentControl).RenderTransformOrigin = new Point(0.5, 1);
             (Cards.Children[i] as ContentControl).CanDrag = true;
-           ((Cards.Children[i] as ContentControl).Content as Image).Source = card.Img.Source;
+            ((Cards.Children[i] as ContentControl).Content as Image).Source = card.Img.Source;
             unusedCards.Remove(card);
 
         }
@@ -181,6 +210,11 @@ namespace Trabajo_DSI_G7.Pages
         private void OnExitSettingClick(object sender, RoutedEventArgs e)
         {
             InGameOptions.Hide();
+        }
+
+        private void onTextButtonHolding(object sender, PointerRoutedEventArgs e)
+        {
+
         }
     }
 }

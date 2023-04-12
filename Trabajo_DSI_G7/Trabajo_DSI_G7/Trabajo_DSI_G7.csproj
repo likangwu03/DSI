@@ -884,8 +884,11 @@
     <Content Include="Assets\ui\button_yellow\button_yes.png" />
     <Content Include="Assets\ui\button_yellow\green.png" />
     <Content Include="Assets\ui\button_yellow\red.png" />
+    <Content Include="Assets\ui\Frame_big.png" />
     <Content Include="Assets\ui\mazoCartas.png" />
     <Content Include="Assets\ui\pilaDescartes.png" />
+    <Content Include="Assets\ui\ribbon.png" />
+    <Content Include="Assets\ui\UI board Medium Set.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

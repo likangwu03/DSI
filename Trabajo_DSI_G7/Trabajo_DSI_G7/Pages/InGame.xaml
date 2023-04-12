@@ -68,7 +68,7 @@
         </DataTemplate>
     </Page.Resources>
     <!--<Viewbox>-->
-        
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="145*"/>
@@ -84,42 +84,50 @@
             <ColumnDefinition Width="265*"/>
         </Grid.ColumnDefinitions>
 
-        <!--SUP IZ-->
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Left"  VerticalAlignment="Top"  Grid.Row="0" Margin="10 0 0 0"  >
-            <StackPanel Orientation="Horizontal" >
-                <Image Source="/Assets/icons/coin_05d.png" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 10"/>
-                <TextBlock HorizontalAlignment="Center" FontSize="25"  VerticalAlignment="Center"  Style="{StaticResource ThemeText}" Text="{x:Bind GM.money}"/>
-            </StackPanel>
-            <TextBlock HorizontalAlignment="Center" FontSize="25"  VerticalAlignment="Center"  Style="{StaticResource ThemeText}" Text="{x:Bind GM.level}"/>
-        </StackPanel>
 
+        <!--SUP IZ-->
+        <Viewbox  Grid.Row="0"   >
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="10 0 0 0" >
+                <StackPanel Orientation="Horizontal" >
+                    <Image Source="/Assets/icons/coin_05d.png" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 10"/>
+                    <TextBlock HorizontalAlignment="Center" FontSize="25"  VerticalAlignment="Center"  Style="{StaticResource ThemeText}" Text="{x:Bind GM.money}"/>
+                </StackPanel>
+                <TextBlock HorizontalAlignment="Center" FontSize="25"  VerticalAlignment="Center"  Style="{StaticResource ThemeText}" Text="{x:Bind GM.level}"/>
+            </StackPanel>
+
+        </Viewbox>
 
 
 
         <!--SUP DR-->
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,27,0,0" Grid.Column="5" Grid.Row="0" Height="50" Width="161">
-            <Button  Padding="0" Style="{StaticResource MainMenuButton}" Margin="30 0" PointerEntered="onButtonHolding" PointerExited="onButtonExit"  >
-                <Image x:Name="button_about" Source="/Assets/ui/button_yellow/button_about.png"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0"></Image>
-            </Button>
-            <Button  Padding="0" Style="{StaticResource MainMenuButton}" PointerEntered="onButtonHolding" PointerExited="onButtonExit" Click="OnSettingClick">
-                <Image x:Name="button_setting" Source="/Assets/ui/button_yellow/button_setting.png"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0"></Image>
-            </Button>
+        <Viewbox  Grid.Column="5" Grid.Row="0">
+            <StackPanel Orientation="Horizontal"  Height="50" Width="161" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,27,10,0">
+                <Button  Padding="0" Style="{StaticResource MainMenuButton}" Margin="30 0" PointerEntered="onButtonHolding" PointerExited="onButtonExit"  >
+                    <Image x:Name="button_about" Source="/Assets/ui/button_yellow/button_about.png"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0"></Image>
+                </Button>
+                <Button  Padding="0" Style="{StaticResource MainMenuButton}" PointerEntered="onButtonHolding" PointerExited="onButtonExit" Click="OnSettingClick">
+                    <Image x:Name="button_setting" Source="/Assets/ui/button_yellow/button_setting.png"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0"></Image>
+                </Button>
 
-        </StackPanel>
+            </StackPanel>
+        </Viewbox>
+
 
         <!--INVENTARIO-->
-        <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="50,0,0,0" Background="#f7bf50" CornerRadius="10" Grid.Row="1" Grid.Column="0" Height="288" Width="96"  >
-            <Button  Padding="0" Style="{StaticResource InventoryButton}"    >
-                <Image Source="{x:Bind GM.getPotion(0)}"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10" CanDrag="True"></Image>
-            </Button>
-            <Button  Padding="0" Style="{StaticResource InventoryButton}" >
-                <Image Source="{x:Bind GM.getPotion(1)}"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10" CanDrag="True"></Image>
-            </Button>
-            <Button  Padding="0" Style="{StaticResource InventoryButton}"  >
-                <Image Source="{x:Bind GM.getPotion(2)}"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10" CanDrag="True"></Image>
-            </Button>
+        <Viewbox  Grid.Row="1" Grid.Column="0">
+            <StackPanel Orientation="Vertical" Background="#f7bf50" CornerRadius="10"  Height="288" Width="96"  VerticalAlignment="Stretch" HorizontalAlignment="Left" Margin="50,0,0,0" >
+                <Button  Padding="0" Style="{StaticResource InventoryButton}"    >
+                    <Image Source="{x:Bind GM.getPotion(0)}"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10" CanDrag="True"></Image>
+                </Button>
+                <Button  Padding="0" Style="{StaticResource InventoryButton}" >
+                    <Image Source="{x:Bind GM.getPotion(1)}"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10" CanDrag="True"></Image>
+                </Button>
+                <Button  Padding="0" Style="{StaticResource InventoryButton}"  >
+                    <Image Source="{x:Bind GM.getPotion(2)}"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10" CanDrag="True"></Image>
+                </Button>
 
-        </StackPanel>
+            </StackPanel>
+        </Viewbox>
 
         <!--<ListView x:Name="ListView" 
                    VerticalAlignment="Top" 
@@ -139,167 +147,178 @@
 
 
         <!--Perfil-->
-        <Grid VerticalAlignment="Center" HorizontalAlignment="Left" Margin="80,0,0,0" Grid.Row="2" Grid.ColumnSpan="2"   >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="7*"/>
+        <Viewbox Grid.Row="2" Grid.ColumnSpan="2"  >
+            <Grid VerticalAlignment="Center" HorizontalAlignment="Left" Margin="80,0,0,0"  >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="7*"/>
 
-            </Grid.RowDefinitions>
-            <Image  Source="/Assets/icons/tile339.png" Grid.Row="0" HorizontalAlignment="Left"/>
-            <StackPanel Orientation="Horizontal" Grid.Row="1">
-                <Image  Source="/Assets/habilidades/Icon1.png" Grid.Row="0" Margin="0"/>
-                <Image  Source="/Assets/habilidades/Icon2.png" Grid.Row="0" Margin="10 0"/>
-                <Image  Source="/Assets/habilidades/Icon6.png" Grid.Row="0 " Margin="0 "/>
-            </StackPanel>
+                </Grid.RowDefinitions>
+                <Image  Source="/Assets/icons/tile339.png" Grid.Row="0" HorizontalAlignment="Left" Width="40"/>
+                <StackPanel Orientation="Horizontal" Grid.Row="1">
+                    <Image  Source="/Assets/habilidades/Icon1.png" Grid.Row="0" Margin="0"/>
+                    <Image  Source="/Assets/habilidades/Icon2.png" Grid.Row="0" Margin="10 0"/>
+                    <Image  Source="/Assets/habilidades/Icon6.png" Grid.Row="0 " Margin="0 "/>
+                </StackPanel>
 
-            <StackPanel Orientation="Vertical" Grid.Row="2">
-                <Grid >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="2*"/>
-                    </Grid.ColumnDefinitions>
-                    <StackPanel Orientation="Vertical"  >
-                        <Image Source="/Assets/bg/portrait.png" Width="100" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="-16,30,0,-10"></Image>
-                    </StackPanel>
-                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Column="1"  >
-                        <StackPanel Orientation="Horizontal" >
-                            <Image Source="/Assets/icons/Layer 1.png"  Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 5"/>
-                            <TextBlock HorizontalAlignment="Center" FontSize="25"  VerticalAlignment="Center"  Style="{StaticResource ThemeText}">
+                <StackPanel Orientation="Vertical" Grid.Row="2">
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Orientation="Vertical"  >
+                            <Image Source="/Assets/bg/portrait.png" Width="100" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="-16,30,0,-10"></Image>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Column="1"  >
+                            <StackPanel Orientation="Horizontal" >
+                                <Image Source="/Assets/icons/Layer 1.png"  Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 5"/>
+                                <TextBlock HorizontalAlignment="Center" FontSize="25"  VerticalAlignment="Center"  Style="{StaticResource ThemeText}">
                               <Run Text="{x:Bind GM.actEnergy}"/>
                               <Run Text=" / "/>
                               <Run Text="{x:Bind GM.maxEnergy}"/>
-                            </TextBlock>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" >
-                            <Image Source="/Assets/icons/Layer 1 copy.png"  Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 5"/>
-                            <TextBlock HorizontalAlignment="Center" FontSize="25"  VerticalAlignment="Center"  Style="{StaticResource ThemeText}">
+                                </TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" >
+                                <Image Source="/Assets/icons/Layer 1 copy.png"  Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 5"/>
+                                <TextBlock HorizontalAlignment="Center" FontSize="25"  VerticalAlignment="Center"  Style="{StaticResource ThemeText}">
                               <Run Text="{x:Bind GM.actMagic}"/>
                               <Run Text=" / "/>
                               <Run Text="{x:Bind GM.maxMagic}"/>
-                            </TextBlock>
+                                </TextBlock>
+                            </StackPanel>
                         </StackPanel>
-                    </StackPanel>
-                </Grid>
-                <ProgressBar HorizontalAlignment="Stretch" Foreground="Red" Background="White" Maximum="{x:Bind GM.maxLife}" Value="{x:Bind GM.actLife}" Height="20" CornerRadius="15" ></ProgressBar>
-                <TextBlock HorizontalAlignment="Center" FontSize="25"  VerticalAlignment="Center"  Style="{StaticResource ThemeText}">
+                    </Grid>
+                    <ProgressBar HorizontalAlignment="Stretch" Foreground="Red" Background="White" Maximum="{x:Bind GM.maxLife}" Value="{x:Bind GM.actLife}" Height="20" CornerRadius="15" ></ProgressBar>
+                    <TextBlock HorizontalAlignment="Center" FontSize="25"  VerticalAlignment="Center"  Style="{StaticResource ThemeText}">
                               <Run Text="{x:Bind GM.actLife}"/>
                               <Run Text=" / "/>
                               <Run Text="{x:Bind GM.maxLife}"/>
-                </TextBlock>
-            </StackPanel>
+                    </TextBlock>
+                </StackPanel>
 
 
 
-        </Grid>
+            </Grid>
+        </Viewbox>
+
 
         <!--Enemigos-->
 
-        <Grid HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Margin="0,0,0,0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+        <Viewbox  Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-            <StackPanel x:Name="Enemy1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="50" Grid.Column="0">
+                <StackPanel x:Name="Enemy1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="50" Grid.Column="0">
 
-            </StackPanel>
-            <StackPanel x:Name="Enemy2" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="50 100 0 0" Grid.Column="1">
+                </StackPanel>
+                <StackPanel x:Name="Enemy2" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 100 0 0" Grid.Column="1">
 
-            </StackPanel>
-            <StackPanel x:Name="Enemy3" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="50" Grid.Column="2">
+                </StackPanel>
+                <StackPanel x:Name="Enemy3" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="50" Grid.Column="2">
 
-            </StackPanel>
-        </Grid>
+                </StackPanel>
+            </Grid>
+        </Viewbox>
+
 
         <!--JUGAR-->
-        <Grid  VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,40,20" Grid.Column="3" Grid.Row="1"  Grid.ColumnSpan="3" Grid.RowSpan="2">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="3*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-
-            <Grid Grid.Row="0" Margin="-20,0,0,0">
+        <Viewbox  VerticalAlignment="Bottom"  HorizontalAlignment="Right" Grid.Column="3" Grid.Row="1"  Grid.ColumnSpan="3" Grid.RowSpan="2">
+            <Grid Margin="0,0,40,0" >
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"/>
-                </Grid.ColumnDefinitions>
-                <Rectangle RadiusX="9" RadiusY="9" Fill="#ae7e20" Stroke="#f7bf50" StrokeDashArray="3,2" StrokeThickness="8"/>
-                <Button  Padding="0" Style="{StaticResource ThemeButton}" BorderThickness="0" HorizontalAlignment="Left" Margin="8">
-                    <TextBlock  TextAlignment="Center" TextWrapping="Wrap" FontSize="35" Width="213"  Style="{StaticResource ThemeText}" Text="Desaher Carta" Height="82"/>
+
+                <Grid Grid.Row="0" Margin="20,0,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Rectangle RadiusX="9" RadiusY="9" Fill="#ae7e20" Stroke="#f7bf50" StrokeDashArray="3,2" StrokeThickness="8"/>
+                    <Button  Padding="0" Style="{StaticResource ThemeButton}" BorderThickness="0" HorizontalAlignment="Left" Margin="8">
+                        <TextBlock  TextAlignment="Center" TextWrapping="Wrap" FontSize="35" Width="213"  Style="{StaticResource ThemeText}" Text="Desaher Carta" Height="82"/>
+                    </Button>
+                </Grid>
+
+
+                <Button Grid.Row="1" Padding="0" Style="{StaticResource ThemeButton}"  Height="100" VerticalAlignment="Stretch" CornerRadius="5" BorderThickness="7" HorizontalAlignment="Center" Margin="30" >
+                    <TextBlock  TextAlignment="Center" VerticalAlignment="Center" Margin="20" FontSize="35"  Style="{StaticResource ThemeText}" Text="Finalizar Turno"/>
                 </Button>
+
+                <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0" HorizontalAlignment="Center">
+                    <Button Background="Transparent" Margin="20 0" >
+                        <StackPanel Orientation="Vertical">
+                            <Image Source="/Assets/ui/mazoCartas.png" Width="100"/>
+                            <Grid HorizontalAlignment="Right">
+                                <Ellipse Fill="#f7bf50" Width="30" Height="30" Margin="0,-60,0,0" Stroke="#ae8022" StrokeThickness="3"  />
+                                <TextBlock x:Name="MazoCartas" FontSize="35" TextAlignment="Center" VerticalAlignment="Center"  Margin="0,-60,0,0" Text="{x:Bind unusedCards.Count}" Style="{StaticResource ThemeText}"></TextBlock>
+                            </Grid>
+                        </StackPanel>
+                    </Button>
+                    <Button  Padding="0" Background="Transparent"  Margin="20 0">
+                        <StackPanel Orientation="Vertical" Margin="0" HorizontalAlignment="Center"  VerticalAlignment="Top">
+                            <Image Source="/Assets/ui/pilaDescartes.png" Width="100"/>
+                            <Grid HorizontalAlignment="Right">
+                                <Ellipse Fill="#f7bf50" Stroke="#ae8022" Width="30" Height="30"  StrokeThickness="3" Margin="0,-60,0,0"  />
+                                <TextBlock x:Name="PilaDescartes" FontSize="35" TextAlignment="Center" Margin="0,-60,0,0" VerticalAlignment="Center"  Text="{x:Bind usedCards.Count}" Style="{StaticResource ThemeText}"></TextBlock>
+                            </Grid>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
             </Grid>
-
-
-            <Button Grid.Row="1" Padding="0" Style="{StaticResource ThemeButton}"  Height="100" VerticalAlignment="Stretch" CornerRadius="5" BorderThickness="7" HorizontalAlignment="Center" Margin="30" >
-                <TextBlock  TextAlignment="Center" VerticalAlignment="Center" Margin="20" FontSize="35"  Style="{StaticResource ThemeText}" Text="Finalizar Turno"/>
-            </Button>
-
-            <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0" HorizontalAlignment="Center">
-                <Button Background="Transparent" Margin="20 0" >
-                    <StackPanel Orientation="Vertical">
-                        <Image Source="/Assets/ui/mazoCartas.png" Width="100"/>
-                        <Grid HorizontalAlignment="Right">
-                            <Ellipse Fill="#f7bf50" Width="30" Height="30" Margin="0,-60,0,0" Stroke="#ae8022" StrokeThickness="3"  />
-                            <TextBlock x:Name="MazoCartas" FontSize="35" TextAlignment="Center" VerticalAlignment="Center"  Margin="0,-60,0,0" Text="{x:Bind unusedCards.Count}" Style="{StaticResource ThemeText}"></TextBlock>
-                        </Grid>
-                    </StackPanel>
-                </Button>
-                <Button  Padding="0" Background="Transparent"  Margin="20 0">
-                    <StackPanel Orientation="Vertical" Margin="0" HorizontalAlignment="Center"  VerticalAlignment="Top">
-                        <Image Source="/Assets/ui/pilaDescartes.png" Width="100"/>
-                        <Grid HorizontalAlignment="Right">
-                            <Ellipse Fill="#f7bf50" Stroke="#ae8022" Width="30" Height="30"  StrokeThickness="3" Margin="0,-60,0,0"  />
-                            <TextBlock x:Name="PilaDescartes" FontSize="35" TextAlignment="Center" Margin="0,-60,0,0" VerticalAlignment="Center"  Text="{x:Bind usedCards.Count}" Style="{StaticResource ThemeText}"></TextBlock>
-                        </Grid>
-                    </StackPanel>
-                </Button>
-            </StackPanel>
-        </Grid>
+        </Viewbox>
 
         <!--Cartas-->
-        <StackPanel x:Name="Cards" Orientation="Horizontal"  VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,0"   Grid.Row="2" Grid.Column="2"  >
-            <ContentControl Margin="0,0,-100,-20">
-                <ContentControl.RenderTransform >
-                    <CompositeTransform Rotation="-18"/>
-                </ContentControl.RenderTransform>
-                <Image></Image>
-            </ContentControl>
-            <ContentControl  Margin="0,0,-100,0"  >
-                <ContentControl.RenderTransform>
-                    <CompositeTransform Rotation="-9"/>
-                </ContentControl.RenderTransform>
-                <Image></Image>
-            </ContentControl>
-            <ContentControl  Margin="0,0,0,10"  >
-                <Image></Image>
-            </ContentControl>
-            <ContentControl  Margin="-100,0,0,0"  >
-                <ContentControl.RenderTransform>
-                    <CompositeTransform Rotation="9"/>
-                </ContentControl.RenderTransform>
-                <Image></Image>
-            </ContentControl>
-            <ContentControl   Margin="-100,0,0,-20" >
-                <ContentControl.RenderTransform>
-                    <CompositeTransform Rotation="18"/>
-                </ContentControl.RenderTransform>
-                <Image/>
-            </ContentControl>
-        </StackPanel>
+        <Viewbox  Grid.Row="2" Grid.Column="2">
+
+            <StackPanel x:Name="Cards" Orientation="Horizontal"  VerticalAlignment="Bottom" HorizontalAlignment="Center"  >
+                <ContentControl Margin="0,0,-100,-20">
+                    <ContentControl.RenderTransform >
+                        <CompositeTransform Rotation="-18"/>
+                    </ContentControl.RenderTransform>
+                    <Image></Image>
+                </ContentControl>
+                <ContentControl  Margin="0,0,-100,0"  >
+                    <ContentControl.RenderTransform>
+                        <CompositeTransform Rotation="-9"/>
+                    </ContentControl.RenderTransform>
+                    <Image></Image>
+                </ContentControl>
+                <ContentControl  Margin="0,0,0,10"  >
+                    <Image></Image>
+                </ContentControl>
+                <ContentControl  Margin="-100,0,0,0"  >
+                    <ContentControl.RenderTransform>
+                        <CompositeTransform Rotation="9"/>
+                    </ContentControl.RenderTransform>
+                    <Image></Image>
+                </ContentControl>
+                <ContentControl   Margin="-100,0,0,-20" >
+                    <ContentControl.RenderTransform>
+                        <CompositeTransform Rotation="18"/>
+                    </ContentControl.RenderTransform>
+                    <Image/>
+                </ContentControl>
+            </StackPanel>
+        </Viewbox>
 
         <ContentDialog x:Name="InGameOptions" Grid.RowSpan="3" Grid.ColumnSpan="6"
         Foreground="Black" 
         FontSize="40"
         Background="#c0c0c0"
-        CornerRadius="15"
-                 >
+        CornerRadius="15" >
 
             <Grid Width="500" Height="600" Margin="0" Padding="0">
+
                 <Grid.RowDefinitions>
                     <RowDefinition Height="146*"/>
                     <RowDefinition Height="81*"/>
@@ -316,8 +335,8 @@
                 </Grid.ColumnDefinitions>
 
                 <Grid Margin="20,40,20,20" Grid.ColumnSpan="3">
-                    <Rectangle Fill="#f7bf50" ></Rectangle>
-                    <TextBlock Grid.ColumnSpan="3" Style="{StaticResource ThemeText}" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="50" Height="57" Width="308">Configuración</TextBlock>
+                    <Image Source="/Assets/ui/ribbon.png" Stretch="Fill" VerticalAlignment="Center" />
+                    <TextBlock Grid.ColumnSpan="3" Style="{StaticResource ThemeText}" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="35" Margin="0 0 0 20">Configuración</TextBlock>
 
                 </Grid>
                 <Button x:Name="OptionsBackButton" Style="{StaticResource BackButton}" HorizontalAlignment="Right" VerticalAlignment="Top" Height="60" Width="60" Grid.ColumnSpan="2" Grid.Column="1" Click="OnExitSettingClick" Margin="0,0,2,0"/>
@@ -347,39 +366,112 @@
         Grid.ColumnSpan="6"
         Foreground="Black" 
         FontSize="40"
-        Background="Gray"
-        CornerRadius="15">
-
+        CornerRadius="15"
+        Height="500"
+            >
+            <ContentDialog.Background>
+                <ImageBrush ImageSource="/Assets/ui/UI board Medium Set.png"></ImageBrush>
+            </ContentDialog.Background>
             <Grid Width="491" Height="260" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="193*"/>
                     <ColumnDefinition Width="298*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="83*"/>
-                    <RowDefinition Height="93*"/>
-                    <RowDefinition Height="74*"/>
+                    <RowDefinition Height="86*"/>
+                    <RowDefinition Height="66*"/>
+                    <RowDefinition Height="107*"/>
 
                 </Grid.RowDefinitions>
 
                 <Grid Margin="20,0,20,20" Grid.ColumnSpan="2">
-                    <Rectangle Fill="#f7bf50" ></Rectangle>
+                    <Image Source="/Assets/ui/ribbon.png" Margin="0,0,-6,-25" />
                     <TextBlock Grid.ColumnSpan="3" Style="{StaticResource ThemeText}" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40" >Guardar y Salir</TextBlock>
                 </Grid>
-                <TextBlock Grid.Row="1" TextWrapping="Wrap" Style="{StaticResource ThemeText}" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="35" Grid.ColumnSpan="2" Margin="13,0,0,0" Height="80" Width="466" >¿Está seguro de guardar y salir del combate?</TextBlock>
-
-
+                <TextBlock Grid.Row="1" TextWrapping="Wrap" Style="{StaticResource ThemeText}" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" Grid.ColumnSpan="2" Margin="5" Width="400">¿Está seguro de guardar y salir del combate?</TextBlock>
 
                 <Grid Grid.Row="2" Grid.ColumnSpan="2" Margin="0,7,0,-4" >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" Padding="0"  CornerRadius="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,10,0" Click="OnConfirmExitClick">
-                        <TextBlock  TextAlignment="Center" TextWrapping="Wrap" FontSize="30" Margin="10" Style="{StaticResource ThemeText}" Text="Confirmar"/>
+                    <Button Grid.Column="0" Padding="0"  CornerRadius="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,10,0" Click="OnConfirmExitClick" Width="180" >
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Grid x:Name="RootGrid" >
+                                    <Image x:Name="ConfirmButtonBg" Source="/Assets/ui/button_yellow/red.png"></Image>
+                                    <TextBlock x:Name="ConfirmButtonTxt" TextAlignment="Center" VerticalAlignment="Center" Foreground="Black" TextWrapping="Wrap" FontSize="25" Margin="5" Style="{StaticResource ThemeText}" Text="Confirmar"/>
+
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Normal">
+                                                <VisualState.Setters>
+                                                    <Setter Target="ConfirmButtonBg.Source" Value="/Assets/ui/button_yellow/red.png"/>
+                                                </VisualState.Setters>
+                                                <Storyboard>
+                                                    <PointerUpThemeAnimation Storyboard.TargetName="RootGrid" />
+                                                </Storyboard>
+                                            </VisualState>
+                                            <VisualState x:Name="PointerOver">
+                                                <VisualState.Setters>
+                                                    <Setter Target="ConfirmButtonBg.Source" Value="/Assets/ui/button_hover/red.png"/>
+                                                    <Setter Target="ConfirmButtonTxt.Foreground" Value="#7e7e7e"/>
+                                                </VisualState.Setters>
+                                              
+                                            </VisualState>
+                                            <VisualState x:Name="Pressed">
+                                                <VisualState.Setters>
+                                                    <Setter Target="ConfirmButtonBg.Source" Value="/Assets/ui/button_hover/red.png"/>
+                                                </VisualState.Setters>
+                                                <Storyboard>
+
+                                                    <PointerDownThemeAnimation Storyboard.TargetName="RootGrid" />
+                                                </Storyboard>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                </Grid>
+                            </ControlTemplate>
+                        </Button.Template>
                     </Button>
-                    <Button Grid.Column="1" Padding="0"  CornerRadius="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,0,0,0" Click="OnConfirmCancelClick">
-                        <TextBlock  TextAlignment="Center" TextWrapping="Wrap" FontSize="30" Margin="10" Style="{StaticResource ThemeText}" Text="Cancelar"/>
+                    <Button Grid.Column="1" Padding="0"  CornerRadius="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,0,0,0" Click="OnConfirmCancelClick"  Width="180" >
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Grid x:Name="RootGrid" >
+                                    <Image x:Name="ConfirmButtonBg" Source="/Assets/ui/button_yellow/green.png"></Image>
+                                    <TextBlock x:Name="ConfirmButtonTxt" TextAlignment="Center" VerticalAlignment="Center" Foreground="Black" TextWrapping="Wrap" FontSize="25" Margin="5" Style="{StaticResource ThemeText}" Text="Cancelar"/>
+
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Normal">
+                                                <VisualState.Setters>
+                                                    <Setter Target="ConfirmButtonBg.Source" Value="/Assets/ui/button_yellow/green.png"/>
+                                                </VisualState.Setters>
+                                                <Storyboard>
+                                                    <PointerUpThemeAnimation Storyboard.TargetName="RootGrid" />
+                                                </Storyboard>
+                                            </VisualState>
+                                            <VisualState x:Name="PointerOver">
+                                                <VisualState.Setters>
+                                                    <Setter Target="ConfirmButtonBg.Source" Value="/Assets/ui/button_hover/green.png"/>
+                                                    <Setter Target="ConfirmButtonTxt.Foreground" Value="#7e7e7e"/>
+                                                </VisualState.Setters>
+
+                                            </VisualState>
+                                            <VisualState x:Name="Pressed">
+                                                <VisualState.Setters>
+                                                    <Setter Target="ConfirmButtonBg.Source" Value="/Assets/ui/button_hover/green.png"/>
+                                                </VisualState.Setters>
+                                                <Storyboard>
+
+                                                    <PointerDownThemeAnimation Storyboard.TargetName="RootGrid" />
+                                                </Storyboard>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                </Grid>
+                            </ControlTemplate>
+                        </Button.Template>
                     </Button>
                 </Grid>
 
