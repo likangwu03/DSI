@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Toolkit.Uwp.UI;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -26,6 +27,7 @@ namespace Trabajo_DSI_G7.Pages
     {
         Game.GameManager gm;
         public ObservableCollection<AbilityVM> AbilityList;
+      
         public AbilityVM actAbility;
 
         public double w;
@@ -33,7 +35,7 @@ namespace Trabajo_DSI_G7.Pages
         public SkillTree()
         {
             this.InitializeComponent();
-           
+
             //AddAbiityToGrid();
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -46,19 +48,31 @@ namespace Trabajo_DSI_G7.Pages
                 actAbility = AbilityList.First();
             }
             base.OnNavigatedTo(e);
-
-          
         }
-
-        public void AddAbiityToGrid()
+        
+        public bool lineActive(int i,int id)
         {
-            foreach(var ability in AbilityList)
-            {
-                var abilityVM = new AbilityVM(ability);
-            }
-            Grid grid = new Grid();
-            grid.HorizontalAlignment = HorizontalAlignment.Center;
-            grid.RowDefinitions.Add(new RowDefinition());
+            return AbilityList[id].Active() && AbilityList[id].lines[i].c_exist && AbilityList[AbilityList[id].lines[i].id].Active();
         }
+
+        //public void AddAbiityToGrid()
+        //{
+        //    foreach (var ability in AbilityList)
+        //    {
+        //        //AbilityVM_1 abilityVM = new AbilityVM_1(ability);
+        //        Grid a = new Grid();
+        //        TextBlock t = new TextBlock()
+        //        {
+        //            Text = ability.Name,
+        //        };
+        //        a.Children.Add(t,1,1);
+               
+        //        AbilityGrid.Children.Add(t);
+        //    }
+
+        //    Grid grid = new Grid();
+        //    grid.HorizontalAlignment = HorizontalAlignment.Center;
+        //    grid.RowDefinitions.Add(new RowDefinition());
+        //}
     }
 }

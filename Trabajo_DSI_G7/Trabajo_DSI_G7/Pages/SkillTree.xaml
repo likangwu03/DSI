@@ -6,8 +6,83 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+     xmlns:Model="using:Trabajo_DSI_G7.Models"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <Style x:Key="ThemeText" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
 
+
+        <DataTemplate x:Key="SkillTemplate" x:DataType="Model:AbilityVM">
+            <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid>
+
+                    <Viewbox>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Rectangle  Fill="#FF777777"  Width="15" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="{x:Bind LineExist(0)}" ></Rectangle>
+                            <Rectangle  Fill="#fac55d"  Width="15" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind lines[0].c_exist}" ></Rectangle>
+                            <Rectangle Grid.Row="1"   Fill="#FF777777"  Width="15" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="{x:Bind LineExist(1)}" ></Rectangle>
+                            <Rectangle Grid.Row="1"   Fill="#fac55d"  Width="15" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind lines[1].c_exist}" ></Rectangle>
+                        </Grid>
+                    </Viewbox>
+
+                    <Viewbox>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="5*"/>
+                                <ColumnDefinition Width="5*"/>
+                            </Grid.ColumnDefinitions>
+                            <Rectangle  Fill="#FF777777" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  Opacity="{x:Bind LineExist(2)}"></Rectangle>
+                            <Rectangle  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  Visibility="{x:Bind lines[2].c_exist}"></Rectangle>
+                            <Rectangle Grid.Column="1"  Fill="#FF777777" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="{x:Bind LineExist(3)}"  ></Rectangle>
+                            <Rectangle Grid.Column="1"  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind lines[3].c_exist}" ></Rectangle>
+                        </Grid>
+                    </Viewbox>
+                </Grid>
+
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="30*"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="5*"/>
+                        <RowDefinition Height="20*"/>
+                        <RowDefinition Height="5*"/>
+                    </Grid.RowDefinitions>
+
+                    <Viewbox Grid.Column="1" Grid.Row="1">
+                        <Rectangle Width="25" Height="25"  Fill="#FF5D5D5D" Stroke="#FF7C7C7C" StrokeThickness="2" FocusVisualPrimaryBrush="#FF5D5D5D" VerticalAlignment="Center" HorizontalAlignment="Center"></Rectangle>
+                    </Viewbox>
+                    <Viewbox Grid.Column="1" Grid.Row="1">
+                        <Rectangle Width="25" Height="25"  Fill="White" Stroke="#FFFBC150" StrokeThickness="2" FocusVisualPrimaryBrush="#FF5D5D5D" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="{x:Bind Visibility_()}"></Rectangle>
+                    </Viewbox>
+                    <Viewbox Grid.Column="1" Grid.Row="1">
+                        <Image Margin="3" Source="{x:Bind Img.Source}" VerticalAlignment="Center" HorizontalAlignment="Center" Opacity="{x:Bind Opacity_Img(),Mode=OneWay}" ></Image>
+                    </Viewbox>
+                    <Viewbox  Grid.Column="1" Grid.Row="2">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <TextBlock Text="{x:Bind level,Mode=OneWay}" Style="{StaticResource ThemeText}" FontSize="30"  />
+
+                            <TextBlock Text="/3" Style="{StaticResource ThemeText}" FontSize="30" />
+                        </StackPanel>
+                    </Viewbox>
+                </Grid>
+
+            </Grid>
+        </DataTemplate>
+
+
+    </Page.Resources>
     <Grid>
         <Image Source="/Assets/bg/bgm.png" Stretch="Fill"  />
         <Grid>
@@ -78,8 +153,8 @@
                             <RowDefinition Height="1*"/>
                             <RowDefinition Height="1*"/>
                         </Grid.RowDefinitions>
-                        
-                            <Line Stroke="LightYellow"
+
+                        <Line Stroke="LightYellow"
                               X1="0" Y1="0"
                               X2="1" Y2="0" Stretch="Fill"
                               StrokeThickness="5"
@@ -89,425 +164,195 @@
                               X2="0" Y2="1" Stretch="Fill"
                               StrokeThickness="5"
                              />
+                        <ContentControl Grid.Column="{x:Bind AbilityList[0].Col}" Grid.Row="{x:Bind AbilityList[0].Row}" DataContext="{x:Bind AbilityList[0]}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
+                        <ContentControl Grid.Column="{x:Bind AbilityList[1].Col}" Grid.Row="{x:Bind AbilityList[1].Row}" DataContext="{x:Bind AbilityList[1]}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
+                        <ContentControl Grid.Column="{x:Bind AbilityList[2].Col}" Grid.Row="{x:Bind AbilityList[2].Row}" DataContext="{x:Bind AbilityList[2]}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
+                        <ContentControl Grid.Column="{x:Bind AbilityList[3].Col}" Grid.Row="{x:Bind AbilityList[3].Row}" DataContext="{x:Bind AbilityList[3]}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
+                        <ContentControl Grid.Column="{x:Bind AbilityList[4].Col}" Grid.Row="{x:Bind AbilityList[4].Row}" DataContext="{x:Bind AbilityList[4]}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
+                        <ContentControl Grid.Column="{x:Bind AbilityList[5].Col}" Grid.Row="{x:Bind AbilityList[5].Row}" DataContext="{x:Bind AbilityList[5]}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
+                        <ContentControl Grid.Column="{x:Bind AbilityList[6].Col}" Grid.Row="{x:Bind AbilityList[6].Row}" DataContext="{x:Bind AbilityList[6]}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
+                        <ContentControl Grid.Column="{x:Bind AbilityList[7].Col}" Grid.Row="{x:Bind AbilityList[7].Row}" DataContext="{x:Bind AbilityList[7]}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
+                        <ContentControl Grid.Column="{x:Bind AbilityList[8].Col}" Grid.Row="{x:Bind AbilityList[8].Row}" DataContext="{x:Bind AbilityList[8]}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
+                        <ContentControl Grid.Column="{x:Bind AbilityList[9].Col}" Grid.Row="{x:Bind AbilityList[9].Row}" DataContext="{x:Bind AbilityList[9]}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
+                        <ContentControl Grid.Column="{x:Bind AbilityList[10].Col}" Grid.Row="{x:Bind AbilityList[10].Row}" DataContext="{x:Bind AbilityList[10]}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
+                        <ContentControl Grid.Column="{x:Bind AbilityList[11].Col}" Grid.Row="{x:Bind AbilityList[11].Row}" DataContext="{x:Bind AbilityList[11]}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
+                        <ContentControl Grid.Column="{x:Bind AbilityList[12].Col}" Grid.Row="{x:Bind AbilityList[12].Row}" DataContext="{x:Bind AbilityList[12]}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
+                        <ContentControl Grid.Column="{x:Bind AbilityList[13].Col}" Grid.Row="{x:Bind AbilityList[13].Row}" DataContext="{x:Bind AbilityList[13]}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
+                        <ContentControl Grid.Column="{x:Bind AbilityList[14].Col}" Grid.Row="{x:Bind AbilityList[14].Row}" DataContext="{x:Bind AbilityList[14]}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
+                        <ContentControl Grid.Column="{x:Bind AbilityList[15].Col}" Grid.Row="{x:Bind AbilityList[15].Row}" DataContext="{x:Bind AbilityList[15]}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
+                        <ContentControl Grid.Column="{x:Bind AbilityList[16].Col}" Grid.Row="{x:Bind AbilityList[16].Row}" DataContext="{x:Bind AbilityList[16]}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
+                        <ContentControl Grid.Column="{x:Bind AbilityList[17].Col}" Grid.Row="{x:Bind AbilityList[17].Row}" DataContext="{x:Bind AbilityList[17]}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
+                        <ContentControl Grid.Column="{x:Bind AbilityList[18].Col}" Grid.Row="{x:Bind AbilityList[18].Row}" DataContext="{x:Bind AbilityList[18]}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
 
-                        <Grid Grid.Row="{x:Bind AbilityList[0].Row}" Grid.Column="{x:Bind AbilityList[0].Col}">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="10*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="1*"/>
-                                    <RowDefinition Height="5*"/>
-                                    <RowDefinition Height="1*"/>
-                                    <RowDefinition Height="1*"/>
-                                </Grid.RowDefinitions>
-                                <Grid Grid.Column="1" Grid.Row="1">
+                        <Grid Grid.Row="2" Grid.Column="1">
+                            <Viewbox>
+                                <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="1*"/>
-                                        <ColumnDefinition Width="10*"/>
-                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="5*"/>
+                                        <ColumnDefinition Width="5*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="1*"/>
-                                        <RowDefinition Height="10*"/>
-                                        <RowDefinition Height="1*"/>
-                                    </Grid.RowDefinitions>
-                                    <Rectangle Stretch="UniformToFill" Fill="Yellow"  Grid.Column="1" Grid.Row="1"></Rectangle>
-                                    <Grid  Grid.Column="1" Grid.Row="1">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="0.5*"/>
-                                            <ColumnDefinition Width="20*"/>
-                                            <ColumnDefinition Width="0.5*"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="0.5*"/>
-                                            <RowDefinition Height="20*"/>
-                                            <RowDefinition Height="0.5*"/>
-                                        </Grid.RowDefinitions>
-                                        <Image Grid.Column="1" Grid.Row="1" Source="{x:Bind AbilityList[0].Img.Source}" Margin="5"></Image>
-                                    </Grid>
+                                    <Rectangle  Fill="#FF777777" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"></Rectangle>
+                                    <Rectangle  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  Visibility="{x:Bind AbilityList[18].lines[3].active}"></Rectangle>
+                                    <Rectangle Grid.Column="1"  Fill="#FF777777" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" ></Rectangle>
+                                    <Rectangle Grid.Column="1"  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind AbilityList[18].lines[3].active}" ></Rectangle>
                                 </Grid>
-
-
-                                <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-
-                                    <TextBlock Text="{x:Bind AbilityList[0].level}" FontSize="10" Foreground="Black" />
-                                    <TextBlock Text="/3" FontSize="10" Foreground="Black" />
-                                </StackPanel>
-                            </Grid>
+                            </Viewbox>
                         </Grid>
 
-                        <Grid Grid.Row="{x:Bind AbilityList[1].Row}" Grid.Column="{x:Bind AbilityList[1].Col}">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="10*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="1*"/>
-                                    <RowDefinition Height="5*"/>
-                                    <RowDefinition Height="1*"/>
-                                    <RowDefinition Height="1*"/>
-                                </Grid.RowDefinitions>
-                                <Grid Grid.Column="1" Grid.Row="1">
+                        <Grid Grid.Row="2" Grid.Column="3">
+                            <Viewbox>
+                                <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="1*"/>
-                                        <ColumnDefinition Width="10*"/>
-                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="5*"/>
+                                        <ColumnDefinition Width="5*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="1*"/>
-                                        <RowDefinition Height="10*"/>
-                                        <RowDefinition Height="1*"/>
-                                    </Grid.RowDefinitions>
-                                    <Rectangle Stretch="UniformToFill" Fill="Yellow"  Grid.Column="1" Grid.Row="1"></Rectangle>
-                                    <Grid  Grid.Column="1" Grid.Row="1">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="0.5*"/>
-                                            <ColumnDefinition Width="20*"/>
-                                            <ColumnDefinition Width="0.5*"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="0.5*"/>
-                                            <RowDefinition Height="20*"/>
-                                            <RowDefinition Height="0.5*"/>
-                                        </Grid.RowDefinitions>
-                                        <Image Grid.Column="1" Grid.Row="1" Source="{x:Bind AbilityList[1].Img.Source}" Margin="5"></Image>
-                                    </Grid>
+                                    <Rectangle  Fill="#FF777777" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" ></Rectangle>
+                                    <Rectangle  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  Visibility="{x:Bind AbilityList[16].lines[3].active}"></Rectangle>
+                                    <Rectangle Grid.Column="1"  Fill="#FF777777" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  ></Rectangle>
+                                    <Rectangle Grid.Column="1"  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind AbilityList[16].lines[3].active}" ></Rectangle>
                                 </Grid>
-
-
-                                <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-
-                                    <TextBlock Text="{x:Bind AbilityList[1].level}" FontSize="10" Foreground="Black" />
-                                    <TextBlock Text="/3" FontSize="10" Foreground="Black" />
-                                </StackPanel>
-                            </Grid>
+                            </Viewbox>
                         </Grid>
-                        
-                        <Grid Grid.Row="{x:Bind AbilityList[2].Row}" Grid.Column="{x:Bind AbilityList[2].Col}">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="10*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="1*"/>
-                                    <RowDefinition Height="5*"/>
-                                    <RowDefinition Height="1*"/>
-                                    <RowDefinition Height="1*"/>
-                                </Grid.RowDefinitions>
-                                <Grid Grid.Column="1" Grid.Row="1">
+
+                        <Grid Grid.Row="2" Grid.Column="5">
+
+
+                            <Viewbox>
+                                <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="1*"/>
-                                        <ColumnDefinition Width="10*"/>
-                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="5*"/>
+                                        <ColumnDefinition Width="5*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="1*"/>
-                                        <RowDefinition Height="10*"/>
-                                        <RowDefinition Height="1*"/>
-                                    </Grid.RowDefinitions>
-                                    <Rectangle Stretch="UniformToFill" Fill="Yellow"  Grid.Column="1" Grid.Row="1"></Rectangle>
-                                    <Grid  Grid.Column="1" Grid.Row="1">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="0.5*"/>
-                                            <ColumnDefinition Width="20*"/>
-                                            <ColumnDefinition Width="0.5*"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="0.5*"/>
-                                            <RowDefinition Height="20*"/>
-                                            <RowDefinition Height="0.5*"/>
-                                        </Grid.RowDefinitions>
-                                        <Image Grid.Column="1" Grid.Row="1" Source="{x:Bind AbilityList[2].Img.Source}" Margin="5"></Image>
-                                    </Grid>
+                                    <Rectangle  Fill="#FF777777" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" ></Rectangle>
+                                    <Rectangle  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  Visibility="{x:Bind AbilityList[3].lines[3].active}"></Rectangle>
+                                    <Rectangle Grid.Column="1"  Fill="#FF777777" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  ></Rectangle>
+                                    <Rectangle Grid.Column="1"  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind AbilityList[3].lines[3].active}" ></Rectangle>
                                 </Grid>
-
-
-                                <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-
-                                    <TextBlock Text="{x:Bind AbilityList[2].level}" FontSize="10" Foreground="Black" />
-                                    <TextBlock Text="/3" FontSize="10" Foreground="Black" />
-                                </StackPanel>
-                            </Grid>
+                            </Viewbox>
                         </Grid>
-                        
-                        <Grid Grid.Row="{x:Bind AbilityList[3].Row}" Grid.Column="{x:Bind AbilityList[3].Col}">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="10*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="1*"/>
-                                    <RowDefinition Height="5*"/>
-                                    <RowDefinition Height="1*"/>
-                                    <RowDefinition Height="1*"/>
-                                </Grid.RowDefinitions>
-                                <Grid Grid.Column="1" Grid.Row="1">
+
+                        <Grid Grid.Row="2" Grid.Column="7">
+                            <Viewbox>
+                                <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="1*"/>
-                                        <ColumnDefinition Width="10*"/>
-                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="5*"/>
+                                        <ColumnDefinition Width="5*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="1*"/>
-                                        <RowDefinition Height="10*"/>
-                                        <RowDefinition Height="1*"/>
-                                    </Grid.RowDefinitions>
-                                    <Rectangle Stretch="UniformToFill" Fill="Yellow"  Grid.Column="1" Grid.Row="1"></Rectangle>
-                                    <Grid  Grid.Column="1" Grid.Row="1">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="0.5*"/>
-                                            <ColumnDefinition Width="20*"/>
-                                            <ColumnDefinition Width="0.5*"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="0.5*"/>
-                                            <RowDefinition Height="20*"/>
-                                            <RowDefinition Height="0.5*"/>
-                                        </Grid.RowDefinitions>
-                                        <Image Grid.Column="1" Grid.Row="1" Source="{x:Bind AbilityList[3].Img.Source}" Margin="5"></Image>
-                                    </Grid>
+                                    <Rectangle  Fill="#FF777777" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" ></Rectangle>
+                                    <Rectangle  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  Visibility="{x:Bind AbilityList[1].lines[3].active}"></Rectangle>
+                                    <Rectangle Grid.Column="1"  Fill="#FF777777" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  ></Rectangle>
+                                    <Rectangle Grid.Column="1"  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind AbilityList[1].lines[3].active}" ></Rectangle>
                                 </Grid>
+                            </Viewbox>
+                        </Grid>
 
+                        <Grid Grid.Row="4" Grid.Column="3">
+                            <Viewbox>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="5*"/>
+                                        <ColumnDefinition Width="5*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Rectangle  Fill="#FF777777" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" ></Rectangle>
+                                    <Rectangle  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  Visibility="{x:Bind AbilityList[15].lines[3].active}"></Rectangle>
+                                    <Rectangle Grid.Column="1"  Fill="#FF777777" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  ></Rectangle>
+                                    <Rectangle Grid.Column="1"  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind AbilityList[15].lines[3].active}" ></Rectangle>
+                                </Grid>
+                            </Viewbox>
+                        </Grid>
 
-                                <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Grid Grid.Row="1" Grid.Column="2">
+                            <Viewbox>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Rectangle  Fill="#FF777777"  Width="15" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" ></Rectangle>
+                                    <Rectangle  Fill="#fac55d"  Width="15" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind AbilityList[17].lines[2].active}" ></Rectangle>
+                                    <Rectangle Grid.Row="1"   Fill="#FF777777"  Width="15" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" ></Rectangle>
+                                    <Rectangle Grid.Row="1"   Fill="#fac55d"  Width="15" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind AbilityList[17].lines[2].active}"></Rectangle>
+                                </Grid>
+                            </Viewbox>
+                        </Grid>
 
-                                    <TextBlock Text="{x:Bind AbilityList[3].level}" FontSize="10" Foreground="Black" />
-                                    <TextBlock Text="/3" FontSize="10" Foreground="Black" />
-                                </StackPanel>
-                            </Grid>
+                        <Grid Grid.Row="3" Grid.Column="4">
+                            <Viewbox>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Rectangle  Fill="#FF777777"  Width="15" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" ></Rectangle>
+                                    <Rectangle  Fill="#fac55d"  Width="15" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind AbilityList[3].lines[2].active}" ></Rectangle>
+                                    <Rectangle Grid.Row="1"   Fill="#FF777777"  Width="15" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" ></Rectangle>
+                                    <Rectangle Grid.Row="1"   Fill="#fac55d"  Width="15" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind AbilityList[3].lines[2].active}"></Rectangle>
+                                </Grid>
+                            </Viewbox>
+
+                        </Grid>
+
+                        <Grid Grid.Row="1" Grid.Column="8">
+                            <Viewbox>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Rectangle  Fill="#FF777777"  Width="15" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" ></Rectangle>
+                                    <Rectangle  Fill="#fac55d"  Width="15" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind AbilityList[9].lines[2].active}" ></Rectangle>
+                                    <Rectangle Grid.Row="1"   Fill="#FF777777"  Width="15" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" ></Rectangle>
+                                    <Rectangle Grid.Row="1"   Fill="#fac55d"  Width="15" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind AbilityList[9].lines[2].active}"></Rectangle>
+                                </Grid>
+                            </Viewbox>
+
+                           
+                        </Grid>
+
+                        <Grid Grid.Row="0" Grid.Column="9">
+                            <Viewbox>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="5*"/>
+                                        <ColumnDefinition Width="5*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Rectangle  Fill="#FF777777" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" ></Rectangle>
+                                    <Rectangle  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  Visibility="{x:Bind AbilityList[9].lines[4].active}"></Rectangle>
+                                    <Rectangle Grid.Column="1"  Fill="#FF777777" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  ></Rectangle>
+                                    <Rectangle Grid.Column="1"  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind AbilityList[9].lines[4].active}" ></Rectangle>
+                                </Grid>
+                            </Viewbox>
                         </Grid>
                         
-                        <Grid Grid.Row="{x:Bind AbilityList[4].Row}" Grid.Column="{x:Bind AbilityList[4].Col}">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="10*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="1*"/>
-                                    <RowDefinition Height="5*"/>
-                                    <RowDefinition Height="1*"/>
-                                    <RowDefinition Height="1*"/>
-                                </Grid.RowDefinitions>
-                                <Grid Grid.Column="1" Grid.Row="1">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="1*"/>
-                                        <ColumnDefinition Width="10*"/>
-                                        <ColumnDefinition Width="1*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="1*"/>
-                                        <RowDefinition Height="10*"/>
-                                        <RowDefinition Height="1*"/>
-                                    </Grid.RowDefinitions>
-                                    <Rectangle Stretch="UniformToFill" Fill="Yellow"  Grid.Column="1" Grid.Row="1"></Rectangle>
-                                    <Grid  Grid.Column="1" Grid.Row="1">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="0.5*"/>
-                                            <ColumnDefinition Width="20*"/>
-                                            <ColumnDefinition Width="0.5*"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="0.5*"/>
-                                            <RowDefinition Height="20*"/>
-                                            <RowDefinition Height="0.5*"/>
-                                        </Grid.RowDefinitions>
-                                        <Image Grid.Column="1" Grid.Row="1" Source="{x:Bind AbilityList[4].Img.Source}" Margin="5"></Image>
-                                    </Grid>
-                                </Grid>
-
-
-                                <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-
-                                    <TextBlock Text="{x:Bind AbilityList[4].level}" FontSize="10" Foreground="Black" />
-                                    <TextBlock Text="/3" FontSize="10" Foreground="Black" />
-                                </StackPanel>
-                            </Grid>
-                        </Grid>
                         
-                        <Grid Grid.Row="{x:Bind AbilityList[5].Row}" Grid.Column="{x:Bind AbilityList[5].Col}">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="10*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="1*"/>
-                                    <RowDefinition Height="5*"/>
-                                    <RowDefinition Height="1*"/>
-                                    <RowDefinition Height="1*"/>
-                                </Grid.RowDefinitions>
-                                <Grid Grid.Column="1" Grid.Row="1">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="1*"/>
-                                        <ColumnDefinition Width="10*"/>
-                                        <ColumnDefinition Width="1*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="1*"/>
-                                        <RowDefinition Height="10*"/>
-                                        <RowDefinition Height="1*"/>
-                                    </Grid.RowDefinitions>
-                                    <Rectangle Stretch="UniformToFill" Fill="Yellow"  Grid.Column="1" Grid.Row="1"></Rectangle>
-                                    <Grid  Grid.Column="1" Grid.Row="1">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="0.5*"/>
-                                            <ColumnDefinition Width="20*"/>
-                                            <ColumnDefinition Width="0.5*"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="0.5*"/>
-                                            <RowDefinition Height="20*"/>
-                                            <RowDefinition Height="0.5*"/>
-                                        </Grid.RowDefinitions>
-                                        <Image Grid.Column="1" Grid.Row="1" Source="{x:Bind AbilityList[5].Img.Source}" Margin="5"></Image>
-                                    </Grid>
-                                </Grid>
 
 
-                                <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-
-                                    <TextBlock Text="{x:Bind AbilityList[5].level}" FontSize="10" Foreground="Black" />
-                                    <TextBlock Text="/3" FontSize="10" Foreground="Black" />
-                                </StackPanel>
-                            </Grid>
-                        </Grid>
-                        
-                        <Grid Grid.Row="{x:Bind AbilityList[6].Row}" Grid.Column="{x:Bind AbilityList[6].Col}">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="10*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="1*"/>
-                                    <RowDefinition Height="5*"/>
-                                    <RowDefinition Height="1*"/>
-                                    <RowDefinition Height="1*"/>
-                                </Grid.RowDefinitions>
-                                <Grid Grid.Column="1" Grid.Row="1">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="1*"/>
-                                        <ColumnDefinition Width="10*"/>
-                                        <ColumnDefinition Width="1*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="1*"/>
-                                        <RowDefinition Height="10*"/>
-                                        <RowDefinition Height="1*"/>
-                                    </Grid.RowDefinitions>
-                                    <Rectangle Stretch="UniformToFill" Fill="Yellow"  Grid.Column="1" Grid.Row="1"></Rectangle>
-                                    <Grid  Grid.Column="1" Grid.Row="1">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="0.5*"/>
-                                            <ColumnDefinition Width="20*"/>
-                                            <ColumnDefinition Width="0.5*"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="0.5*"/>
-                                            <RowDefinition Height="20*"/>
-                                            <RowDefinition Height="0.5*"/>
-                                        </Grid.RowDefinitions>
-                                        <Image Grid.Column="1" Grid.Row="1" Source="{x:Bind AbilityList[6].Img.Source}" Margin="5"></Image>
-                                    </Grid>
-                                </Grid>
-
-
-                                <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-
-                                    <TextBlock Text="{x:Bind AbilityList[6].level}" FontSize="10" Foreground="Black" />
-                                    <TextBlock Text="/3" FontSize="10" Foreground="Black" />
-                                </StackPanel>
-                            </Grid>
-                        </Grid>
-                        
-                        <Grid Grid.Row="{x:Bind AbilityList[7].Row}" Grid.Column="{x:Bind AbilityList[7].Col}">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="10*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="1*"/>
-                                    <RowDefinition Height="5*"/>
-                                    <RowDefinition Height="1*"/>
-                                    <RowDefinition Height="1*"/>
-                                </Grid.RowDefinitions>
-                                <Grid Grid.Column="1" Grid.Row="1">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="1*"/>
-                                        <ColumnDefinition Width="10*"/>
-                                        <ColumnDefinition Width="1*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="1*"/>
-                                        <RowDefinition Height="10*"/>
-                                        <RowDefinition Height="1*"/>
-                                    </Grid.RowDefinitions>
-                                    <Rectangle Stretch="UniformToFill" Fill="Yellow"  Grid.Column="1" Grid.Row="1"></Rectangle>
-                                    <Grid  Grid.Column="1" Grid.Row="1">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="0.5*"/>
-                                            <ColumnDefinition Width="20*"/>
-                                            <ColumnDefinition Width="0.5*"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="0.5*"/>
-                                            <RowDefinition Height="20*"/>
-                                            <RowDefinition Height="0.5*"/>
-                                        </Grid.RowDefinitions>
-                                        <Image Grid.Column="1" Grid.Row="1" Source="{x:Bind AbilityList[7].Img.Source}" Margin="5"></Image>
-                                    </Grid>
-                                </Grid>
-
-
-                                <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-
-                                    <TextBlock Text="{x:Bind AbilityList[7].level}" FontSize="10" Foreground="Black" />
-                                    <TextBlock Text="/3" FontSize="10" Foreground="Black" />
-                                </StackPanel>
-                            </Grid>
-                        </Grid>
-                        
-                       
                     </Grid>
-                </Grid>
-            </Grid>
 
-            <Grid  Grid.ColumnSpan="2" Grid.Column="1" Grid.RowSpan="2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="40*"/>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="1*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="0.5*"/>
-                    <RowDefinition Height="1.5*"/>
-                    <RowDefinition Height="15*"/>
-                </Grid.RowDefinitions>
 
-                <Grid Grid.Row="1" Grid.Column="1">
-                    <Ellipse  Fill="#FF555555" Stretch="Uniform" Stroke="#FFFAC55D" StrokeThickness="4" >
-                    </Ellipse>
-                    <FontIcon  Glyph="&#xE711;" FocusVisualPrimaryBrush="#FFFAC55D" FontWeight="Bold" FontSize="22"  />
+
+
                 </Grid>
             </Grid>
         </Grid>
 
+        <Grid  Grid.ColumnSpan="2" Grid.Column="1" Grid.RowSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="15*"/>
+            </Grid.RowDefinitions>
 
-
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Ellipse  Fill="#FF555555" Stretch="Uniform" Stroke="#FFFAC55D" StrokeThickness="4" >
+                </Ellipse>
+                <FontIcon  Glyph="&#xE711;" FocusVisualPrimaryBrush="#FFFAC55D" FontWeight="Bold" FontSize="22"  />
+            </Grid>
+        </Grid>
     </Grid>
 </Page>
