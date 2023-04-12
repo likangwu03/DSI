@@ -70,7 +70,7 @@ namespace Trabajo_DSI_G7
                     // Cuando no se restaura la pila de navegación, navegar a la primera página,
                     // configurando la nueva página pasándole la información requerida como
                     //parámetro de navegación
-                    rootFrame.Navigate(typeof(SkillTree), gameManager);
+                    rootFrame.Navigate(typeof(MainMenu), gameManager);
                 }
                 // Asegurarse de que la ventana actual está activa.
                 Window.Current.Activate();
