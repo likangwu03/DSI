@@ -14,6 +14,7 @@ namespace Trabajo_DSI_G7.Models
         public string Description { get; set; }
         public int Amount { get; set; }
         public int Price { get; set; }
+        public int Attack { get; set; }
         public Potion() { }
     }
     public class PotionModel
@@ -26,6 +27,7 @@ namespace Trabajo_DSI_G7.Models
                 ImageFile="Assets\\icons\\potion_03g.png",
                 Description="..........",
                 Amount=1,
+                Attack=20,
                 Price=100,
             },
             new Potion() {
@@ -33,7 +35,8 @@ namespace Trabajo_DSI_G7.Models
                 Name="Potion_1",
                 ImageFile="Assets\\icons\\potion_02c.png",
                 Description="..........",
-                Amount=0,
+                Amount=3,
+                Attack=200,
                 Price=100,
             },
             new Potion() {
@@ -41,7 +44,8 @@ namespace Trabajo_DSI_G7.Models
                 Name="Potion_2",
                 ImageFile="Assets\\icons\\potion_01c.png",
                 Description="..........",
-                Amount=0,
+                Amount=3,
+                Attack=100,
                 Price=100,
             },
             new Potion() {
@@ -50,6 +54,7 @@ namespace Trabajo_DSI_G7.Models
                 ImageFile="Assets\\icons\\potion_02e.png",
                 Description="..........",
                 Amount=0,
+                Attack=100,
                 Price=100,
             },
             new Potion() {
@@ -58,6 +63,7 @@ namespace Trabajo_DSI_G7.Models
                 ImageFile="Assets\\icons\\potion_01b.png",
                 Description="..........",
                 Amount=0,
+                Attack=100,
                 Price=100,
             },
             new Potion() {
@@ -66,6 +72,7 @@ namespace Trabajo_DSI_G7.Models
                 ImageFile="Assets\\icons\\potion_03b.png",
                 Description="..........",
                 Amount=0,
+                Attack=100,
                 Price=100,
             },
             new Potion() {
@@ -74,6 +81,7 @@ namespace Trabajo_DSI_G7.Models
                 ImageFile="Assets\\icons\\potion_03d.png",
                 Description="..........",
                 Amount=0,
+                Attack=100,
                 Price=100,
             },
             new Potion() {
@@ -82,6 +90,7 @@ namespace Trabajo_DSI_G7.Models
                 ImageFile="Assets\\icons\\potion_03a.png",
                 Description="..........",
                 Amount=0,
+                Attack=100,
                 Price=100,
             },
             new Potion() {
@@ -90,6 +99,7 @@ namespace Trabajo_DSI_G7.Models
                 ImageFile="Assets\\icons\\potion_03a.png",
                 Description="..........",
                 Amount=0,
+                Attack=100,
                 Price=100,
             },
             new Potion() {
@@ -98,6 +108,7 @@ namespace Trabajo_DSI_G7.Models
                 ImageFile="Assets\\icons\\potion_03a.png",
                 Description="..........",
                 Amount=0,
+                Attack=100,
                 Price=100,
             },
             new Potion() {
@@ -106,6 +117,7 @@ namespace Trabajo_DSI_G7.Models
                 ImageFile="Assets\\icons\\potion_03a.png",
                 Description="..........",
                 Amount=0,
+                Attack=100,
                 Price=100,
             },
             new Potion() {
@@ -114,6 +126,7 @@ namespace Trabajo_DSI_G7.Models
                 ImageFile="Assets\\icons\\potion_03a.png",
                 Description="..........",
                 Amount=0,
+                Attack=100,
                 Price=100,
             },
             new Potion() {
@@ -122,6 +135,7 @@ namespace Trabajo_DSI_G7.Models
                 ImageFile="Assets\\icons\\potion_03a.png",
                 Description="..........",
                 Amount=0,
+                Attack=100,
                 Price=100,
             },
             new Potion() {
@@ -130,6 +144,7 @@ namespace Trabajo_DSI_G7.Models
                 ImageFile="Assets\\icons\\potion_03a.png",
                 Description="..........",
                 Amount=0,
+                Attack=100,
                 Price=100,
             },
             new Potion() {
@@ -138,6 +153,7 @@ namespace Trabajo_DSI_G7.Models
                 ImageFile="Assets\\icons\\potion_03a.png",
                 Description="..........",
                 Amount=0,
+                Attack=100,
                 Price=100,
             }
         };

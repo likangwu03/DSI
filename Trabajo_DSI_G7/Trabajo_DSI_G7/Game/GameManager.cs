@@ -40,15 +40,16 @@ namespace Trabajo_DSI_G7.Game
             this.maxLife = 200;
             this.maxMagic = 20;
             this.maxEnergy = 5;
+            this.actEnergy = 5;
             this.name = "Name";
             this.level = "Nivel 3";
             this.actLife = maxLife;
             this.actMagic = maxMagic;
             this.actLife = maxLife;
         }
-        public ImageSource getPotion(int i)
+        public PotionVM getPotion(int i)
         {
-            return PotionList.ElementAt(i).Img.Source;
+            return PotionList.ElementAt(i);
         }
         public EnemyVM getEnemy(int i)
         {
@@ -57,18 +58,19 @@ namespace Trabajo_DSI_G7.Game
         public void inicializeCard()
         {
             if (CardList != null)
-                foreach (Card dron in CardModel.GetAllDrones())
+                foreach (Card card in CardModel.GetAllDrones())
                 {
-                    CardVM VMitem = new CardVM(dron);
+                    CardVM VMitem = new CardVM(card);
                     CardList.Add(VMitem);
                 }
         }
+        //devuelve una copia de la lista de cartas
         public void copyCards(ObservableCollection<CardVM> list)
         {
             if (CardList != null)
-                foreach (Card dron in CardList)
+                foreach (Card card in CardList)
                 {
-                    CardVM VMitem = new CardVM(dron);
+                    CardVM VMitem = new CardVM(card);
                     list.Add(VMitem);
                 }
         }

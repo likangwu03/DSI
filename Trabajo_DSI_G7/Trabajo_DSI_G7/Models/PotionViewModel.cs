@@ -19,6 +19,7 @@ namespace Trabajo_DSI_G7.Models
             ImageFile = p.ImageFile;
             Description = p.Description;
             Amount = p.Amount;
+            Attack = p.Attack;
             Price = p.Price;
 
             Img = new Image();
