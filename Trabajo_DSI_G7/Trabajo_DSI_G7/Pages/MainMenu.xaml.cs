@@ -18,6 +18,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.System;
 
 
 
@@ -30,22 +31,22 @@ namespace Trabajo_DSI_G7.Pages
     /// </summary>
     public sealed partial class MainMenu : Page
     {
-        GameManager GM=null;
+        GameManager GM = null;
         public MainMenu()
         {
-            
+
             this.InitializeComponent();
-           
+
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-  
+
             if (e?.Parameter is GameManager gm)
                 this.GM = gm;
 
             base.OnNavigatedTo(e);
-           
+
         }
 
         private void onButtonHolding(object sender, PointerRoutedEventArgs e)
@@ -65,16 +66,25 @@ namespace Trabajo_DSI_G7.Pages
 
         private async void ShowDialog_Click(object sender, RoutedEventArgs e)
         {
-          
-         
+
+
             ConfirmMenu.XamlRoot = this.Content.XamlRoot;
             await ConfirmMenu.ShowAsync();
         }
 
-        private async void onSettingClick(object sender, RoutedEventArgs e)
+        private async void openOptionMenu()
         {
             MainMenuOptions.XamlRoot = this.Content.XamlRoot;
             await MainMenuOptions.ShowAsync();
+        }
+        private void onSettingClick(object sender, RoutedEventArgs e)
+        {
+            openOptionMenu();
+        }
+        private void OptionsKeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.OriginalKey == VirtualKey.GamepadMenu)
+                openOptionMenu();
         }
 
         private void OnCloseMenuOptionsClick(object sender, RoutedEventArgs e)
@@ -104,5 +114,6 @@ namespace Trabajo_DSI_G7.Pages
             Frame.Navigate(typeof(Shop), GM);
 
         }
+
     }
 }
