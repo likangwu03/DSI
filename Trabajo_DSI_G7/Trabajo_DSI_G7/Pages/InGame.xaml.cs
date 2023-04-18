@@ -21,6 +21,10 @@ using System.Collections.ObjectModel;
 using Windows.UI.Xaml.Media.Animation;
 using static System.Net.WebRequestMethods;
 using Windows.UI.Xaml.Shapes;
+using Windows.ApplicationModel.DataTransfer;
+using System.Collections;
+using System.Reflection;
+using Microsoft.Toolkit.Uwp.UI.Controls.TextToolbarSymbols;
 
 // La plantilla de elemento Página en blanco está documentada en https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -32,9 +36,58 @@ namespace Trabajo_DSI_G7.Pages
     public sealed partial class InGame : Page
     {
         static Random random = new Random();
-        public ObservableCollection<CardVM> unusedCards { set; get; } = new ObservableCollection<CardVM>();//de la lista
-        public ObservableCollection<CardVM> usedCards { set; get; } = new ObservableCollection<CardVM>(); //de la lista
+        public ObservableCollection<CardVM> unusedCards { set; get; } = new ObservableCollection<CardVM>();
+        public ObservableCollection<CardVM> usedCards { set; get; } = new ObservableCollection<CardVM>();
+        public ObservableCollection<CardVM> usingCards { set; get; } = new ObservableCollection<CardVM>();
         public List<int> cardId { set; get; } //de la lista
+
+        private int[] potionsId = { 0, 1, 2 }; //índice de pociones usados para el juego
+        public ObservableCollection<PotionVM> inventory { set; get; } = new ObservableCollection<PotionVM>();
+        struct CardPosition
+        {
+            private Thickness margin;
+            private float rotation;
+            public CardPosition(Thickness margin, float rotation)
+            {
+                this.margin = margin;
+                this.rotation = rotation;
+            }
+            public Thickness Margin { get { return margin; } }
+            public float Rotation { get { return rotation; } }
+        };
+
+
+        private CardPosition[][] cardPosition = new CardPosition[5][]
+        {
+           new CardPosition[]{
+               new CardPosition(new Thickness(0,0,0,0),0),
+           },
+           new CardPosition[] {
+                new CardPosition(new Thickness(0, 0, -100, -20), -8) ,
+               new CardPosition(new Thickness(0,0,-100,-20),8)
+           },
+           new CardPosition[] {
+                new CardPosition(new Thickness(0,0,-100,-10), -10) ,
+               new CardPosition(new Thickness(0,0,0,10),0),
+               new CardPosition(new Thickness(-100,0,0,-10),10)
+           },
+           new CardPosition[]{
+                new CardPosition(new Thickness(0, 0, -100, -20), -14) ,
+               new CardPosition(new Thickness(0,0,-50,0),-7),
+               new CardPosition(new Thickness(-50,0,0,0),7),
+               new CardPosition(new Thickness(-100,0,0,-20),14)
+           },
+            new CardPosition[] {
+               new CardPosition(new Thickness(0, 0, -100, -20), -18) ,
+               new CardPosition(new Thickness(0,0,-100,0),-9),
+               new CardPosition(new Thickness(0,0,0,10),0),
+               new CardPosition(new Thickness(-100,0,0,0),9),
+               new CardPosition(new Thickness(-100,0,0,-20),18)
+            }
+
+
+        };
+        const float CARD_W = 200;
 
         GameManager GM = null;
         public InGame()
@@ -52,15 +105,30 @@ namespace Trabajo_DSI_G7.Pages
             createEnemy(Enemy3, 2);
         }
 
+
+        private void iniciaLizePotions()
+        {
+            for (int i = 0; i < potionsId.Length; i++)
+            {
+                PotionVM potion = GM.getPotion(i);
+                inventory.Add(potion);
+                (((Inventory.Children[i] as Grid).Children[0] as Button).Content as Image).Source = inventory[i].Img.Source;
+                if (potion.Amount <= 0)
+                    ((Inventory.Children[i] as Grid).Children[0] as Button).IsEnabled = false;
+                (((Inventory.Children[i] as Grid).Children[1] as Grid).Children[1] as TextBlock).Text = potion.Amount.ToString();
+            }
+        }
+
         private void createEnemy(StackPanel enemy, int i)
         {
+            enemy.Name = "Enemy" + (i + 1);
             EnemyVM enem = GM.getEnemy(i);
             StackPanel abilStack = new StackPanel();
             StackPanel enemInfoStack = new StackPanel();
             enemInfoStack.Orientation = Orientation.Horizontal;
             abilStack.Orientation = Orientation.Vertical;
 
-            foreach (AbilityVM abil in enem.Abilities)
+            foreach (AbilityVM abil in enem.Abilities) //cargar habilidades
             {
 
                 Image a = new Image();
@@ -69,29 +137,42 @@ namespace Trabajo_DSI_G7.Pages
                 a.Height = 30;
                 a.HorizontalAlignment = HorizontalAlignment.Center;
                 a.VerticalAlignment = VerticalAlignment.Center;
-                a.Margin=new Thickness(0,3,-15,3);
+                a.Margin = new Thickness(0, 3, -15, 3);
                 abilStack.Children.Add(a);
 
             }
 
-
             enemInfoStack.Children.Add(abilStack);
-
 
             enemInfoStack.HorizontalAlignment = HorizontalAlignment.Center;
             enemInfoStack.VerticalAlignment = VerticalAlignment.Center;
+
+            Grid grid = new Grid();
+            grid.HorizontalAlignment = HorizontalAlignment.Center;
+            grid.VerticalAlignment = VerticalAlignment.Center;
+
+            Ellipse e = new Ellipse();
+            e.Height = 30;
+            e.Width = 180;
+            e.Fill = new SolidColorBrush(Colors.AliceBlue);
+            e.VerticalAlignment = VerticalAlignment.Bottom;
+            e.Margin = new Thickness(0, 0, 0, 10);
+            e.Visibility = Visibility.Collapsed;
+            grid.Children.Add(e);
+
 
             Image img = new Image();
             img.Source = enem.Img.Source;
             img.Width = 180;
             img.Height = 180;
-            img.HorizontalAlignment = HorizontalAlignment.Center;
-            img.VerticalAlignment = VerticalAlignment.Center;
+
             img.Margin = new Thickness(10);
 
-            enemInfoStack.Children.Add(img);
+            grid.Children.Add(img);
 
+            enemInfoStack.Children.Add(grid);
 
+            //barra vida
             ProgressBar pb = new ProgressBar();
             pb.HorizontalAlignment = HorizontalAlignment.Stretch;
             pb.Foreground = new SolidColorBrush(Colors.Red);
@@ -101,16 +182,7 @@ namespace Trabajo_DSI_G7.Pages
             pb.Value = enem.ActLife;
             pb.Maximum = enem.MaxLife;
 
-            // Ellipse e=new Ellipse();
-            // e.Width = 200;
-            // e.Height = 40;
-            // e.Margin = new Thickness(20);
-            // e.Fill = new SolidColorBrush(Colors.White);
-            //e.HorizontalAlignment = HorizontalAlignment.Center;
-            //e.VerticalAlignment = VerticalAlignment.Bottom;
-            // e.Fill.Opacity = 40;
-
-
+            //número vida
             TextBlock tb = new TextBlock();
             tb.HorizontalAlignment = HorizontalAlignment.Center;
             tb.VerticalAlignment = VerticalAlignment.Center;
@@ -131,31 +203,103 @@ namespace Trabajo_DSI_G7.Pages
                 this.GM = gm;
 
             base.OnNavigatedTo(e);
+
             GM.copyCards(unusedCards);
             iniciaLizeEnemies();
             inicializeCard();
+            iniciaLizePotions();
         }
         private void inicializeCard()
         {
-            if (unusedCards.Count() < 5) reinicializeCard();
+            unusedCards.Clear();
+            usedCards.Clear();
+            usingCards.Clear();
 
-            else for (int i = 0; i < 5; i++) drawCard(i);
+            reinicializeCard();
+            for (int i = 0; i < 5; i++) drawCard(i);
 
         }
         private void reinicializeCard()
         {
             GM.copyCards(unusedCards);
         }
+
+        private void CardDragStarting(UIElement sender, DragStartingEventArgs args)
+        {
+            ContentControl CC = sender as ContentControl;
+            string id = CC.Name.ToString();
+            args.Data.SetText(id);
+            args.Data.RequestedOperation = DataPackageOperation.Link;
+        }
+
+
+        private void CardPointOver(object sender, PointerRoutedEventArgs e)
+        {
+
+            ContentControl CC = sender as ContentControl;
+            CC.Width = 250;
+            //(CC.Content as Image).Opacity = 0.5;
+        }
+
+        private void CardPointerExit(object sender, PointerRoutedEventArgs e)
+        {
+            ContentControl CC = sender as ContentControl;
+            CC.Width = CARD_W;
+            // (CC.Content as Image).Opacity = 1;
+
+
+        }
+
+        // Coger 5 cartas
         private void drawCard(int i)
         {
+
             CardVM card = unusedCards.ElementAt(random.Next(0, unusedCards.Count()));
-            (Cards.Children[i] as ContentControl).Width = 200;
-            (Cards.Children[i] as ContentControl).HorizontalAlignment = HorizontalAlignment.Center;
-            (Cards.Children[i] as ContentControl).VerticalAlignment = VerticalAlignment.Bottom;
-            (Cards.Children[i] as ContentControl).RenderTransformOrigin = new Point(0.5, 1);
-            (Cards.Children[i] as ContentControl).CanDrag = true;
-            ((Cards.Children[i] as ContentControl).Content as Image).Source = card.Img.Source;
+            ContentControl CC = new ContentControl();
+            CC.Name = "Card" + (i + 1);
+            CC.DragStarting += CardDragStarting;
+            // CC.UseSystemFocusVisuals = true;
+            CC.IsTabStop = true;
+            CC.PointerEntered += CardPointOver;
+            CC.PointerExited += CardPointerExit;
+            //ContentControl CC = Cards.Children[i] as ContentControl;
+            CC.Width = CARD_W;
+            CC.HorizontalAlignment = HorizontalAlignment.Center;
+            CC.VerticalAlignment = VerticalAlignment.Bottom;
+            CC.RenderTransformOrigin = new Point(0.5, 1);
+            CC.CanDrag = true;
+            CC.Margin = cardPosition[4][i].Margin;
+
+            CompositeTransform Transformacion = new CompositeTransform();
+            Transformacion.TranslateX = 0.0;
+            Transformacion.TranslateY = 0.0;
+            Transformacion.Rotation = cardPosition[4][i].Rotation;
+            CC.RenderTransform = Transformacion;
+
+            Image image = new Image();
+            image.Source = card.Img.Source;
+
+            CC.Content = image;
+            Cards.Children.Add(CC);
+            // ((Cards.Children[i] as ContentControl).Content as Image).Source = card.Img.Source;
+
             unusedCards.Remove(card);
+            usingCards.Add(card);
+
+        }
+
+        void repositionateCards()
+        {
+            for (int i = 0; i < Cards.Children.Count; i++)
+            {
+                ContentControl CC = Cards.Children[i] as ContentControl;
+                CompositeTransform Transformacion = new CompositeTransform();
+                Transformacion.TranslateX = 0.0;
+                Transformacion.TranslateY = 0.0;
+                Transformacion.Rotation = cardPosition[Cards.Children.Count - 1][i].Rotation;
+                CC.Margin = cardPosition[Cards.Children.Count - 1][i].Margin;
+                CC.RenderTransform = Transformacion;
+            }
 
         }
         private void onButtonHolding(object sender, PointerRoutedEventArgs e)
@@ -215,6 +359,156 @@ namespace Trabajo_DSI_G7.Pages
         private void onTextButtonHolding(object sender, PointerRoutedEventArgs e)
         {
 
+        }
+
+        private void PotionDragStarting(UIElement sender, DragStartingEventArgs args)
+        {
+            Button button = (sender as Image).Parent as Button;
+            string id = button.Name.ToString();
+            args.Data.SetText(id);
+            args.Data.RequestedOperation = DataPackageOperation.Link;
+        }
+
+        private async void DragOverOnEnemy(object sender, DragEventArgs e)
+        {
+            var Oname = await e.DataView.GetTextAsync(); //obtiene la id
+
+            if ((((FindName(Oname.ToString())) as Button)?.Parent as Grid)?.Parent as StackPanel == Inventory || ((FindName(Oname.ToString())) as ContentControl)?.Parent == Cards)
+            {
+                e.AcceptedOperation = DataPackageOperation.Link;
+
+                ((((sender as StackPanel)?.Children[0] as StackPanel)?.Children[1] as Grid)?.Children[0] as Ellipse).Visibility = Visibility.Visible;
+            }
+
+        }
+
+        //usar una poción
+        private void usePotion(Button button, StackPanel stackPanel)
+        {
+            string enemyName = stackPanel.Name.ToString();
+            EnemyVM enemy = GM.getEnemy(enemyName[5] - '0' - 1);
+            string buttonName = button.Name.ToString();
+            enemy.ActLife -= inventory[(buttonName[6]) - '0' - 1].Attack;
+
+            inventory[(buttonName[6]) - '0' - 1].Amount--; //disminuye cantidad de pociones
+
+            (((Inventory.Children[(buttonName[6]) - '0' - 1] as Grid).Children[1] as Grid).Children[1] as TextBlock).Text = inventory[(buttonName[6]) - '0' - 1].Amount.ToString();
+
+            if (inventory[(buttonName[6]) - '0' - 1].Amount <= 0) //si ya no quedan pociones
+            {
+                button.IsEnabled = false;
+                (button.Content as Image).Opacity = 0.5;
+            }
+            if (enemy.ActLife <= 0)
+                stackPanel.Opacity = 0; //no se ve pero sigue reservando espacio
+            else
+            {
+
+                (stackPanel.Children[1] as ProgressBar).Value = enemy.ActLife;
+                (stackPanel.Children[2] as TextBlock).Text = $"{enemy.ActLife}/{enemy.MaxLife}";
+            }
+
+        } //Button es del inventario y Stackpanel,contenedor de enemigo
+
+        //usar una carta
+        private void useCard(ContentControl CC) //CC es la carta
+        {
+
+            CardVM card = usingCards[Cards.Children.IndexOf(CC)];
+
+            //Comprueba y actualiza Energía/Magia
+            if (card.Type == CostType.Magic)
+            {
+                if (GM.actMagic - card.Cost < 0) return;
+                else
+                {
+                    if (GM.actMagic - card.Cost == 0)
+                        Magic.Foreground = new SolidColorBrush(Colors.Red);
+                    GM.actMagic -= card.Cost;
+                    Magic.Text = $"{GM.actMagic}/{GM.maxMagic}";
+                }
+            }
+            else if (card.Type == CostType.Energy)
+            {
+                if (GM.actEnergy - card.Cost < 0) return;
+                else
+                {
+                    if (GM.actEnergy - card.Cost == 0)
+                        Energy.Foreground = new SolidColorBrush(Colors.Red);
+                    GM.actEnergy -= card.Cost;
+                    Energy.Text = $"{GM.actEnergy}/{GM.maxEnergy}";
+                }
+            }
+
+            //Borrar de las cartas actuales
+            Cards.Children.Remove(CC);
+            usingCards.Remove(card);
+
+            //añadirlo a la pila de descartes
+            usedCards.Add(card);
+
+            //reposicionar cartas
+            if (usingCards.Count > 0)
+            {
+                repositionateCards();
+            }
+
+        }
+
+        //ENEMIGOS..................................................................................................
+        private async void DropOnEnemy(object sender, DragEventArgs e)
+        {
+            var Oname = await e.DataView.GetTextAsync(); //obtiene la id
+
+            if ((((FindName(Oname.ToString())) as Button)?.Parent as Grid)?.Parent as StackPanel == Inventory)
+                usePotion((FindName(Oname.ToString())) as Button, sender as StackPanel);
+
+            else if (((FindName(Oname.ToString())) as ContentControl)?.Parent == Cards)
+                useCard(((FindName(Oname.ToString())) as ContentControl));
+
+            ((((sender as StackPanel)?.Children[0] as StackPanel)?.Children[1] as Grid)?.Children[0] as Ellipse).Visibility = Visibility.Collapsed;
+        }
+
+        private void EnemyDragLeave(object sender, DragEventArgs e)
+        {
+            ((((sender as StackPanel)?.Children[0] as StackPanel)?.Children[1] as Grid)?.Children[0] as Ellipse).Visibility = Visibility.Collapsed;
+        }
+
+        //mover a la lista de cartas usadas (pila de descartes)
+        private void addToUsedCard()
+        {
+            int count = usingCards.Count;
+            for (int i = 0; i < count; i++)
+            {
+                CardVM card = usingCards[i];
+                usedCards.Add(card);
+            }
+            usingCards.Clear();
+            Cards.Children.Clear();
+        }
+        //añadir 5 nuevas cartas para usar en el turno actual
+        private void addNewCards()
+        {
+            if (unusedCards.Count < 5) //si ya no hay cartas suficientes en el mazo de cartas, se mueven de la pila de descartes
+            {
+                int count = usedCards.Count;
+                for (var i = 0; i < count; i++)
+                {
+                    CardVM card = usedCards[i];
+                    unusedCards.Add(card);
+                }
+                usedCards.Clear();
+            }
+            for (int j = 0; j < 5; j++) drawCard(j); //coge 5 cartas
+        }
+        //al pusar el botón de finalizar turno
+        private void OnFinishTurnClick(object sender, RoutedEventArgs e)
+        {
+            addToUsedCard();
+            addNewCards();
+            //Reiniciar Energía
+            GM.actEnergy = GM.maxEnergy;
+            Energy.Text = $"{GM.actEnergy}/{GM.maxEnergy}";
         }
     }
 }

@@ -12,39 +12,13 @@
         <ImageBrush ImageSource="/Assets/bg/environment.png"></ImageBrush>
     </Page.Background>
     <Page.Resources>
-        <Style x:Key="ThemeButton" TargetType="Button">
-            <Setter Property="BorderThickness" Value="5" />
-            <Setter Property="Background" Value="#ae8022" />
-            <Setter Property="BorderBrush" Value="#f7bf50"/>
-            <Setter Property="CornerRadius" Value="15"/>
-        </Style>
-        <Style x:Key="MainMenuButton" TargetType="Button">
-            <Setter Property="Width" Value="50"/>
-            <Setter Property="CornerRadius" Value="10"/>
-        </Style>
-        <Style x:Key="ThemeText" TargetType="TextBlock">
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontFamily" Value="Times New Roman"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-        </Style>
+
         <Style x:Key="InventoryButton" TargetType="Button">
             <Setter Property="Background" Value="#ae7e20" />
             <Setter Property="CornerRadius" Value="10"/>
             <Setter Property="Width" Value="80"/>
             <Setter Property="Height" Value="80"/>
             <Setter Property="Margin" Value="8"/>
-        </Style>
-        <Style x:Key="BackButton" TargetType="Button">
-            <Setter Property="BorderThickness" Value="5" />
-            <Setter Property="Background" Value="#555555" />
-            <Setter Property="BorderBrush" Value="#ffc956"/>
-            <Setter Property="CornerRadius" Value="30"/>
-            <Setter Property="Width" Value="50"/>
-            <Setter Property="Height" Value="50"/>
-            <Setter Property="Content" Value="X" />
-            <Setter Property="FontSize" Value="30"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Foreground" Value="#ffc956" />
         </Style>
 
         <DataTemplate x:Key="InventoryItemTemplate"
@@ -66,6 +40,7 @@
 
             </Grid>
         </DataTemplate>
+
     </Page.Resources>
     <!--<Viewbox>-->
 
@@ -100,51 +75,86 @@
 
 
         <!--SUP DR-->
-        <Viewbox  Grid.Column="5" Grid.Row="0">
-            <StackPanel Orientation="Horizontal"  Height="50" Width="161" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,27,10,0">
-                <Button  Padding="0" Style="{StaticResource MainMenuButton}" Margin="30 0" PointerEntered="onButtonHolding" PointerExited="onButtonExit"  >
-                    <Image x:Name="button_about" Source="/Assets/ui/button_yellow/button_about.png"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0"></Image>
-                </Button>
-                <Button  Padding="0" Style="{StaticResource MainMenuButton}" PointerEntered="onButtonHolding" PointerExited="onButtonExit" Click="OnSettingClick">
-                    <Image x:Name="button_setting" Source="/Assets/ui/button_yellow/button_setting.png"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0"></Image>
-                </Button>
 
-            </StackPanel>
+        <Viewbox  Grid.Column="5" Grid.Row="0">
+            <ScrollViewer TabFocusNavigation="Once" XYFocusKeyboardNavigation="Enabled">
+                <StackPanel Orientation="Horizontal"  Height="50" Width="161" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,27,10,0">
+                    <Button  Padding="0" Style="{StaticResource MainMenuButton}" Margin="30 0" PointerEntered="onButtonHolding" PointerExited="onButtonExit"  >
+                        <Image x:Name="button_about" Source="/Assets/ui/button_yellow/button_about.png"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0"></Image>
+                        <Button.KeyboardAccelerators>
+                            <KeyboardAccelerator Key="Escape"></KeyboardAccelerator>
+                        </Button.KeyboardAccelerators>
+                    </Button>
+                    <Button  Padding="0" Style="{StaticResource MainMenuButton}" PointerEntered="onButtonHolding" PointerExited="onButtonExit" Click="OnSettingClick">
+                        <Image x:Name="button_setting" Source="/Assets/ui/button_yellow/button_setting.png"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0"></Image>
+                    </Button>
+
+                </StackPanel>
+            </ScrollViewer>
         </Viewbox>
 
 
         <!--INVENTARIO-->
         <Viewbox  Grid.Row="1" Grid.Column="0">
-            <StackPanel Orientation="Vertical" Background="#f7bf50" CornerRadius="10"  Height="288" Width="96"  VerticalAlignment="Stretch" HorizontalAlignment="Left" Margin="50,0,0,0" >
-                <Button  Padding="0" Style="{StaticResource InventoryButton}"    >
-                    <Image Source="{x:Bind GM.getPotion(0)}"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10" CanDrag="True"></Image>
-                </Button>
-                <Button  Padding="0" Style="{StaticResource InventoryButton}" >
-                    <Image Source="{x:Bind GM.getPotion(1)}"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10" CanDrag="True"></Image>
-                </Button>
-                <Button  Padding="0" Style="{StaticResource InventoryButton}"  >
-                    <Image Source="{x:Bind GM.getPotion(2)}"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10" CanDrag="True"></Image>
-                </Button>
+            <StackPanel x:Name="Inventory" Orientation="Vertical" Background="#f7bf50" CornerRadius="10"  Height="288" Width="96"  VerticalAlignment="Stretch" HorizontalAlignment="Left" Margin="50,0,0,0" >
+                <Grid>
+                    <Button x:Name="Potion1" Padding="0" Style="{StaticResource InventoryButton}">
+                        <Image x:Name="Potion1Image" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10" CanDrag="True" DragStarting="PotionDragStarting"></Image>
+                        <Button.Resources>
+                            <ResourceDictionary>
+                                <ResourceDictionary.ThemeDictionaries>
+                                    <ResourceDictionary x:Key="Default">
+                                        <SolidColorBrush x:Key="ButtonBackgroundDisabled" Color="#493308"/>
+                                    </ResourceDictionary>
+                                </ResourceDictionary.ThemeDictionaries>
+                            </ResourceDictionary>
+                        </Button.Resources>
+                    </Button>
+                    <Grid HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                        <Ellipse Width="30" Height="30" Fill="Black" HorizontalAlignment="Center" VerticalAlignment="Center" ></Ellipse>
+                        <TextBlock VerticalAlignment="Center" TextAlignment="Center" FontSize="20" Style="{StaticResource ThemeText}" />
+                    </Grid>
+                </Grid>
+                <Grid>
+
+                    <Button  x:Name="Potion2" Padding="0" Style="{StaticResource InventoryButton}" >
+                        <Button.Resources>
+                            <ResourceDictionary>
+                                <ResourceDictionary.ThemeDictionaries>
+                                    <ResourceDictionary x:Key="Default">
+                                        <SolidColorBrush x:Key="ButtonBackgroundDisabled" Color="#493308"/>
+                                    </ResourceDictionary>
+                                </ResourceDictionary.ThemeDictionaries>
+                            </ResourceDictionary>
+                        </Button.Resources>
+                        <Image HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10" CanDrag="True" DragStarting="PotionDragStarting"></Image>
+                    </Button>
+                    <Grid HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                        <Ellipse Width="30" Height="30" Fill="Black" HorizontalAlignment="Center" VerticalAlignment="Center" ></Ellipse>
+                        <TextBlock VerticalAlignment="Center" TextAlignment="Center" FontSize="20" Style="{StaticResource ThemeText}" />
+                    </Grid>
+                </Grid>
+                <Grid>
+                    <Button x:Name="Potion3" Padding="0" Style="{StaticResource InventoryButton}"  >
+                        <Button.Resources>
+                            <ResourceDictionary>
+                                <ResourceDictionary.ThemeDictionaries>
+                                    <ResourceDictionary x:Key="Default">
+                                        <SolidColorBrush x:Key="ButtonBackgroundDisabled" Color="#493308"/>
+                                    </ResourceDictionary>
+                                </ResourceDictionary.ThemeDictionaries>
+                            </ResourceDictionary>
+                        </Button.Resources>
+                        <Image HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10" CanDrag="True" DragStarting="PotionDragStarting"></Image>
+                    </Button>
+                    <Grid HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                        <Ellipse Width="30" Height="30" Fill="Black" HorizontalAlignment="Center" VerticalAlignment="Center" ></Ellipse>
+                        <TextBlock VerticalAlignment="Center" TextAlignment="Center" FontSize="20" Style="{StaticResource ThemeText}" />
+                    </Grid>
+                </Grid>
 
             </StackPanel>
         </Viewbox>
-
-        <!--<ListView x:Name="ListView" 
-                   VerticalAlignment="Top" 
-                  HorizontalAlignment="Left" 
-                  Margin="50 200" 
-                  Background="#f7bf50" 
-                  CornerRadius="10"
-                 
-                  ItemsSource= "{x:Bind GM.PotionList}"
-                  ItemTemplate="{StaticResource InventoryItemTemplate}"
-                  IsItemClickEnabled="true"
-                  CanDragItems="True"
-                  IsTabStop="True"   
-                  TabIndex="3"
-               
-                  />-->
-
 
         <!--Perfil-->
         <Viewbox Grid.Row="2" Grid.ColumnSpan="2"  >
@@ -174,27 +184,27 @@
                         <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Column="1"  >
                             <StackPanel Orientation="Horizontal" >
                                 <Image Source="/Assets/icons/Layer 1.png"  Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 5"/>
-                                <TextBlock HorizontalAlignment="Center" FontSize="25"  VerticalAlignment="Center"  Style="{StaticResource ThemeText}">
-                              <Run Text="{x:Bind GM.actEnergy}"/>
+                                <TextBlock x:Name="Energy" HorizontalAlignment="Center" FontSize="25"  VerticalAlignment="Center"  Style="{StaticResource ThemeText}">
+                              <Run Text="{x:Bind GM.actEnergy, Mode=OneWay}"/>
                               <Run Text=" / "/>
-                              <Run Text="{x:Bind GM.maxEnergy}"/>
+                              <Run Text="{x:Bind GM.maxEnergy , Mode=OneWay}"/>
                                 </TextBlock>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" >
                                 <Image Source="/Assets/icons/Layer 1 copy.png"  Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 5"/>
-                                <TextBlock HorizontalAlignment="Center" FontSize="25"  VerticalAlignment="Center"  Style="{StaticResource ThemeText}">
-                              <Run Text="{x:Bind GM.actMagic}"/>
+                                <TextBlock x:Name="Magic" HorizontalAlignment="Center" FontSize="25"  VerticalAlignment="Center"  Style="{StaticResource ThemeText}">
+                              <Run Text="{x:Bind GM.actMagic, Mode=OneWay}"/>
                               <Run Text=" / "/>
-                              <Run Text="{x:Bind GM.maxMagic}"/>
+                              <Run Text="{x:Bind GM.maxMagic, Mode=OneWay}"/>
                                 </TextBlock>
                             </StackPanel>
                         </StackPanel>
                     </Grid>
                     <ProgressBar HorizontalAlignment="Stretch" Foreground="Red" Background="White" Maximum="{x:Bind GM.maxLife}" Value="{x:Bind GM.actLife}" Height="20" CornerRadius="15" ></ProgressBar>
                     <TextBlock HorizontalAlignment="Center" FontSize="25"  VerticalAlignment="Center"  Style="{StaticResource ThemeText}">
-                              <Run Text="{x:Bind GM.actLife}"/>
+                              <Run Text="{x:Bind GM.actLife, Mode=OneWay}"/>
                               <Run Text=" / "/>
-                              <Run Text="{x:Bind GM.maxLife}"/>
+                              <Run Text="{x:Bind GM.maxLife, Mode=OneWay}"/>
                     </TextBlock>
                 </StackPanel>
 
@@ -206,24 +216,25 @@
 
         <!--Enemigos-->
 
+
         <Viewbox  Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <Grid >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+            <ScrollViewer>
 
-                <StackPanel x:Name="Enemy1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="50" Grid.Column="0">
+                <StackPanel x:Name="Enemies" Orientation="Horizontal">
+
+                    <ContentControl  HorizontalAlignment="Left">
+                        <StackPanel x:Name="Enemy1" Orientation="Vertical"  Margin="50" AllowDrop="True" DragOver="DragOverOnEnemy" DragLeave="EnemyDragLeave" Drop="DropOnEnemy"/>
+                    </ContentControl>
+                    <ContentControl HorizontalAlignment="Center">
+                        <StackPanel x:Name="Enemy2" Orientation="Vertical"  VerticalAlignment="Center" Margin="0 100 0 0" AllowDrop="True"  DragOver="DragOverOnEnemy" DragLeave="EnemyDragLeave" Drop="DropOnEnemy" />
+                    </ContentControl>
+
+                    <ContentControl HorizontalAlignment="Right">
+                        <StackPanel x:Name="Enemy3" Orientation="Vertical"  VerticalAlignment="Center" Margin="50" AllowDrop="True"  DragOver="DragOverOnEnemy" DragLeave="EnemyDragLeave" Drop="DropOnEnemy"/>
+                    </ContentControl>
 
                 </StackPanel>
-                <StackPanel x:Name="Enemy2" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 100 0 0" Grid.Column="1">
-
-                </StackPanel>
-                <StackPanel x:Name="Enemy3" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="50" Grid.Column="2">
-
-                </StackPanel>
-            </Grid>
+            </ScrollViewer>
         </Viewbox>
 
 
@@ -244,13 +255,13 @@
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
                     <Rectangle RadiusX="9" RadiusY="9" Fill="#ae7e20" Stroke="#f7bf50" StrokeDashArray="3,2" StrokeThickness="8"/>
-                    <Button  Padding="0" Style="{StaticResource ThemeButton}" BorderThickness="0" HorizontalAlignment="Left" Margin="8">
-                        <TextBlock  TextAlignment="Center" TextWrapping="Wrap" FontSize="35" Width="213"  Style="{StaticResource ThemeText}" Text="Desaher Carta" Height="82"/>
+                    <Button Template="{StaticResource ReturnCardButton}" Background="#ad7e20" Padding="0"  BorderThickness="0" HorizontalAlignment="Left" Margin="8">
+                        <TextBlock  TextAlignment="Center" TextWrapping="Wrap" FontSize="35" Width="213"  Style="{StaticResource ThemeText}" Text="Deshacer Carta" Height="82"/>
                     </Button>
                 </Grid>
 
 
-                <Button Grid.Row="1" Padding="0" Style="{StaticResource ThemeButton}"  Height="100" VerticalAlignment="Stretch" CornerRadius="5" BorderThickness="7" HorizontalAlignment="Center" Margin="30" >
+                <Button Grid.Row="1" Padding="0" Style="{StaticResource ThemeButton}"  Height="100" VerticalAlignment="Stretch" CornerRadius="5" BorderThickness="7" HorizontalAlignment="Center" Margin="30" Click="OnFinishTurnClick">
                     <TextBlock  TextAlignment="Center" VerticalAlignment="Center" Margin="20" FontSize="35"  Style="{StaticResource ThemeText}" Text="Finalizar Turno"/>
                 </Button>
 
@@ -260,16 +271,16 @@
                             <Image Source="/Assets/ui/mazoCartas.png" Width="100"/>
                             <Grid HorizontalAlignment="Right">
                                 <Ellipse Fill="#f7bf50" Width="30" Height="30" Margin="0,-60,0,0" Stroke="#ae8022" StrokeThickness="3"  />
-                                <TextBlock x:Name="MazoCartas" FontSize="35" TextAlignment="Center" VerticalAlignment="Center"  Margin="0,-60,0,0" Text="{x:Bind unusedCards.Count}" Style="{StaticResource ThemeText}"></TextBlock>
+                                <TextBlock x:Name="MazoCartas" FontSize="35" TextAlignment="Center" VerticalAlignment="Center"  Margin="0,-60,0,0" Text="{x:Bind unusedCards.Count, Mode=OneWay}" Style="{StaticResource ThemeText}"></TextBlock>
                             </Grid>
                         </StackPanel>
                     </Button>
                     <Button  Padding="0" Background="Transparent"  Margin="20 0">
                         <StackPanel Orientation="Vertical" Margin="0" HorizontalAlignment="Center"  VerticalAlignment="Top">
-                            <Image Source="/Assets/ui/pilaDescartes.png" Width="100"/>
+                            <Image Source="/Assets/ui/pilaDescartes.png" Width="100" />
                             <Grid HorizontalAlignment="Right">
                                 <Ellipse Fill="#f7bf50" Stroke="#ae8022" Width="30" Height="30"  StrokeThickness="3" Margin="0,-60,0,0"  />
-                                <TextBlock x:Name="PilaDescartes" FontSize="35" TextAlignment="Center" Margin="0,-60,0,0" VerticalAlignment="Center"  Text="{x:Bind usedCards.Count}" Style="{StaticResource ThemeText}"></TextBlock>
+                                <TextBlock x:Name="PilaDescartes" FontSize="35" TextAlignment="Center" Margin="0,-60,0,0" VerticalAlignment="Center"  Text="{x:Bind usedCards.Count, Mode=OneWay}" Style="{StaticResource ThemeText}"></TextBlock>
                             </Grid>
                         </StackPanel>
                     </Button>
@@ -278,43 +289,35 @@
         </Viewbox>
 
         <!--Cartas-->
-        <Viewbox  Grid.Row="2" Grid.Column="2">
+        <Viewbox  Grid.Row="2" Grid.Column="2" >
 
             <StackPanel x:Name="Cards" Orientation="Horizontal"  VerticalAlignment="Bottom" HorizontalAlignment="Center"  >
-                <ContentControl Margin="0,0,-100,-20">
-                    <ContentControl.RenderTransform >
-                        <CompositeTransform Rotation="-18"/>
-                    </ContentControl.RenderTransform>
-                    <Image></Image>
-                </ContentControl>
-                <ContentControl  Margin="0,0,-100,0"  >
-                    <ContentControl.RenderTransform>
-                        <CompositeTransform Rotation="-9"/>
-                    </ContentControl.RenderTransform>
-                    <Image></Image>
-                </ContentControl>
-                <ContentControl  Margin="0,0,0,10"  >
-                    <Image></Image>
-                </ContentControl>
-                <ContentControl  Margin="-100,0,0,0"  >
-                    <ContentControl.RenderTransform>
-                        <CompositeTransform Rotation="9"/>
-                    </ContentControl.RenderTransform>
-                    <Image></Image>
-                </ContentControl>
-                <ContentControl   Margin="-100,0,0,-20" >
-                    <ContentControl.RenderTransform>
-                        <CompositeTransform Rotation="18"/>
-                    </ContentControl.RenderTransform>
+                <!--<ContentControl>
+
                     <Image/>
                 </ContentControl>
+                <ContentControl   >
+
+                    <Image/>
+                </ContentControl>
+                <ContentControl   >
+                    <Image/>
+                </ContentControl>
+                <ContentControl  >
+
+                    <Image/>
+                </ContentControl>
+                <ContentControl   >
+                   
+                    <Image/>
+                </ContentControl>-->
             </StackPanel>
         </Viewbox>
 
         <ContentDialog x:Name="InGameOptions" Grid.RowSpan="3" Grid.ColumnSpan="6"
         Foreground="Black" 
         FontSize="40"
-        Background="#c0c0c0"
+        Background="#999999"
         CornerRadius="15" >
 
             <Grid Width="500" Height="600" Margin="0" Padding="0">
@@ -342,25 +345,35 @@
                 <Button x:Name="OptionsBackButton" Style="{StaticResource BackButton}" HorizontalAlignment="Right" VerticalAlignment="Top" Height="60" Width="60" Grid.ColumnSpan="2" Grid.Column="1" Click="OnExitSettingClick" Margin="0,0,2,0"/>
                 <StackPanel Orientation="Horizontal" Grid.ColumnSpan="3" Margin="0,134,0,1" Grid.RowSpan="2">
                     <TextBlock Style="{StaticResource ThemeText}" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="10,0,20,0" FontSize="30">Música</TextBlock>
-                    <Slider Width="363" Height="30" VerticalAlignment="Center" Foreground="#f7bf50"  CornerRadius="10"  Background="#403738" Maximum="100" />
+                    <Slider Style="{StaticResource Slider}" Width="363" Foreground="#f7bf50"  CornerRadius="10"  Value="50" Background="#403738" Maximum="100"/>
+
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3" Margin="0,72,0,0" Grid.RowSpan="2">
                     <TextBlock Style="{StaticResource ThemeText}" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,20,0" FontSize="30">Sonido</TextBlock>
-                    <Slider VerticalAlignment="Center" Foreground="#f7bf50" CornerRadius="10" Background="#403738" Maximum="100" Width="365"  />
+                    <Slider Style="{StaticResource Slider}" VerticalAlignment="Center" Foreground="#f7bf50" Value="50"  CornerRadius="10" Background="#403738" Maximum="100" Width="365"  />
                 </StackPanel>
-                <Button Grid.Row="3" Grid.Column="1"   Padding="0" Style="{StaticResource ThemeButton}" VerticalAlignment="Stretch" Margin="0,23,45,21" Background="#554f4f" BorderThickness="15" HorizontalAlignment="Stretch" Grid.ColumnSpan="2" Click="OnSaveAndExitClick"  >
 
-                    <TextBlock  TextAlignment="Center" TextWrapping="Wrap" FontSize="35" Width="380"  Style="{StaticResource ThemeText}" Text="Guardar y Salir"/>
-                </Button>
-                <Button Grid.Row="4"  Grid.Column="1"   Padding="0"  Style="{StaticResource ThemeButton}" VerticalAlignment="Stretch" Margin="0,23,45,21" Click="OnRestartGameClick" Background="#554f4f" BorderThickness="15" HorizontalAlignment="Stretch" Grid.ColumnSpan="2">
-                    <TextBlock  TextAlignment="Center" TextWrapping="Wrap" FontSize="35"  Style="{StaticResource ThemeText}" Text="Reempezar combate" />
-                </Button>
+                <Grid Grid.Row="3" Grid.Column="1" VerticalAlignment="Stretch" Margin="0,0,45,21" BorderThickness="15" HorizontalAlignment="Stretch" Grid.ColumnSpan="2" >
 
+                    <Rectangle Fill="#4e3a13" Margin="0 0 0 -10" RadiusX="20" RadiusY="20"></Rectangle>
+
+                    <Button  Padding="0" Style="{StaticResource ThemeButton}"  Height="90" VerticalAlignment="Top" Click="OnSaveAndExitClick"  >
+                        <TextBlock  TextAlignment="Center" TextWrapping="Wrap" FontSize="35" Width="380"  Style="{StaticResource ThemeText}" Text="Guardar y Salir"/>
+                    </Button>
+                </Grid>
+                <Grid Grid.Row="4"  Grid.Column="1"  VerticalAlignment="Stretch" Margin="0,0,45,21" BorderThickness="15" HorizontalAlignment="Stretch" Grid.ColumnSpan="2" >
+
+                    <Rectangle Fill="#4e3a13" Margin="0 0 0 -10" RadiusX="20" RadiusY="20"></Rectangle>
+                    <Button   Padding="0"  Style="{StaticResource ThemeButton}" Height="90" VerticalAlignment="Top"  Click="OnRestartGameClick" Background="#554f4f" BorderThickness="15" HorizontalAlignment="Stretch" Grid.ColumnSpan="2">
+                        <TextBlock  TextAlignment="Center" TextWrapping="Wrap" FontSize="35"  Style="{StaticResource ThemeText}" Text="Reempezar combate" />
+                    </Button>
+                </Grid>
             </Grid>
 
         </ContentDialog>
 
         <ContentDialog 
+            Visibility="Collapsed"
         x:Name="ConfirmMenu" 
         Grid.RowSpan="3" 
         Grid.ColumnSpan="6"
@@ -417,7 +430,7 @@
                                                     <Setter Target="ConfirmButtonBg.Source" Value="/Assets/ui/button_hover/red.png"/>
                                                     <Setter Target="ConfirmButtonTxt.Foreground" Value="#7e7e7e"/>
                                                 </VisualState.Setters>
-                                              
+
                                             </VisualState>
                                             <VisualState x:Name="Pressed">
                                                 <VisualState.Setters>
