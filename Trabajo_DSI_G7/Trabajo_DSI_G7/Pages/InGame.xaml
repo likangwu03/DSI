@@ -373,7 +373,6 @@
         </ContentDialog>
 
         <ContentDialog 
-            Visibility="Collapsed"
         x:Name="ConfirmMenu" 
         Grid.RowSpan="3" 
         Grid.ColumnSpan="6"
