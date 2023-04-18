@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -25,25 +26,28 @@ namespace Trabajo_DSI_G7.Pages
     /// </summary>
     public sealed partial class SkillTree : Page
     {
+        Game.SkillTreeLogic Logic;
+
         Game.GameManager gm;
         public ObservableCollection<AbilityVM> AbilityList;
-      
+        public ObservableCollection<EmeraldVM> EmeraldList;
         public AbilityVM actAbility;
 
-        public double w;
-        public double h;
         public SkillTree()
         {
             this.InitializeComponent();
         }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             // If e.Parameter is a string, set the TextBlock's text with it.
             if (e?.Parameter is Game.GameManager gameManager)
             {
+                Logic = new Game.SkillTreeLogic(gameManager);
                 gm = gameManager;
                 AbilityList = gameManager.AbilityList;
                 actAbility = AbilityList.First();
+                EmeraldList=gameManager.EmeraldList;
             }
             base.OnNavigatedTo(e);
         }
@@ -60,6 +64,9 @@ namespace Trabajo_DSI_G7.Pages
 
         private async void Ability_Click(object sender, RoutedEventArgs e)
         {
+            Logic.Ability_Click(sender, e);
+            ContentControl O = FocusManager.GetFocusedElement() as ContentControl;
+            actAbility=O.DataContext as AbilityVM;       
             AbilityWindow.XamlRoot = this.Content.XamlRoot;
             await AbilityWindow.ShowAsync();
         }

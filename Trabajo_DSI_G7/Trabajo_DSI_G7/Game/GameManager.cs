@@ -16,6 +16,7 @@ namespace Trabajo_DSI_G7.Game
         public ObservableCollection<AbilityVM> AbilityList { get; } = new ObservableCollection<AbilityVM>(); //de la lista
         public ObservableCollection<EnemyVM> EnemyList { get; } = new ObservableCollection<EnemyVM>(); //de la lista
         public ObservableCollection<CardVM> CardList { get; } = new ObservableCollection<CardVM>(); //de la lista
+        public ObservableCollection<EmeraldVM> EmeraldList { get; } = new ObservableCollection<EmeraldVM>(); //de la lista
 
         public int money { get; set; }
         public int actLife { get; set; }
@@ -33,6 +34,7 @@ namespace Trabajo_DSI_G7.Game
             inicializeEnemy();
             inicializeCard();
             inicializeAbility();
+            inicializeEmerald();
 
             this.money = 3210;
             this.maxLife = 200;
@@ -103,8 +105,20 @@ namespace Trabajo_DSI_G7.Game
                     AbilityVM VMitem = new AbilityVM(dron);
                     AbilityList.Add(VMitem);
                 }
-
         }
+
+        public void inicializeEmerald()
+        {
+            if (EmeraldList != null)
+            {
+                foreach(Emerald emerald in EmeraldModel.GetAllEmeralds())
+                {
+                    EmeraldVM VMitem = new EmeraldVM(emerald);
+                    EmeraldList.Add(VMitem);
+                }
+            }
+        }
+
 
     }
 }

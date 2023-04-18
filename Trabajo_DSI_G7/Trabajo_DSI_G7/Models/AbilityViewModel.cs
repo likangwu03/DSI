@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,12 +9,20 @@ using Windows.UI.Xaml.Controls;
 
 namespace Trabajo_DSI_G7.Models
 {
-
+    public class AbilityEmerald
+    {
+        public EmeraldVM emeraldVM;
+        public int type;
+        public int cost;
+    }
     //no seria crea desde pagina que necesitamos los VM?
     public class AbilityVM : Ability
     {
+
+        public List<AbilityEmerald> list;
         public Image Img;
         public ContentControl CCImg;
+       
         
         public AbilityVM(Ability p)
         {
@@ -38,6 +47,22 @@ namespace Trabajo_DSI_G7.Models
             CCImg.Content = Img;
 
             CCImg.UseSystemFocusVisuals = true;
+            list = new List<AbilityEmerald>();
+        }
+
+
+        public void iniEmerald(ObservableCollection<EmeraldVM> EmeraldList)
+        {
+            
+            foreach (emerald_inf i in Emerald_list)
+            {
+                AbilityEmerald abilityEmerald = new AbilityEmerald();
+                abilityEmerald.cost = i.cost;
+                abilityEmerald.type = i.type;
+                abilityEmerald.emeraldVM = EmeraldList[i.type];
+                list.Add(abilityEmerald);
+
+            }
         }
 
         public bool Active()

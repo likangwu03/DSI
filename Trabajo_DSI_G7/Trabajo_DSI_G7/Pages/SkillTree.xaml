@@ -30,7 +30,6 @@
 
 
         <DataTemplate x:Key="SkillTemplate" x:DataType="Model:AbilityVM">
-
             <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Grid>
 
@@ -96,9 +95,33 @@
         </DataTemplate>
 
 
+        <DataTemplate x:Key="Emerald_ItemTemplate"
+                      x:DataType="Model:AbilityEmerald" >
+            <Grid VerticalAlignment="Center"  Width="80" Height="80">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2.5*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Rectangle Width="55" Height="55"  Fill="#FFF5BF51" RadiusX="10" RadiusY="10" Stroke="Black" HorizontalAlignment="Center" VerticalAlignment="Center" ></Rectangle>
+                <Rectangle Width="45" Height="45"   Fill="#FFAE8022" RadiusX="10" RadiusY="10" Stroke="Black"  HorizontalAlignment="Center" VerticalAlignment="Center"></Rectangle>
+                <Image  Source="{x:Bind emeraldVM.Img.Source}" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" Width="35" Height="35"></Image>
+
+                <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" FontSize="25"  Style="{StaticResource ThemeText}" Text="{x:Bind emeraldVM.Amount}"/>
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" FontSize="25"  Style="{StaticResource ThemeText}" Text="/"/>
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" FontSize="25"  Style="{StaticResource ThemeText}" Text="{x:Bind cost}"/>
+                </StackPanel>
+            </Grid >
+
+        </DataTemplate>
+
+
+
     </Page.Resources>
     <Grid>
         <Image Source="/Assets/bg/bgm.png" Stretch="Fill"/>
+
+    
 
         <Grid>
             <Grid.ColumnDefinitions>
@@ -443,10 +466,10 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Rectangle Width="90" Height="90"  Fill="White" FocusVisualPrimaryBrush="#FF5D5D5D" VerticalAlignment="Center" HorizontalAlignment="Center"></Rectangle>
-                    <Image  Source="{x:Bind actAbility.Img.Source}" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Height="80"></Image>
+                    <Image  Source="{x:Bind Logic.ActAbility.Img.Source,Mode=TwoWay}" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Height="80"></Image>
                     <TextBlock Grid.Column="1" TextAlignment="Center" TextWrapping="Wrap" FontSize="30"  Style="{StaticResource ThemeText}" Text="{x:Bind actAbility.Name}"/>
                     <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" >
-                        <TextBlock Text="{x:Bind actAbility.level,Mode=OneWay}" Style="{StaticResource ThemeText}" FontSize="30"  />
+                        <TextBlock Text="{x:Bind Logic.ActAbility.level,Mode=OneWay}" Style="{StaticResource ThemeText}" FontSize="30"  />
 
                         <TextBlock Text="/3" Style="{StaticResource ThemeText}" FontSize="30" />
                     </StackPanel>
@@ -461,15 +484,16 @@
                         <RowDefinition Height="6*"/>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="1" TextAlignment="Left" TextWrapping="Wrap" FontSize="20"  Style="{StaticResource ThemeText}" Text="Descripción"/>
-                    <TextBlock Grid.Row="2" TextAlignment="Left" TextWrapping="Wrap" FontSize="15"  Style="{StaticResource ThemeText}" Text="{x:Bind actAbility.Description}"/>
+                    <TextBlock Grid.Row="2" TextAlignment="Left" TextWrapping="Wrap" FontSize="15"  Style="{StaticResource ThemeText}" Text="{x:Bind Logic.ActAbility.Description,Mode=OneWay}"/>
                 </Grid>
 
 
-                <!--<ListView Grid.Row="3" ItemsSource="{x:Bind }">
-                    <DataTemplate>
-                        
-                    </DataTemplate>
-                </ListView>-->
+                <GridView Grid.Row="3" HorizontalAlignment="Center" Height="80"
+                          ItemsSource="{x:Bind Logic.ActAbility.list }" 
+                           ItemTemplate="{StaticResource Emerald_ItemTemplate}"
+                           >
+
+                </GridView>
 
                 <Button Grid.Row="4"   Padding="0" Margin="40,20,40,10"  VerticalAlignment="Stretch"  Background="#cca035" CornerRadius="10" BorderBrush="#7f6321" BorderThickness="1,1,0,10"   HorizontalAlignment="Stretch" Grid.ColumnSpan="2">
                     <TextBlock  TextAlignment="Center" VerticalAlignment="Center" FontSize="30"  Style="{StaticResource ThemeText}" Text="Mejorar" />
@@ -480,6 +504,13 @@
 
             </Grid>
         </ContentDialog>
+
+
+        <!--<GridView 
+            HorizontalAlignment="Center" VerticalAlignment="Center"
+            ItemsSource="{x:Bind Logic.ActAbility.list }" 
+            ItemTemplate="{StaticResource Emerald_ItemTemplate}">
+        </GridView>-->
 
     </Grid>
 </Page>

@@ -120,6 +120,8 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Game\GameManager.cs" />
+    <Compile Include="Game\ObservableObject.cs" />
+    <Compile Include="Game\SkillTreeLogic.cs" />
     <Compile Include="Input\Input.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -129,6 +131,7 @@
     <Compile Include="Models\CardModel.cs" />
     <Compile Include="Models\CardViewModel.cs" />
     <Compile Include="Models\EmeraldModel.cs" />
+    <Compile Include="Models\EmeraldViewModel.cs" />
     <Compile Include="Models\EnemyModel.cs" />
     <Compile Include="Models\EnemyViewModel.cs" />
     <Compile Include="Models\PotionModel.cs" />
@@ -172,6 +175,10 @@
     <Content Include="Assets\enemigos\pipo-enemy032b.png" />
     <Content Include="Assets\enemigos\pipo-enemy040a.png" />
     <Content Include="Assets\enemigos\pipo-enemy045b.png" />
+    <Content Include="Assets\esmeraldas\bg_13.png" />
+    <Content Include="Assets\esmeraldas\gg_22.png" />
+    <Content Include="Assets\esmeraldas\rg_08.png" />
+    <Content Include="Assets\esmeraldas\sg_05.png" />
     <Content Include="Assets\habilidades\Icon1.png" />
     <Content Include="Assets\habilidades\Icon10.png" />
     <Content Include="Assets\habilidades\Icon11.png" />
