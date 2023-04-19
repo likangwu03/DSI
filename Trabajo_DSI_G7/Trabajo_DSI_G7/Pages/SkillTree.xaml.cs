@@ -47,12 +47,12 @@ namespace Trabajo_DSI_G7.Pages
                 gm = gameManager;
                 AbilityList = gameManager.AbilityList;
                 actAbility = AbilityList.First();
-                EmeraldList=gameManager.EmeraldList;
+                EmeraldList = gameManager.EmeraldList;
             }
             base.OnNavigatedTo(e);
         }
-        
-        public bool lineActive(int i,int id)
+
+        public bool lineActive(int i, int id)
         {
             return AbilityList[id].Active() && AbilityList[id].lines[i].c_exist && AbilityList[AbilityList[id].lines[i].id].Active();
         }
@@ -65,16 +65,22 @@ namespace Trabajo_DSI_G7.Pages
         private async void Ability_Click(object sender, RoutedEventArgs e)
         {
             Logic.Ability_Click(sender, e);
-            ContentControl O = FocusManager.GetFocusedElement() as ContentControl;
-            actAbility=O.DataContext as AbilityVM;       
-            AbilityWindow.XamlRoot = this.Content.XamlRoot;
-            await AbilityWindow.ShowAsync();
+            if (Logic.ActAbility.rootActive)
+            {
+                AbilityWindow.XamlRoot = this.Content.XamlRoot;
+                await AbilityWindow.ShowAsync();
+            }
         }
 
         private void OptionsBackButton_Click(object sender, RoutedEventArgs e)
         {
             if (!Frame.CanGoBack) return;
             Frame.GoBack();
+        }
+
+        private void Mejorar_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Logic.Mejorar_Button_Click(sender, e);
         }
     }
 }

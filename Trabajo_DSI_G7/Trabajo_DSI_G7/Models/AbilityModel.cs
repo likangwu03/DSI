@@ -51,7 +51,7 @@ namespace Trabajo_DSI_G7.Models
                 level=3,
                 Id = 0,
                 Name = "Ability_0",
-                ImageFile = "Assets\\habilidades\\Icon2.png",
+                ImageFile = "Assets\\habilidades\\Icon1.png",
                 Description="hola",
                 Row=2, Col=6,
                 Emerald_list=new List<emerald_inf>()
@@ -78,7 +78,8 @@ namespace Trabajo_DSI_G7.Models
                 Row=1, Col=6,
                  Emerald_list=new List<emerald_inf>()
                 {
-                    new emerald_inf() { type=2,cost=1 },
+                    new emerald_inf() { type=0,cost=1 },
+                    new emerald_inf() { type=1,cost=1 },
                     new emerald_inf() { type=3,cost=1 },
                 },
                    lines=new List<Ability_conx>()
@@ -102,6 +103,7 @@ namespace Trabajo_DSI_G7.Models
                 {
                     new emerald_inf() { type=0,cost=1 },
                     new emerald_inf() { type=1,cost=2 },
+                    new emerald_inf() { type=2,cost=2 },
                 },
                 lines=new List<Ability_conx>()
                 {
@@ -240,6 +242,7 @@ namespace Trabajo_DSI_G7.Models
               new Ability()
             {
                 Id = 9,
+               rootActive=true,
                 Name = "Ability_9",
                 ImageFile = "Assets\\habilidades\\Icon10.png",
                 Description="hola",

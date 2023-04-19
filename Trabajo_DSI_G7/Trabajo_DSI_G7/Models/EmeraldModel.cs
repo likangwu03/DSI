@@ -26,7 +26,7 @@ namespace Trabajo_DSI_G7.Models
                 Name="Emerald_0",
                 ImageFile="Assets\\esmeraldas\\bg_13.png",
                 Description="..........",
-                Amount=1,
+                Amount=10,
                 Price=100,
             },
             new Emerald() {
@@ -34,7 +34,7 @@ namespace Trabajo_DSI_G7.Models
                 Name="Emerald_1",
                 ImageFile="Assets\\esmeraldas\\gg_22.png",
                 Description="..........",
-                Amount=0,
+                Amount=10,
                 Price=100,
             },
             new Emerald() {
@@ -42,7 +42,7 @@ namespace Trabajo_DSI_G7.Models
                 Name="Emerald_2",
                 ImageFile="Assets\\esmeraldas\\rg_08.png",
                 Description="..........",
-                Amount=0,
+                Amount=10,
                 Price=100,
             },
             new Emerald() {
@@ -50,7 +50,7 @@ namespace Trabajo_DSI_G7.Models
                 Name="Emerald_3",
                 ImageFile="Assets\\esmeraldas\\sg_05.png",
                 Description="..........",
-                Amount=0,
+                Amount=10,
                 Price=100,
             }
         };

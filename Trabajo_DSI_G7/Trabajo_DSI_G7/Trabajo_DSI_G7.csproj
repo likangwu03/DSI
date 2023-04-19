@@ -121,6 +121,7 @@
     </Compile>
     <Compile Include="Game\GameManager.cs" />
     <Compile Include="Game\ObservableObject.cs" />
+    <Compile Include="Game\ShopLogic.cs" />
     <Compile Include="Game\SkillTreeLogic.cs" />
     <Compile Include="Input\Input.cs" />
     <Compile Include="MainPage.xaml.cs">
