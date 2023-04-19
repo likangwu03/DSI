@@ -74,6 +74,16 @@ namespace Trabajo_DSI_G7.Game
                     list.Add(VMitem);
                 }
         }
+        //devuelve una copia de la lista de enemigos
+        public void copyEnemies(ObservableCollection<EnemyVM> list)
+        {
+            if (CardList != null)
+                foreach (Enemy enemy in EnemyList)
+                {
+                    EnemyVM VMitem = new EnemyVM(enemy);
+                    list.Add(VMitem);
+                }
+        }
         public void inicializeEnemy()
         {
             if (EnemyList != null)

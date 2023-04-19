@@ -39,6 +39,7 @@ namespace Trabajo_DSI_G7.Pages
         public ObservableCollection<CardVM> unusedCards { set; get; } = new ObservableCollection<CardVM>();
         public ObservableCollection<CardVM> usedCards { set; get; } = new ObservableCollection<CardVM>();
         public ObservableCollection<CardVM> usingCards { set; get; } = new ObservableCollection<CardVM>();
+        public ObservableCollection<EnemyVM> enemies { set; get; } = new ObservableCollection<EnemyVM>();
         public List<int> cardId { set; get; } //de la lista
 
         private int[] potionsId = { 0, 1, 2 }; //índice de pociones usados para el juego
@@ -100,6 +101,7 @@ namespace Trabajo_DSI_G7.Pages
 
         private void iniciaLizeEnemies()
         {
+            reinicializeEnemy();
             createEnemy(Enemy1, 0);
             createEnemy(Enemy2, 1);
             createEnemy(Enemy3, 2);
@@ -122,7 +124,7 @@ namespace Trabajo_DSI_G7.Pages
         private void createEnemy(StackPanel enemy, int i)
         {
             enemy.Name = "Enemy" + (i + 1);
-            EnemyVM enem = GM.getEnemy(i);
+            EnemyVM enem = enemies[i];
             StackPanel abilStack = new StackPanel();
             StackPanel enemInfoStack = new StackPanel();
             enemInfoStack.Orientation = Orientation.Horizontal;
@@ -208,6 +210,9 @@ namespace Trabajo_DSI_G7.Pages
             iniciaLizeEnemies();
             inicializeCard();
             iniciaLizePotions();
+            GM.actEnergy = GM.maxEnergy;
+            GM.actMagic = GM.actMagic;
+
         }
         private void inicializeCard()
         {
@@ -222,6 +227,10 @@ namespace Trabajo_DSI_G7.Pages
         private void reinicializeCard()
         {
             GM.copyCards(unusedCards);
+        }
+        private void reinicializeEnemy()
+        {
+            GM.copyEnemies(enemies);
         }
 
         private void CardDragStarting(UIElement sender, DragStartingEventArgs args)
@@ -386,7 +395,7 @@ namespace Trabajo_DSI_G7.Pages
         private void usePotion(Button button, StackPanel stackPanel)
         {
             string enemyName = stackPanel.Name.ToString();
-            EnemyVM enemy = GM.getEnemy(enemyName[5] - '0' - 1);
+            EnemyVM enemy = enemies[enemyName[5] - '0' - 1];
             string buttonName = button.Name.ToString();
             enemy.ActLife -= inventory[(buttonName[6]) - '0' - 1].Attack;
 
@@ -403,7 +412,6 @@ namespace Trabajo_DSI_G7.Pages
                 stackPanel.Opacity = 0; //no se ve pero sigue reservando espacio
             else
             {
-
                 (stackPanel.Children[1] as ProgressBar).Value = enemy.ActLife;
                 (stackPanel.Children[2] as TextBlock).Text = $"{enemy.ActLife}/{enemy.MaxLife}";
             }
