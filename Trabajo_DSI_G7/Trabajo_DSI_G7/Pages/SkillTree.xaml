@@ -40,9 +40,9 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <Rectangle  Fill="#FF777777"  Width="15" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="{x:Bind LineExist(0)}" ></Rectangle>
-                            <Rectangle  Fill="#fac55d"  Width="15" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind lines[0].active}" ></Rectangle>
+                            <Rectangle  Fill="#fac55d"  Width="15" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind lines[0].active,Mode=OneWay}" ></Rectangle>
                             <Rectangle Grid.Row="1"   Fill="#FF777777"  Width="15" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="{x:Bind LineExist(1)}" ></Rectangle>
-                            <Rectangle Grid.Row="1"   Fill="#fac55d"  Width="15" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind lines[1].active}" ></Rectangle>
+                            <Rectangle Grid.Row="1"   Fill="#fac55d"  Width="15" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind lines[1].active,Mode=OneWay}" ></Rectangle>
                         </Grid>
                     </Viewbox>
 
@@ -53,9 +53,9 @@
                                 <ColumnDefinition Width="5*"/>
                             </Grid.ColumnDefinitions>
                             <Rectangle  Fill="#FF777777" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  Opacity="{x:Bind LineExist(2)}"></Rectangle>
-                            <Rectangle  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  Visibility="{x:Bind lines[2].active}"></Rectangle>
+                            <Rectangle  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  Visibility="{x:Bind lines[2].active,Mode=OneWay}"></Rectangle>
                             <Rectangle Grid.Column="1"  Fill="#FF777777" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="{x:Bind LineExist(3)}"  ></Rectangle>
-                            <Rectangle Grid.Column="1"  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind lines[3].active}" ></Rectangle>
+                            <Rectangle Grid.Column="1"  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind lines[3].active,Mode=OneWay}" ></Rectangle>
                         </Grid>
                     </Viewbox>
                 </Grid>
@@ -75,16 +75,16 @@
                         <Rectangle Width="25" Height="25"  Fill="#FF5D5D5D" Stroke="#FF7C7C7C" StrokeThickness="2" FocusVisualPrimaryBrush="#FF5D5D5D" VerticalAlignment="Center" HorizontalAlignment="Center"></Rectangle>
                     </Viewbox>
                     <Viewbox Grid.Column="1" Grid.Row="1">
-                        <Rectangle Width="25" Height="25"  Fill="White" Stroke="#FFFBC150" StrokeThickness="2" FocusVisualPrimaryBrush="#FF5D5D5D" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="{x:Bind Visibility_()}"></Rectangle>
+                        <Rectangle Width="25" Height="25"  Fill="White" Stroke="#FFFBC150" StrokeThickness="2" FocusVisualPrimaryBrush="#FF5D5D5D" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="{x:Bind Visibility_(),Mode=OneWay}"></Rectangle>
                     </Viewbox >
                     <Viewbox Grid.Column="1" Grid.Row="1">
-                        <Button Grid.Column="1" Grid.Row="1" Margin="0" Padding="0" Click="Ability_Click">
+                        <Button Grid.Column="1" Grid.Row="1" Margin="0" Padding="0" Click="Ability_Click" >
                             <Image Margin="3" Source="{x:Bind Img.Source}" VerticalAlignment="Center" HorizontalAlignment="Center" Opacity="{x:Bind Opacity_Img(),Mode=OneWay}"></Image>
                         </Button>
                     </Viewbox>
 
                     <Viewbox  Grid.Column="1" Grid.Row="2">
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center"  Visibility="{x:Bind TextVisibility_()}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center"  Visibility="{x:Bind TextVisibility_(),Mode=OneWay}">
                             <TextBlock Text="{x:Bind level,Mode=OneWay}" Style="{StaticResource ThemeText}" FontSize="30"  />
 
                             <TextBlock Text="/3" Style="{StaticResource ThemeText}" FontSize="30" />
@@ -107,7 +107,7 @@
                 <Image  Source="{x:Bind emeraldVM.Img.Source}" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" Width="35" Height="35"></Image>
 
                 <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
-                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" FontSize="25"  Style="{StaticResource ThemeText}" Text="{x:Bind emeraldVM.Amount}"/>
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" FontSize="25"  Style="{StaticResource ThemeText}" Text="{x:Bind emeraldVM.Amount,Mode=OneWay}"/>
                     <TextBlock TextAlignment="Center" TextWrapping="Wrap" FontSize="25"  Style="{StaticResource ThemeText}" Text="/"/>
                     <TextBlock TextAlignment="Center" TextWrapping="Wrap" FontSize="25"  Style="{StaticResource ThemeText}" Text="{x:Bind cost}"/>
                 </StackPanel>
@@ -194,25 +194,25 @@
                             <RowDefinition Height="1*"/>
                             <RowDefinition Height="1*"/>
                         </Grid.RowDefinitions>
-                        <ContentControl Grid.Column="{x:Bind AbilityList[0].Col}" Grid.Row="{x:Bind AbilityList[0].Row}" DataContext="{x:Bind AbilityList[0]}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
-                        <ContentControl Grid.Column="{x:Bind AbilityList[1].Col}" Grid.Row="{x:Bind AbilityList[1].Row}" DataContext="{x:Bind AbilityList[1]}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
-                        <ContentControl Grid.Column="{x:Bind AbilityList[2].Col}" Grid.Row="{x:Bind AbilityList[2].Row}" DataContext="{x:Bind AbilityList[2]}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
-                        <ContentControl Grid.Column="{x:Bind AbilityList[3].Col}" Grid.Row="{x:Bind AbilityList[3].Row}" DataContext="{x:Bind AbilityList[3]}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
-                        <ContentControl Grid.Column="{x:Bind AbilityList[4].Col}" Grid.Row="{x:Bind AbilityList[4].Row}" DataContext="{x:Bind AbilityList[4]}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
-                        <ContentControl Grid.Column="{x:Bind AbilityList[5].Col}" Grid.Row="{x:Bind AbilityList[5].Row}" DataContext="{x:Bind AbilityList[5]}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
-                        <ContentControl Grid.Column="{x:Bind AbilityList[6].Col}" Grid.Row="{x:Bind AbilityList[6].Row}" DataContext="{x:Bind AbilityList[6]}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
-                        <ContentControl Grid.Column="{x:Bind AbilityList[7].Col}" Grid.Row="{x:Bind AbilityList[7].Row}" DataContext="{x:Bind AbilityList[7]}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
-                        <ContentControl Grid.Column="{x:Bind AbilityList[8].Col}" Grid.Row="{x:Bind AbilityList[8].Row}" DataContext="{x:Bind AbilityList[8]}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
-                        <ContentControl Grid.Column="{x:Bind AbilityList[9].Col}" Grid.Row="{x:Bind AbilityList[9].Row}" DataContext="{x:Bind AbilityList[9]}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
-                        <ContentControl Grid.Column="{x:Bind AbilityList[10].Col}" Grid.Row="{x:Bind AbilityList[10].Row}" DataContext="{x:Bind AbilityList[10]}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
-                        <ContentControl Grid.Column="{x:Bind AbilityList[11].Col}" Grid.Row="{x:Bind AbilityList[11].Row}" DataContext="{x:Bind AbilityList[11]}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
-                        <ContentControl Grid.Column="{x:Bind AbilityList[12].Col}" Grid.Row="{x:Bind AbilityList[12].Row}" DataContext="{x:Bind AbilityList[12]}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
-                        <ContentControl Grid.Column="{x:Bind AbilityList[13].Col}" Grid.Row="{x:Bind AbilityList[13].Row}" DataContext="{x:Bind AbilityList[13]}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
-                        <ContentControl Grid.Column="{x:Bind AbilityList[14].Col}" Grid.Row="{x:Bind AbilityList[14].Row}" DataContext="{x:Bind AbilityList[14]}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
-                        <ContentControl Grid.Column="{x:Bind AbilityList[15].Col}" Grid.Row="{x:Bind AbilityList[15].Row}" DataContext="{x:Bind AbilityList[15]}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
-                        <ContentControl Grid.Column="{x:Bind AbilityList[16].Col}" Grid.Row="{x:Bind AbilityList[16].Row}" DataContext="{x:Bind AbilityList[16]}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
-                        <ContentControl Grid.Column="{x:Bind AbilityList[17].Col}" Grid.Row="{x:Bind AbilityList[17].Row}" DataContext="{x:Bind AbilityList[17]}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
-                        <ContentControl Grid.Column="{x:Bind AbilityList[18].Col}" Grid.Row="{x:Bind AbilityList[18].Row}" DataContext="{x:Bind AbilityList[18]}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
+                        <ContentControl Grid.Column="{x:Bind AbilityList[0].Col}" Grid.Row="{x:Bind AbilityList[0].Row}" DataContext="{x:Bind Logic.abilityVM(0),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
+                        <ContentControl Grid.Column="{x:Bind AbilityList[1].Col}" Grid.Row="{x:Bind AbilityList[1].Row}" DataContext="{x:Bind Logic.abilityVM(1),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
+                        <ContentControl Grid.Column="{x:Bind AbilityList[2].Col}" Grid.Row="{x:Bind AbilityList[2].Row}" DataContext="{x:Bind Logic.abilityVM(2),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
+                        <ContentControl Grid.Column="{x:Bind AbilityList[3].Col}" Grid.Row="{x:Bind AbilityList[3].Row}" DataContext="{x:Bind Logic.abilityVM(3),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
+                        <ContentControl Grid.Column="{x:Bind AbilityList[4].Col}" Grid.Row="{x:Bind AbilityList[4].Row}" DataContext="{x:Bind Logic.abilityVM(4),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
+                        <ContentControl Grid.Column="{x:Bind AbilityList[5].Col}" Grid.Row="{x:Bind AbilityList[5].Row}" DataContext="{x:Bind Logic.abilityVM(5),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
+                        <ContentControl Grid.Column="{x:Bind AbilityList[6].Col}" Grid.Row="{x:Bind AbilityList[6].Row}" DataContext="{x:Bind Logic.abilityVM(6),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
+                        <ContentControl Grid.Column="{x:Bind AbilityList[7].Col}" Grid.Row="{x:Bind AbilityList[7].Row}" DataContext="{x:Bind Logic.abilityVM(7),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
+                        <ContentControl Grid.Column="{x:Bind AbilityList[8].Col}" Grid.Row="{x:Bind AbilityList[8].Row}" DataContext="{x:Bind Logic.abilityVM(8),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
+                        <ContentControl Grid.Column="{x:Bind AbilityList[9].Col}" Grid.Row="{x:Bind AbilityList[9].Row}" DataContext="{x:Bind Logic.abilityVM(9),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
+                        <ContentControl Grid.Column="{x:Bind AbilityList[10].Col}" Grid.Row="{x:Bind AbilityList[10].Row}" DataContext="{x:Bind Logic.abilityVM(10),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
+                        <ContentControl Grid.Column="{x:Bind AbilityList[11].Col}" Grid.Row="{x:Bind AbilityList[11].Row}" DataContext="{x:Bind Logic.abilityVM(11),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
+                        <ContentControl Grid.Column="{x:Bind AbilityList[12].Col}" Grid.Row="{x:Bind AbilityList[12].Row}" DataContext="{x:Bind Logic.abilityVM(12),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
+                        <ContentControl Grid.Column="{x:Bind AbilityList[13].Col}" Grid.Row="{x:Bind AbilityList[13].Row}" DataContext="{x:Bind Logic.abilityVM(13),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
+                        <ContentControl Grid.Column="{x:Bind AbilityList[14].Col}" Grid.Row="{x:Bind AbilityList[14].Row}" DataContext="{x:Bind Logic.abilityVM(14),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
+                        <ContentControl Grid.Column="{x:Bind AbilityList[15].Col}" Grid.Row="{x:Bind AbilityList[15].Row}" DataContext="{x:Bind Logic.abilityVM(15),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
+                        <ContentControl Grid.Column="{x:Bind AbilityList[16].Col}" Grid.Row="{x:Bind AbilityList[16].Row}" DataContext="{x:Bind Logic.abilityVM(16),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
+                        <ContentControl Grid.Column="{x:Bind AbilityList[17].Col}" Grid.Row="{x:Bind AbilityList[17].Row}" DataContext="{x:Bind Logic.abilityVM(17),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
+                        <ContentControl Grid.Column="{x:Bind AbilityList[18].Col}" Grid.Row="{x:Bind AbilityList[18].Row}" DataContext="{x:Bind Logic.abilityVM(18),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
 
                         <Grid Grid.Row="2" Grid.Column="1">
                             <Viewbox>
@@ -222,9 +222,9 @@
                                         <ColumnDefinition Width="5*"/>
                                     </Grid.ColumnDefinitions>
                                     <Rectangle  Fill="#FF777777" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"></Rectangle>
-                                    <Rectangle  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  Visibility="{x:Bind AbilityList[18].lines[3].active}"></Rectangle>
+                                    <Rectangle  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  Visibility="{x:Bind Logic.lineActive(1,17),Mode=OneWay}"></Rectangle>
                                     <Rectangle Grid.Column="1"  Fill="#FF777777" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" ></Rectangle>
-                                    <Rectangle Grid.Column="1"  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind AbilityList[18].lines[3].active}" ></Rectangle>
+                                    <Rectangle Grid.Column="1"  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind Logic.lineActive(1,17),Mode=OneWay}" ></Rectangle>
                                 </Grid>
                             </Viewbox>
                         </Grid>
@@ -237,9 +237,9 @@
                                         <ColumnDefinition Width="5*"/>
                                     </Grid.ColumnDefinitions>
                                     <Rectangle  Fill="#FF777777" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" ></Rectangle>
-                                    <Rectangle  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  Visibility="{x:Bind AbilityList[16].lines[3].active}"></Rectangle>
+                                    <Rectangle  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  Visibility="{x:Bind Logic.lineActive(3,16),Mode=OneWay}"></Rectangle>
                                     <Rectangle Grid.Column="1"  Fill="#FF777777" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  ></Rectangle>
-                                    <Rectangle Grid.Column="1"  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind AbilityList[16].lines[3].active}" ></Rectangle>
+                                    <Rectangle Grid.Column="1"  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind Logic.lineActive(3,16),Mode=OneWay}" ></Rectangle>
                                 </Grid>
                             </Viewbox>
                         </Grid>
@@ -254,9 +254,9 @@
                                         <ColumnDefinition Width="5*"/>
                                     </Grid.ColumnDefinitions>
                                     <Rectangle  Fill="#FF777777" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" ></Rectangle>
-                                    <Rectangle  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  Visibility="{x:Bind AbilityList[3].lines[3].active}"></Rectangle>
+                                    <Rectangle  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  Visibility="{x:Bind Logic.lineActive(3,3),Mode=OneWay}"></Rectangle>
                                     <Rectangle Grid.Column="1"  Fill="#FF777777" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  ></Rectangle>
-                                    <Rectangle Grid.Column="1"  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind AbilityList[3].lines[3].active}" ></Rectangle>
+                                    <Rectangle Grid.Column="1"  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind Logic.lineActive(3,3),Mode=OneWay}" ></Rectangle>
                                 </Grid>
                             </Viewbox>
                         </Grid>
@@ -269,9 +269,9 @@
                                         <ColumnDefinition Width="5*"/>
                                     </Grid.ColumnDefinitions>
                                     <Rectangle  Fill="#FF777777" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" ></Rectangle>
-                                    <Rectangle  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  Visibility="{x:Bind AbilityList[0].lines[3].active}"></Rectangle>
+                                    <Rectangle  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  Visibility="{x:Bind Logic.lineActive(3,0),Mode=OneWay}"></Rectangle>
                                     <Rectangle Grid.Column="1"  Fill="#FF777777" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  ></Rectangle>
-                                    <Rectangle Grid.Column="1"  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind AbilityList[0].lines[3].active}" ></Rectangle>
+                                    <Rectangle Grid.Column="1"  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind Logic.lineActive(3,0),Mode=OneWay}" ></Rectangle>
                                 </Grid>
                             </Viewbox>
                         </Grid>
@@ -284,9 +284,9 @@
                                         <ColumnDefinition Width="5*"/>
                                     </Grid.ColumnDefinitions>
                                     <Rectangle  Fill="#FF777777" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" ></Rectangle>
-                                    <Rectangle  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  Visibility="{x:Bind AbilityList[15].lines[3].active}"></Rectangle>
+                                    <Rectangle  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  Visibility="{x:Bind Logic.lineActive(3,15),Mode=OneWay}"></Rectangle>
                                     <Rectangle Grid.Column="1"  Fill="#FF777777" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  ></Rectangle>
-                                    <Rectangle Grid.Column="1"  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind AbilityList[15].lines[3].active}" ></Rectangle>
+                                    <Rectangle Grid.Column="1"  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind Logic.lineActive(3,15),Mode=OneWay}" ></Rectangle>
                                 </Grid>
                             </Viewbox>
                         </Grid>
@@ -299,9 +299,9 @@
                                         <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
                                     <Rectangle  Fill="#FF777777"  Width="15" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" ></Rectangle>
-                                    <Rectangle  Fill="#fac55d"  Width="15" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind AbilityList[17].lines[2].active}" ></Rectangle>
+                                    <Rectangle  Fill="#fac55d"  Width="15" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind Logic.lineActive(1,18),Mode=OneWay}" ></Rectangle>
                                     <Rectangle Grid.Row="1"   Fill="#FF777777"  Width="15" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" ></Rectangle>
-                                    <Rectangle Grid.Row="1"   Fill="#fac55d"  Width="15" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind AbilityList[17].lines[2].active}"></Rectangle>
+                                    <Rectangle Grid.Row="1"   Fill="#fac55d"  Width="15" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind Logic.lineActive(1,18),Mode=OneWay}"></Rectangle>
                                 </Grid>
                             </Viewbox>
                         </Grid>
@@ -314,9 +314,9 @@
                                         <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
                                     <Rectangle  Fill="#FF777777"  Width="15" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" ></Rectangle>
-                                    <Rectangle  Fill="#fac55d"  Width="15" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind AbilityList[3].lines[2].active}" ></Rectangle>
+                                    <Rectangle  Fill="#fac55d"  Width="15" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind Logic.lineActive(0,14),Mode=OneWay}" ></Rectangle>
                                     <Rectangle Grid.Row="1"   Fill="#FF777777"  Width="15" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" ></Rectangle>
-                                    <Rectangle Grid.Row="1"   Fill="#fac55d"  Width="15" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind AbilityList[3].lines[2].active}"></Rectangle>
+                                    <Rectangle Grid.Row="1"   Fill="#fac55d"  Width="15" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind Logic.lineActive(0,14),Mode=OneWay}"></Rectangle>
                                 </Grid>
                             </Viewbox>
 
@@ -330,9 +330,9 @@
                                         <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
                                     <Rectangle  Fill="#FF777777"  Width="15" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" ></Rectangle>
-                                    <Rectangle  Fill="#fac55d"  Width="15" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind AbilityList[9].lines[2].active}" ></Rectangle>
+                                    <Rectangle  Fill="#fac55d"  Width="15" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind Logic.lineActive(1,9),Mode=OneWay}" ></Rectangle>
                                     <Rectangle Grid.Row="1"   Fill="#FF777777"  Width="15" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" ></Rectangle>
-                                    <Rectangle Grid.Row="1"   Fill="#fac55d"  Width="15" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind AbilityList[9].lines[2].active}"></Rectangle>
+                                    <Rectangle Grid.Row="1"   Fill="#fac55d"  Width="15" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind Logic.lineActive(1,9),Mode=OneWay}"></Rectangle>
                                 </Grid>
                             </Viewbox>
 
@@ -347,9 +347,9 @@
                                         <ColumnDefinition Width="5*"/>
                                     </Grid.ColumnDefinitions>
                                     <Rectangle  Fill="#FF777777" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" ></Rectangle>
-                                    <Rectangle  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  Visibility="{x:Bind AbilityList[9].lines[3].active}"></Rectangle>
+                                    <Rectangle  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  Visibility="{x:Bind Logic.lineActive(3,9),Mode=OneWay}"></Rectangle>
                                     <Rectangle Grid.Column="1"  Fill="#FF777777" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  ></Rectangle>
-                                    <Rectangle Grid.Column="1"  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind AbilityList[9].lines[3].active}" ></Rectangle>
+                                    <Rectangle Grid.Column="1"  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind Logic.lineActive(3,9),Mode=OneWay}" ></Rectangle>
                                 </Grid>
                             </Viewbox>
                         </Grid>
@@ -363,9 +363,9 @@
                                         <ColumnDefinition Width="5*"/>
                                     </Grid.ColumnDefinitions>
                                     <Rectangle  Fill="#FF777777" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" ></Rectangle>
-                                    <Rectangle  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  Visibility="{x:Bind AbilityList[2].lines[3].active}"></Rectangle>
+                                    <Rectangle  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  Visibility="{x:Bind Logic.lineActive(3,2),Mode=OneWay}"></Rectangle>
                                     <Rectangle Grid.Column="1"  Fill="#FF777777" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  ></Rectangle>
-                                    <Rectangle Grid.Column="1"  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind AbilityList[2].lines[3].active}" ></Rectangle>
+                                    <Rectangle Grid.Column="1"  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind Logic.lineActive(3,2),Mode=OneWay}" ></Rectangle>
                                 </Grid>
                             </Viewbox>
                         </Grid>
@@ -378,9 +378,9 @@
                                         <ColumnDefinition Width="5*"/>
                                     </Grid.ColumnDefinitions>
                                     <Rectangle  Fill="#FF777777" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" ></Rectangle>
-                                    <Rectangle  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  Visibility="{x:Bind AbilityList[10].lines[3].active}"></Rectangle>
+                                    <Rectangle  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  Visibility="{x:Bind Logic.lineActive(3,10),Mode=OneWay}"></Rectangle>
                                     <Rectangle Grid.Column="1"  Fill="#FF777777" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  ></Rectangle>
-                                    <Rectangle Grid.Column="1"  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind AbilityList[10].lines[3].active}" ></Rectangle>
+                                    <Rectangle Grid.Column="1"  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind Logic.lineActive(3,10),Mode=OneWay}" ></Rectangle>
                                 </Grid>
                             </Viewbox>
                         </Grid>
@@ -394,9 +394,9 @@
                                         <ColumnDefinition Width="5*"/>
                                     </Grid.ColumnDefinitions>
                                     <Rectangle  Fill="#FF777777" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" ></Rectangle>
-                                    <Rectangle  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  Visibility="{x:Bind AbilityList[6].lines[3].active}"></Rectangle>
+                                    <Rectangle  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  Visibility="{x:Bind Logic.lineActive(3,6),Mode=OneWay}"></Rectangle>
                                     <Rectangle Grid.Column="1"  Fill="#FF777777" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  ></Rectangle>
-                                    <Rectangle Grid.Column="1"  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind AbilityList[6].lines[3].active}" ></Rectangle>
+                                    <Rectangle Grid.Column="1"  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind Logic.lineActive(3,6),Mode=OneWay}" ></Rectangle>
                                 </Grid>
                             </Viewbox>
                         </Grid>
@@ -410,9 +410,9 @@
                                         <ColumnDefinition Width="5*"/>
                                     </Grid.ColumnDefinitions>
                                     <Rectangle  Fill="#FF777777" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" ></Rectangle>
-                                    <Rectangle  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  Visibility="{x:Bind AbilityList[7].lines[3].active}"></Rectangle>
+                                    <Rectangle  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  Visibility="{x:Bind Logic.lineActive(3,7),Mode=OneWay}"></Rectangle>
                                     <Rectangle Grid.Column="1"  Fill="#FF777777" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"  ></Rectangle>
-                                    <Rectangle Grid.Column="1"  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind AbilityList[7].lines[3].active}" ></Rectangle>
+                                    <Rectangle Grid.Column="1"  Fill="#fac55d" Width="200" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{x:Bind Logic.lineActive(3,7),Mode=OneWay}" ></Rectangle>
                                 </Grid>
                             </Viewbox>
                         </Grid>
@@ -487,15 +487,12 @@
                     <TextBlock Grid.Row="2" TextAlignment="Left" TextWrapping="Wrap" FontSize="15"  Style="{StaticResource ThemeText}" Text="{x:Bind Logic.ActAbility.Description,Mode=OneWay}"/>
                 </Grid>
 
-
-                <GridView Grid.Row="3" HorizontalAlignment="Center" Height="80"
-                          ItemsSource="{x:Bind Logic.ActAbility.list }" 
-                           ItemTemplate="{StaticResource Emerald_ItemTemplate}"
-                           >
-
+                <GridView Grid.Row="3" HorizontalAlignment="Center" Height="80" Visibility="{x:Bind Logic.ActAbility.EmeraldVisibility_(),Mode=OneWay}"
+                          ItemsSource="{x:Bind Logic.ListaEmeralds(),Mode=OneWay}" 
+                           ItemTemplate="{StaticResource Emerald_ItemTemplate}">
                 </GridView>
 
-                <Button Grid.Row="4"   Padding="0" Margin="40,20,40,10"  VerticalAlignment="Stretch"  Background="#cca035" CornerRadius="10" BorderBrush="#7f6321" BorderThickness="1,1,0,10"   HorizontalAlignment="Stretch" Grid.ColumnSpan="2">
+                <Button IsEnabled="{x:Bind Logic.CanUp(),Mode=OneWay}" Click="Mejorar_Button_Click" Grid.Row="4"   Padding="0" Margin="40,20,40,10"  VerticalAlignment="Stretch"  Background="#cca035" CornerRadius="10" BorderBrush="#7f6321" BorderThickness="1,1,0,10"   HorizontalAlignment="Stretch" Grid.ColumnSpan="2">
                     <TextBlock  TextAlignment="Center" VerticalAlignment="Center" FontSize="30"  Style="{StaticResource ThemeText}" Text="Mejorar" />
                 </Button>
 

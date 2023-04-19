@@ -83,6 +83,12 @@ namespace Trabajo_DSI_G7.Models
             return Visibility.Collapsed;
         }
 
+        public Visibility EmeraldVisibility_()
+        {
+            if (level<3) return Visibility.Visible;
+            return Visibility.Collapsed;
+        }
+
         public Visibility Visibility_()
         {
             if (Active()) return Visibility.Visible;
@@ -95,6 +101,6 @@ namespace Trabajo_DSI_G7.Models
             return 0;
         }
 
-      
+        
     }
 }

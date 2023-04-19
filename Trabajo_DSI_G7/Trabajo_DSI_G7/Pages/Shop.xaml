@@ -208,6 +208,11 @@
     </Page.Resources>
 
     <Grid x:Name="Principal">
+
+        <!--<Grid HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <Ellipse Width="30" Height="30" Fill="Black" HorizontalAlignment="Center" VerticalAlignment="Center" ></Ellipse>
+            <TextBlock VerticalAlignment="Center" TextAlignment="Center" FontSize="20" Style="{StaticResource ThemeText}" />
+        </Grid>-->
         <Image Source="/Assets/bg/bgm.png" Stretch="Fill"/>
         <Grid>
             <Grid.ColumnDefinitions>
