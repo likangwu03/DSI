@@ -109,11 +109,11 @@ namespace Trabajo_DSI_G7.Pages
 
             base.OnNavigatedTo(e);
             restartGame();
-            selectedCard = null;
         }
 
         void restartGame()
         {
+            selectedCard = null;
             Cards.Children.Clear();
             GM.copyCards(unusedCards);
             reinicializeEnemies();
@@ -278,7 +278,7 @@ namespace Trabajo_DSI_G7.Pages
                 case VirtualKey.GamepadB:
                     if (selectedCard == null) return;
                     (sender as ContentControl).Focus(FocusState.Unfocused);
-                   selectedCard = null;
+                    selectedCard = null;
                     break;
 
             }
@@ -522,7 +522,7 @@ namespace Trabajo_DSI_G7.Pages
                 // FocusManager.TryMoveFocus(FocusNavigationDirection.Next);
             }
         }
-       
+
 
         //reposicionar las cartas al cambiar su cantidad
         void repositionateCards()
@@ -623,13 +623,50 @@ namespace Trabajo_DSI_G7.Pages
                 // Mimic Tab when user hits down arrow key.
                 FocusManager.TryMoveFocus(FocusNavigationDirection.Next);
             }
+            if (e.OriginalKey == VirtualKey.GamepadLeftThumbstickRight)
+            {
+                // Mimic Shift+Tab when user hits up arrow key.
+                FocusManager.TryMoveFocus(FocusNavigationDirection.Next);
+            }
+            else if (e.OriginalKey == VirtualKey.GamepadLeftThumbstickLeft)
+            {
+                // Mimic Tab when user hits down arrow key.
+                FocusManager.TryMoveFocus(FocusNavigationDirection.Previous);
+            }
+            //if (e.OriginalKey == VirtualKey.GamepadLeftThumbstickRight)
+            //{
+            //    // Mimic Shift+Tab when user hits up arrow key.
+            //    FocusManager.TryMoveFocus(FocusNavigationDirection.Next);
+            //    e.Handled = true;
+
+            //}
+            //else if (e.OriginalKey == VirtualKey.GamepadLeftThumbstickLeft)
+            //{
+            //    // Mimic Tab when user hits down arrow key.
+            //    FocusManager.TryMoveFocus(FocusNavigationDirection.Previous);
+            //    e.Handled = true;
+            //}
         }
 
         private void Page_KeyDown(object sender, KeyRoutedEventArgs e)
         {
+            {
+                if (e.OriginalKey == VirtualKey.GamepadLeftThumbstickRight)
+                {
+                    // Mimic Shift+Tab when user hits up arrow key.
+                    FocusManager.TryMoveFocus(FocusNavigationDirection.Next);
+                    e.Handled = true;
+
+                }
+                else if (e.OriginalKey == VirtualKey.GamepadLeftThumbstickLeft)
+                {
+                    // Mimic Tab when user hits down arrow key.
+                    FocusManager.TryMoveFocus(FocusNavigationDirection.Previous);
+                    e.Handled = true;
+                }
+            }
+
 
         }
-
-
     }
 }

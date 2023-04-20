@@ -222,14 +222,14 @@
 
                 <StackPanel TabFocusNavigation="Once" XYFocusKeyboardNavigation="Enabled" x:Name="Enemies" Orientation="Horizontal">
 
-                    <ContentControl  HorizontalAlignment="Left" LosingFocus="Enemy_LosingFocus" GettingFocus="EnemyGettingFocus" UseSystemFocusVisuals="False" KeyDown="OnEnemyKeyDown">
+                    <ContentControl  HorizontalAlignment="Left" LosingFocus="Enemy_LosingFocus" GettingFocus="EnemyGettingFocus" IsTabStop="True" UseSystemFocusVisuals="False" KeyDown="OnEnemyKeyDown">
                         <StackPanel x:Name="Enemy1" Orientation="Vertical"  Margin="50" AllowDrop="True" DragOver="DragOverOnEnemy" DragLeave="EnemyDragLeave" Drop="DropOnEnemy"/>
                     </ContentControl>
-                    <ContentControl UseSystemFocusVisuals="False" LosingFocus="Enemy_LosingFocus" GettingFocus="EnemyGettingFocus"  HorizontalAlignment="Center">
+                    <ContentControl UseSystemFocusVisuals="False" LosingFocus="Enemy_LosingFocus" GettingFocus="EnemyGettingFocus" IsTabStop="True"  HorizontalAlignment="Center" KeyDown="OnEnemyKeyDown">
                         <StackPanel x:Name="Enemy2" Orientation="Vertical"  VerticalAlignment="Center" Margin="0 100 0 0" AllowDrop="True"  DragOver="DragOverOnEnemy" DragLeave="EnemyDragLeave" Drop="DropOnEnemy" />
                     </ContentControl>
 
-                    <ContentControl UseSystemFocusVisuals="False"  LosingFocus="Enemy_LosingFocus" GettingFocus="EnemyGettingFocus" HorizontalAlignment="Right">
+                    <ContentControl UseSystemFocusVisuals="False"  LosingFocus="Enemy_LosingFocus" GettingFocus="EnemyGettingFocus" IsTabStop="True" HorizontalAlignment="Right" KeyDown="OnEnemyKeyDown">
                         <StackPanel x:Name="Enemy3" Orientation="Vertical"  VerticalAlignment="Center" Margin="50" AllowDrop="True"  DragOver="DragOverOnEnemy" DragLeave="EnemyDragLeave" Drop="DropOnEnemy"/>
                     </ContentControl>
 
@@ -290,28 +290,7 @@
 
         <!--Cartas-->
         <Viewbox  Grid.Row="2" Grid.Column="2" XYFocusKeyboardNavigation="Enabled" >
-
-            <StackPanel  x:Name="Cards" Orientation="Horizontal"  VerticalAlignment="Bottom" HorizontalAlignment="Center"  >
-                <!--<ContentControl>
-
-                    <Image/>
-                </ContentControl>
-                <ContentControl   >
-
-                    <Image/>
-                </ContentControl>
-                <ContentControl   >
-                    <Image/>
-                </ContentControl>
-                <ContentControl  >
-
-                    <Image/>
-                </ContentControl>
-                <ContentControl   >
-                   
-                    <Image/>
-                </ContentControl>-->
-            </StackPanel>
+            <StackPanel  x:Name="Cards" XYFocusKeyboardNavigation="Enabled" Orientation="Horizontal"  VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
         </Viewbox>
 
         <ContentDialog x:Name="InGameOptions" Grid.RowSpan="3" Grid.ColumnSpan="6"
