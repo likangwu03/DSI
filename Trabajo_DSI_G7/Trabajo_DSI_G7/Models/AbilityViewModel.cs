@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -14,6 +15,25 @@ namespace Trabajo_DSI_G7.Models
         public EmeraldVM emeraldVM;
         public int type;
         public int cost;
+
+        public Visibility Text1()
+        {
+            if (cost > emeraldVM.Amount)
+            {
+                return Visibility.Collapsed;
+            }
+            return Visibility.Visible;
+
+        }
+        public Visibility Text2()
+        {
+            if (cost > emeraldVM.Amount)
+            {
+                return Visibility.Visible;
+            }
+            return Visibility.Collapsed;
+
+        }
     }
     //no seria crea desde pagina que necesitamos los VM?
     public class AbilityVM : Ability
@@ -22,20 +42,20 @@ namespace Trabajo_DSI_G7.Models
         public List<AbilityEmerald> list;
         public Image Img;
         public ContentControl CCImg;
-       
-        
+
+
         public AbilityVM(Ability p)
         {
             Id = p.Id;
             Name = p.Name;
             ImageFile = p.ImageFile;
             Description = p.Description;
-            Row=p.Row;
-            Col=p.Col;
-            level=p.level;
-            lines=p.lines;
-            Emerald_list=p.Emerald_list;
-            rootActive=p.rootActive;
+            Row = p.Row;
+            Col = p.Col;
+            level = p.level;
+            lines = p.lines;
+            Emerald_list = p.Emerald_list;
+            rootActive = p.rootActive;
 
             Img = new Image();
             string s = System.IO.Directory.GetCurrentDirectory() + "\\" + p.ImageFile;
@@ -79,13 +99,13 @@ namespace Trabajo_DSI_G7.Models
 
         public Visibility TextVisibility_()
         {
-            if (Active()||rootActive) return Visibility.Visible;
+            if (Active() || rootActive) return Visibility.Visible;
             return Visibility.Collapsed;
         }
 
         public Visibility EmeraldVisibility_()
         {
-            if (level<3) return Visibility.Visible;
+            if (level < 3) return Visibility.Visible;
             return Visibility.Collapsed;
         }
 
@@ -101,6 +121,7 @@ namespace Trabajo_DSI_G7.Models
             return 0;
         }
 
-        
+
+
     }
 }

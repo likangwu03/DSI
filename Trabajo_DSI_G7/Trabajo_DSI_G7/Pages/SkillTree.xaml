@@ -108,7 +108,8 @@
                 <Image  Source="{x:Bind emeraldVM.Img.Source}" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" Width="35" Height="35"></Image>
 
                 <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
-                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" FontSize="25"  Style="{StaticResource ThemeText}" Text="{x:Bind emeraldVM.Amount,Mode=OneWay}"/>
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" FontSize="25"  Style="{StaticResource ThemeText}" Text="{x:Bind emeraldVM.Amount,Mode=OneWay}" Visibility="{x:Bind Text1(),Mode=OneWay}"/>
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" FontSize="25"  Style="{StaticResource ThemeText}" Text="{x:Bind emeraldVM.Amount,Mode=OneWay}" Foreground="#FF690606"  Visibility="{x:Bind Text2(),Mode=OneWay}"/>
                     <TextBlock TextAlignment="Center" TextWrapping="Wrap" FontSize="25"  Style="{StaticResource ThemeText}" Text="/"/>
                     <TextBlock TextAlignment="Center" TextWrapping="Wrap" FontSize="25"  Style="{StaticResource ThemeText}" Text="{x:Bind cost}"/>
                 </StackPanel>
