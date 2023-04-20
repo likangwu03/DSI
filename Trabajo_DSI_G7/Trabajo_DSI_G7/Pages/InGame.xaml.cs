@@ -89,6 +89,9 @@ namespace Trabajo_DSI_G7.Pages
 
         };
         const float CARD_W = 200;
+        int actEnergy;
+        int actMagic;
+        ContentControl selectedCard;
 
         GameManager GM = null;
         public InGame()
@@ -105,16 +108,31 @@ namespace Trabajo_DSI_G7.Pages
                 this.GM = gm;
 
             base.OnNavigatedTo(e);
+            restartGame();
+            selectedCard = null;
+        }
 
+        void restartGame()
+        {
+            Cards.Children.Clear();
             GM.copyCards(unusedCards);
+            reinicializeEnemies();
             iniciaLizeEnemies();
             inicializeCard();
             iniciaLizePotions();
-            GM.actEnergy = GM.maxEnergy;
-            GM.actMagic = GM.actMagic;
-
+            inicializeCost();
         }
 
+        //indicador de energía y magia
+        private void inicializeCost()
+        {
+            actEnergy = GM.maxEnergy;
+            Energy.Text = $"{actEnergy}/{GM.maxEnergy}";
+            Energy.Foreground = new SolidColorBrush(Colors.White);
+            actMagic = GM.maxMagic;
+            Magic.Text = $"{actMagic}/{GM.maxMagic}";
+            Magic.Foreground = new SolidColorBrush(Colors.White);
+        }
         //ENEMIGOS...........................................................................................
         private void iniciaLizeEnemies()
         {
@@ -124,7 +142,17 @@ namespace Trabajo_DSI_G7.Pages
             createEnemy(Enemy2, 1);
             createEnemy(Enemy3, 2);
         }
-      
+
+        void reinicializeEnemies()
+        {
+            for (int i = 0; i < Enemies.Children.Count; ++i)
+            {
+                ((Enemies.Children[i] as ContentControl).Content as StackPanel).Opacity = 1;
+                ((Enemies.Children[i] as ContentControl).Content as StackPanel).Children.Clear();
+            }
+            enemies.Clear();
+
+        }
         //crear enemigos como content control para ser mostrado en xaml
         private void createEnemy(StackPanel enemy, int i)
         {
@@ -195,9 +223,9 @@ namespace Trabajo_DSI_G7.Pages
             tb.VerticalAlignment = VerticalAlignment.Center;
             tb.Margin = new Thickness(10);
             tb.FontSize = 20;
-            // tb.Style= (Style)Application.Current.FindResource("myStyle");
-            tb.Text = $"{enem.ActLife}/{enem.MaxLife}";
-            //  tb.Style = Application.Current.Resources["ThemeText"] as Style;
+
+            tb.Text = $"{enem.ActLife} / {enem.MaxLife}";
+            tb.Style = Application.Current.Resources["ThemeText"] as Style;
 
             enemy.Children.Add(enemInfoStack);
             enemy.Children.Add(pb);
@@ -227,6 +255,33 @@ namespace Trabajo_DSI_G7.Pages
                 useCard(((FindName(Oname.ToString())) as ContentControl));
 
             ((((sender as StackPanel)?.Children[0] as StackPanel)?.Children[1] as Grid)?.Children[0] as Ellipse).Visibility = Visibility.Collapsed;
+        }
+        private void EnemyGettingFocus(UIElement sender, GettingFocusEventArgs args)
+        {
+            (((((sender as ContentControl).Content as StackPanel)?.Children[0] as StackPanel)?.Children[1] as Grid)?.Children[0] as Ellipse).Visibility = Visibility.Visible;
+
+        }
+        private void Enemy_LosingFocus(UIElement sender, LosingFocusEventArgs args)
+        {
+            (((((sender as ContentControl).Content as StackPanel)?.Children[0] as StackPanel)?.Children[1] as Grid)?.Children[0] as Ellipse).Visibility = Visibility.Collapsed;
+
+        }
+        private void OnEnemyKeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            switch (e.OriginalKey)
+            {
+                case VirtualKey.GamepadA:
+                    if (selectedCard == null) return;
+                    useCard(selectedCard);
+                    selectedCard = null;
+                    break;
+                case VirtualKey.GamepadB:
+                    if (selectedCard == null) return;
+                    (sender as ContentControl).Focus(FocusState.Unfocused);
+                   selectedCard = null;
+                    break;
+
+            }
         }
         private void EnemyDragLeave(object sender, DragEventArgs e)
         {
@@ -275,7 +330,7 @@ namespace Trabajo_DSI_G7.Pages
             else
             {
                 (stackPanel.Children[1] as ProgressBar).Value = enemy.ActLife;
-                (stackPanel.Children[2] as TextBlock).Text = $"{enemy.ActLife}/{enemy.MaxLife}";
+                (stackPanel.Children[2] as TextBlock).Text = $"{enemy.ActLife} / {enemy.MaxLife}";
             }
 
         } //Button es del inventario y Stackpanel,contenedor de enemigo
@@ -301,24 +356,24 @@ namespace Trabajo_DSI_G7.Pages
             //Comprueba y actualiza Energía/Magia
             if (card.Type == CostType.Magic)
             {
-                if (GM.actMagic - card.Cost < 0) return;
+                if (actMagic - card.Cost < 0) return;
                 else
                 {
-                    if (GM.actMagic - card.Cost == 0)
+                    if (actMagic - card.Cost == 0)
                         Magic.Foreground = new SolidColorBrush(Colors.Red);
-                    GM.actMagic -= card.Cost;
-                    Magic.Text = $"{GM.actMagic}/{GM.maxMagic}";
+                    actMagic -= card.Cost;
+                    Magic.Text = $"{actMagic}/{GM.maxMagic}";
                 }
             }
             else if (card.Type == CostType.Energy)
             {
-                if (GM.actEnergy - card.Cost < 0) return;
+                if (actEnergy - card.Cost < 0) return;
                 else
                 {
-                    if (GM.actEnergy - card.Cost == 0)
+                    if (actEnergy - card.Cost == 0)
                         Energy.Foreground = new SolidColorBrush(Colors.Red);
-                    GM.actEnergy -= card.Cost;
-                    Energy.Text = $"{GM.actEnergy}/{GM.maxEnergy}";
+                    actEnergy -= card.Cost;
+                    Energy.Text = $"{actEnergy}/{GM.maxEnergy}";
                 }
             }
 
@@ -444,25 +499,31 @@ namespace Trabajo_DSI_G7.Pages
             CC.Width = CARD_W;
         }
 
+        //pasar foco de carta a enemigo
         private void CC_KeyDown(object sender, KeyRoutedEventArgs e)
         {
-            if (e.Key == VirtualKey.GamepadX)
+            if (e.OriginalKey == VirtualKey.GamepadX)
             {
 
                 // Mimic Shift+Tab when user hits up arrow key.
                 FocusManager.TryMoveFocus(FocusNavigationDirection.Up);
             }
-            else if (e.Key == VirtualKey.GamepadY)
+            else if (e.OriginalKey == VirtualKey.GamepadA)
             {
-
-                ContentControl Enem =FocusManager.FindFirstFocusableElement(Enemies) as ContentControl;
+                selectedCard = sender as ContentControl; //carta elegida
+                ContentControl Enem = FocusManager.FindFirstFocusableElement(Enemies) as ContentControl;
                 Enem.Focus(FocusState.Programmatic);
-               // Focus(FocusState.Programmatic);
+                //Enem.FocusEngaged+=
+                //  ((((Enem.Content as StackPanel)?.Children[0] as StackPanel)?.Children[1] as Grid)?.Children[0] as Ellipse).Visibility = Visibility.Visible;
+
+                // Focus(FocusState.Programmatic);
                 //await FocusManager.TryFocusAsync(Enemies, FocusState.Programmatic);
                 // Mimic Tab when user hits down arrow key.
-               // FocusManager.TryMoveFocus(FocusNavigationDirection.Next);
+                // FocusManager.TryMoveFocus(FocusNavigationDirection.Next);
             }
         }
+       
+
         //reposicionar las cartas al cambiar su cantidad
         void repositionateCards()
         {
@@ -485,8 +546,8 @@ namespace Trabajo_DSI_G7.Pages
             addToUsedCard();
             addNewCards();
             //Reiniciar Energía
-            GM.actEnergy = GM.maxEnergy;
-            Energy.Text = $"{GM.actEnergy}/{GM.maxEnergy}";
+            actEnergy = GM.maxEnergy;
+            Energy.Text = $"{actEnergy}/{GM.maxEnergy}";
         }
 
         //UI.........................................................................................
@@ -519,7 +580,7 @@ namespace Trabajo_DSI_G7.Pages
         {
             ConfirmMenu.Hide();
             InGameOptions.Hide();
-            Frame.Navigate(typeof(InGame), GM);
+            restartGame();
         }
 
         //confirmación de salir de la partida
@@ -568,5 +629,7 @@ namespace Trabajo_DSI_G7.Pages
         {
 
         }
+
+
     }
 }

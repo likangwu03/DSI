@@ -222,14 +222,14 @@
 
                 <StackPanel TabFocusNavigation="Once" XYFocusKeyboardNavigation="Enabled" x:Name="Enemies" Orientation="Horizontal">
 
-                    <ContentControl  HorizontalAlignment="Left" UseSystemFocusVisuals="True">
+                    <ContentControl  HorizontalAlignment="Left" LosingFocus="Enemy_LosingFocus" GettingFocus="EnemyGettingFocus" UseSystemFocusVisuals="False" KeyDown="OnEnemyKeyDown">
                         <StackPanel x:Name="Enemy1" Orientation="Vertical"  Margin="50" AllowDrop="True" DragOver="DragOverOnEnemy" DragLeave="EnemyDragLeave" Drop="DropOnEnemy"/>
                     </ContentControl>
-                    <ContentControl UseSystemFocusVisuals="True" HorizontalAlignment="Center">
+                    <ContentControl UseSystemFocusVisuals="False" LosingFocus="Enemy_LosingFocus" GettingFocus="EnemyGettingFocus"  HorizontalAlignment="Center">
                         <StackPanel x:Name="Enemy2" Orientation="Vertical"  VerticalAlignment="Center" Margin="0 100 0 0" AllowDrop="True"  DragOver="DragOverOnEnemy" DragLeave="EnemyDragLeave" Drop="DropOnEnemy" />
                     </ContentControl>
 
-                    <ContentControl UseSystemFocusVisuals="True" HorizontalAlignment="Right">
+                    <ContentControl UseSystemFocusVisuals="False"  LosingFocus="Enemy_LosingFocus" GettingFocus="EnemyGettingFocus" HorizontalAlignment="Right">
                         <StackPanel x:Name="Enemy3" Orientation="Vertical"  VerticalAlignment="Center" Margin="50" AllowDrop="True"  DragOver="DragOverOnEnemy" DragLeave="EnemyDragLeave" Drop="DropOnEnemy"/>
                     </ContentControl>
 
