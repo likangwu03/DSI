@@ -28,12 +28,11 @@ namespace Trabajo_DSI_G7.Pages
             return new Size(availableSize.Width/5.5, availableSize.Width / 3.5);
         }
     }
-    /// <summary>
-    /// Una página vacía que se puede usar de forma independiente o a la que se puede navegar dentro de un objeto Frame.
-    /// </summary>
+
     public sealed partial class Shop : Page
     {
         Game.GameManager gm;
+        Game.SkillTreeLogic Logic;
         public ObservableCollection<PotionVM> PotionList;
         public PotionVM actPotion;
         public int money { get; set; }
@@ -45,10 +44,10 @@ namespace Trabajo_DSI_G7.Pages
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            // If e.Parameter is a string, set the TextBlock's text with it.
             if (e?.Parameter is Game.GameManager gameManager)
             {
                 gm = gameManager;
+                Logic = new Game.SkillTreeLogic(gm);
                 this.money = gameManager.money;
                 this.actLife=gameManager.actLife;
                 PotionList=gameManager.PotionList;
@@ -63,6 +62,7 @@ namespace Trabajo_DSI_G7.Pages
         }
         private async void Posion_ItemClick(object sender, ItemClickEventArgs e)
         {
+
             ShopWindow.XamlRoot = this.Content.XamlRoot;
             await ShopWindow.ShowAsync();
         }
@@ -73,17 +73,14 @@ namespace Trabajo_DSI_G7.Pages
             Frame.GoBack();
         }
 
-
         private void Page_KeyUp(object sender, KeyRoutedEventArgs e)
         {
             if (e.Key == VirtualKey.GamepadLeftShoulder)
-            {
-                // Mimic Shift+Tab when user hits up arrow key.
+            {            
                 FocusManager.TryMoveFocus(FocusNavigationDirection.Previous);
             }
             else if (e.Key == VirtualKey.GamepadRightShoulder)
             {
-                // Mimic Tab when user hits down arrow key.
                 FocusManager.TryMoveFocus(FocusNavigationDirection.Next);
             }
         }

@@ -30,9 +30,7 @@ namespace Trabajo_DSI_G7.Pages
         Game.SkillTreeLogic Logic;
 
         Game.GameManager gm;
-        public ObservableCollection<AbilityVM> AbilityList;
-        public ObservableCollection<EmeraldVM> EmeraldList;
-        public AbilityVM actAbility;
+       
 
         public SkillTree()
         {
@@ -46,9 +44,6 @@ namespace Trabajo_DSI_G7.Pages
             {
                 Logic = new Game.SkillTreeLogic(gameManager);
                 gm = gameManager;
-                AbilityList = gameManager.AbilityList;
-                actAbility = AbilityList.First();
-                EmeraldList = gameManager.EmeraldList;
             }
             base.OnNavigatedTo(e);
         }

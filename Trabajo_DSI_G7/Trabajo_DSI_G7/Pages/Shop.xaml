@@ -31,91 +31,7 @@
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
 
-        <Flyout x:Key="buy" >
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="2*"/>
-                </Grid.ColumnDefinitions>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="2*"/>
-                        <RowDefinition Height="2*"/>
-                    </Grid.RowDefinitions>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="2*"/>
-                            <ColumnDefinition Width="20*"/>
-                            <ColumnDefinition Width="2*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="1*"/>
-                            <RowDefinition Height="20*"/>
-                            <RowDefinition Height="1*"/>
-                        </Grid.RowDefinitions>
-                        <Rectangle  Grid.Row="1" Grid.Column="1" Fill="#FFF5BF51" RadiusX="10" RadiusY="10" Stroke="Black" ></Rectangle>
-                        <Grid Grid.Row="1" Grid.Column="1">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="3*"/>
-                                <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition Width="3*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="3*"/>
-                                <RowDefinition Height="2*"/>
-                                <RowDefinition Height="3*"/>
-                            </Grid.RowDefinitions>
-                            <Rectangle Grid.Row="1" Grid.Column="1"  Fill="#FFAE8022" RadiusX="10" RadiusY="10" Stroke="Black"></Rectangle>
-                            <Grid Grid.Row="1" Grid.Column="1" >
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="20*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="1*"/>
-                                    <RowDefinition Height="20*"/>
-                                    <RowDefinition Height="1*"/>
-                                </Grid.RowDefinitions>
-                                <Image  Grid.Row="1" Grid.Column="1" Source="{x:Bind actPotion.Img.Source}" Stretch="Uniform"></Image>
-                            </Grid>
-                        </Grid>
-
-                    </Grid>
-
-                    <Grid Grid.Row="1">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="2*"/>
-                            <RowDefinition Height="2*"/>
-                        </Grid.RowDefinitions>
-                        <TextBlock  Text="{x:Bind Name}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black"  />
-                        <StackPanel Grid.Row="1" Orientation="Horizontal">
-                            <TextBlock  
-                                Text="{x:Bind actPotion.Price}" Foreground="Black"></TextBlock>
-                            <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center" 
-                                Text="{x:Bind actPotion.Price}" Foreground="Black"></TextBlock>
-                        </StackPanel>
-
-                    </Grid>
-                </Grid>
-                <Grid Grid.Column="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="3*"/>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="1.5*"/>
-                    </Grid.RowDefinitions>
-
-                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">Descripción</TextBlock>
-                    <TextBlock Text="{x:Bind actPotion.Description}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-
-
-
-                </Grid>
-            </Grid>
-
-        </Flyout>
+      
 
         <DataTemplate x:Key="PotionItemTemplate"
                       x:DataType="Model:PotionVM">
@@ -150,6 +66,7 @@
                                 <RowDefinition Height="1*"/>
                             </Grid.RowDefinitions>
                             <Rectangle  Grid.Row="1" Grid.Column="1" Fill="#FFF5BF51" RadiusX="10" RadiusY="10" Stroke="Black" ></Rectangle>
+                            <Rectangle  Grid.Row="1" Grid.Column="1" Fill="#FF5D5D5D" RadiusX="10" RadiusY="10" Stroke="Black" ></Rectangle>
                             <Grid Grid.Row="1" Grid.Column="1">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="2*"/>
@@ -162,6 +79,7 @@
                                     <RowDefinition Height="2*"/>
                                 </Grid.RowDefinitions>
                                 <Rectangle Grid.Row="1" Grid.Column="1"  Fill="#FFAE8022" RadiusX="10" RadiusY="10" Stroke="Black"></Rectangle>
+                                <Rectangle Grid.Row="1" Grid.Column="1"  Fill="#FF7C7C7C" RadiusX="10" RadiusY="10" Stroke="Black"></Rectangle>
                                 <Grid Grid.Row="1" Grid.Column="1" >
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="1*"/>
@@ -279,8 +197,7 @@
 
 
 
-                    <Button Grid.Row="1"
-                    Flyout="{StaticResource buy}"                
+                    <Button Grid.Row="1"           
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Center"
                     HorizontalContentAlignment="Center"
