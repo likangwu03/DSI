@@ -7,6 +7,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Trabajo_DSI_G7.Models;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -39,11 +40,8 @@ namespace Trabajo_DSI_G7.Pages
         public int actLife { get; set; }
         public Shop()
         {
-            this.InitializeComponent();
-            
+            this.InitializeComponent();           
         }
-
-        
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -73,6 +71,26 @@ namespace Trabajo_DSI_G7.Pages
         {
             if (!Frame.CanGoBack) return;
             Frame.GoBack();
+        }
+
+
+        private void Page_KeyUp(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == VirtualKey.GamepadLeftShoulder)
+            {
+                // Mimic Shift+Tab when user hits up arrow key.
+                FocusManager.TryMoveFocus(FocusNavigationDirection.Previous);
+            }
+            else if (e.Key == VirtualKey.GamepadRightShoulder)
+            {
+                // Mimic Tab when user hits down arrow key.
+                FocusManager.TryMoveFocus(FocusNavigationDirection.Next);
+            }
+        }
+
+        private void Page_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+
         }
     }
 }

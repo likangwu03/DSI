@@ -7,7 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
      xmlns:Model="using:Trabajo_DSI_G7.Models"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    KeyDown="Page_KeyDown" KeyUp="Page_KeyUp">
     <Page.Resources>
 
         <Style x:Key="BackButton" TargetType="Button">
@@ -78,7 +79,7 @@
                         <Rectangle Width="25" Height="25"  Fill="White" Stroke="#FFFBC150" StrokeThickness="2" FocusVisualPrimaryBrush="#FF5D5D5D" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="{x:Bind Visibility_(),Mode=OneWay}"></Rectangle>
                     </Viewbox >
                     <Viewbox Grid.Column="1" Grid.Row="1">
-                        <Button Grid.Column="1" Grid.Row="1" Margin="0" Padding="0" Click="Ability_Click" >
+                        <Button Grid.Column="1" Grid.Row="1" Margin="0" Padding="0" Click="Ability_Click"  IsEnabled="{x:Bind rootActive,Mode=OneWay}"  >
                             <Image Margin="3" Source="{x:Bind Img.Source}" VerticalAlignment="Center" HorizontalAlignment="Center" Opacity="{x:Bind Opacity_Img(),Mode=OneWay}"></Image>
                         </Button>
                     </Viewbox>

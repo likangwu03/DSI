@@ -9,6 +9,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Trabajo_DSI_G7.Models;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -52,11 +53,6 @@ namespace Trabajo_DSI_G7.Pages
             base.OnNavigatedTo(e);
         }
 
-        public bool lineActive(int i, int id)
-        {
-            return AbilityList[id].Active() && AbilityList[id].lines[i].c_exist && AbilityList[AbilityList[id].lines[i].id].Active();
-        }
-
         private void OnCloseClick(object sender, RoutedEventArgs e)
         {
             AbilityWindow.Hide();
@@ -81,6 +77,26 @@ namespace Trabajo_DSI_G7.Pages
         private void Mejorar_Button_Click(object sender, RoutedEventArgs e)
         {
             Logic.Mejorar_Button_Click(sender, e);
+        }
+
+
+        private void Page_KeyUp(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == VirtualKey.GamepadLeftShoulder)
+            {
+                // Mimic Shift+Tab when user hits up arrow key.
+                FocusManager.TryMoveFocus(FocusNavigationDirection.Previous);
+            }
+            else if (e.Key == VirtualKey.GamepadRightShoulder)
+            {
+                // Mimic Tab when user hits down arrow key.
+                FocusManager.TryMoveFocus(FocusNavigationDirection.Next);
+            }
+        }
+
+        private void Page_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+
         }
     }
 }

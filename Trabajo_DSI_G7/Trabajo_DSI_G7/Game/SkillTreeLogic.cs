@@ -58,6 +58,12 @@ namespace Trabajo_DSI_G7.Game
         {
             ContentControl O = FocusManager.GetFocusedElement() as ContentControl;
             ActAbility = O.DataContext as AbilityVM;
+            RaisePropertyChanged(nameof(ActAbility));
+            RaisePropertyChanged(nameof(CanUp));
+            RaisePropertyChanged(nameof(ListaEmeralds));
+            RaisePropertyChanged(nameof(EmeraldList));
+            RaisePropertyChanged(nameof(lineActive));
+            RaisePropertyChanged(nameof(abilityVM));
         }
 
         public Visibility lineActive(int i, int id)
@@ -113,6 +119,7 @@ namespace Trabajo_DSI_G7.Game
             return AbilityList[i];
         }
 
+        
 
         public void Mejorar_Button_Click(object sender, RoutedEventArgs e)
         {

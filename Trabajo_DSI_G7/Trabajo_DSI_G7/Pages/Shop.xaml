@@ -8,7 +8,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    KeyDown="Page_KeyDown" KeyUp="Page_KeyUp">
 
     <Page.Resources>
 
@@ -264,7 +265,7 @@
 
                 </Grid>
 
-                <Grid Grid.Column="2" Grid.Row="2">
+                <Grid Grid.Column="2" Grid.Row="2" TabFocusNavigation="Once" XYFocusKeyboardNavigation="Enabled">
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="2*"/>
@@ -354,7 +355,7 @@
                         <RowDefinition Height="15*"/>
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
-                    <controls:AdaptiveGridView Grid.Row="1" Grid.Column="1"
+                    <controls:AdaptiveGridView Grid.Row="1" Grid.Column="1" TabFocusNavigation="Once" XYFocusKeyboardNavigation="Enabled"
                     ItemsSource="{x:Bind PotionList}"
                     ItemTemplate="{StaticResource PotionItemTemplate}" ItemClick="Posion_ItemClick" IsItemClickEnabled="True">
                     </controls:AdaptiveGridView>
@@ -363,7 +364,7 @@
 
 
 
-            <Grid  Grid.ColumnSpan="2" Grid.Column="2" Grid.RowSpan="2">
+            <Grid  Grid.ColumnSpan="2" Grid.Column="2" Grid.RowSpan="2" TabFocusNavigation="Once" XYFocusKeyboardNavigation="Enabled">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="45*"/>
                     <ColumnDefinition Width="5*"/>

@@ -53,7 +53,7 @@ namespace Trabajo_DSI_G7.Models
 
         public void iniEmerald(ObservableCollection<EmeraldVM> EmeraldList)
         {
-            
+            list.Clear();
             foreach (emerald_inf i in Emerald_list)
             {
                 AbilityEmerald abilityEmerald = new AbilityEmerald();

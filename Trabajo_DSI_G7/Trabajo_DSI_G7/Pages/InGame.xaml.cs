@@ -25,6 +25,7 @@ using Windows.ApplicationModel.DataTransfer;
 using System.Collections;
 using System.Reflection;
 using Microsoft.Toolkit.Uwp.UI.Controls.TextToolbarSymbols;
+using Windows.System;
 
 // La plantilla de elemento Página en blanco está documentada en https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -259,6 +260,50 @@ namespace Trabajo_DSI_G7.Pages
 
         }
 
+        private void CC_FocusEngaged(Control sender, FocusEngagedEventArgs args)
+        {
+            ContentControl CC = sender as ContentControl;
+            CC.Width = 250;
+        }
+
+
+        private void CC_FocusDisengaged(Control sender, FocusDisengagedEventArgs args)
+        {
+            ContentControl CC = sender as ContentControl;
+            CC.Width = CARD_W;
+        }
+
+        private void CC_GotFocus(object sender, RoutedEventArgs e)
+        {
+            ContentControl CC = sender as ContentControl;
+            CC.Width = 250;
+        }
+        private void CC_LosingFocus(UIElement sender, LosingFocusEventArgs args)
+        {
+            ContentControl CC = sender as ContentControl;
+            CC.Width = CARD_W;
+        }
+
+        private void CC_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == VirtualKey.GamepadX)
+            {
+
+                // Mimic Shift+Tab when user hits up arrow key.
+                FocusManager.TryMoveFocus(FocusNavigationDirection.Up);
+            }
+            else if (e.Key == VirtualKey.GamepadY)
+            {
+
+                ContentControl Enem =FocusManager.FindFirstFocusableElement(Enemies) as ContentControl;
+                Enem.Focus(FocusState.Programmatic);
+               // Focus(FocusState.Programmatic);
+                //await FocusManager.TryFocusAsync(Enemies, FocusState.Programmatic);
+                // Mimic Tab when user hits down arrow key.
+               // FocusManager.TryMoveFocus(FocusNavigationDirection.Next);
+            }
+        }
+
         // Coger 5 cartas
         private void drawCard(int i)
         {
@@ -267,10 +312,17 @@ namespace Trabajo_DSI_G7.Pages
             ContentControl CC = new ContentControl();
             CC.Name = "Card" + (i + 1);
             CC.DragStarting += CardDragStarting;
-            // CC.UseSystemFocusVisuals = true;
+            CC.UseSystemFocusVisuals = true;
             CC.IsTabStop = true;
             CC.PointerEntered += CardPointOver;
             CC.PointerExited += CardPointerExit;
+            CC.FocusEngaged += CC_FocusEngaged; ;
+            CC.FocusDisengaged += CC_FocusDisengaged;
+            CC.GotFocus += CC_GotFocus;
+            CC.LosingFocus += CC_LosingFocus;
+            CC.FocusVisualMargin = new Thickness(100);
+            CC.KeyDown += CC_KeyDown;
+
             //ContentControl CC = Cards.Children[i] as ContentControl;
             CC.Width = CARD_W;
             CC.HorizontalAlignment = HorizontalAlignment.Center;
@@ -296,6 +348,8 @@ namespace Trabajo_DSI_G7.Pages
             usingCards.Add(card);
 
         }
+
+
 
         void repositionateCards()
         {
@@ -517,6 +571,26 @@ namespace Trabajo_DSI_G7.Pages
             //Reiniciar Energía
             GM.actEnergy = GM.maxEnergy;
             Energy.Text = $"{GM.actEnergy}/{GM.maxEnergy}";
+        }
+
+
+        private void Page_KeyUp(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == VirtualKey.GamepadLeftShoulder)
+            {
+                // Mimic Shift+Tab when user hits up arrow key.
+                FocusManager.TryMoveFocus(FocusNavigationDirection.Previous);
+            }
+            else if (e.Key == VirtualKey.GamepadRightShoulder)
+            {
+                // Mimic Tab when user hits down arrow key.
+                FocusManager.TryMoveFocus(FocusNavigationDirection.Next);
+            }
+        }
+
+        private void Page_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+
         }
     }
 }

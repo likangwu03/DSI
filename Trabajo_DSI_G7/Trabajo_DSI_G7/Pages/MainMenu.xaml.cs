@@ -19,6 +19,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.System;
+using Trabajo_DSI_G7.Input;
+using Windows.UI.Core;
 
 
 
@@ -34,9 +36,7 @@ namespace Trabajo_DSI_G7.Pages
         GameManager GM = null;
         public MainMenu()
         {
-
             this.InitializeComponent();
-
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -44,9 +44,13 @@ namespace Trabajo_DSI_G7.Pages
 
             if (e?.Parameter is GameManager gm)
                 this.GM = gm;
-
             base.OnNavigatedTo(e);
 
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
         }
 
         private void onButtonHolding(object sender, PointerRoutedEventArgs e)
@@ -115,5 +119,30 @@ namespace Trabajo_DSI_G7.Pages
 
         }
 
+
+
+
+      
+
+      
+
+        private void Page_KeyUp(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == VirtualKey.GamepadLeftShoulder)
+            {
+                // Mimic Shift+Tab when user hits up arrow key.
+                FocusManager.TryMoveFocus(FocusNavigationDirection.Previous);
+            }
+            else if (e.Key == VirtualKey.GamepadRightShoulder)
+            {
+                // Mimic Tab when user hits down arrow key.
+                FocusManager.TryMoveFocus(FocusNavigationDirection.Next);
+            }
+        }
+
+        private void Page_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+
+        }
     }
 }

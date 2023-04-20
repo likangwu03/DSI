@@ -123,6 +123,8 @@
     <Compile Include="Game\ObservableObject.cs" />
     <Compile Include="Game\ShopLogic.cs" />
     <Compile Include="Game\SkillTreeLogic.cs" />
+    <Compile Include="Input\Controlador.cs" />
+    <Compile Include="Input\GameLoop.cs" />
     <Compile Include="Input\Input.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
