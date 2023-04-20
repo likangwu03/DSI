@@ -51,6 +51,11 @@ namespace Trabajo_DSI_G7.Game
                 Set(ref _actAbility, value);
                 RaisePropertyChanged(nameof(ActAbility));
                 RaisePropertyChanged(nameof(CanUp));
+                
+                RaisePropertyChanged(nameof(ListaEmeralds));
+                RaisePropertyChanged(nameof(EmeraldList));
+                RaisePropertyChanged(nameof(lineActive));
+                RaisePropertyChanged(nameof(abilityVM));
             }
         }
 
@@ -58,12 +63,8 @@ namespace Trabajo_DSI_G7.Game
         {
             ContentControl O = FocusManager.GetFocusedElement() as ContentControl;
             ActAbility = O.DataContext as AbilityVM;
-            RaisePropertyChanged(nameof(ActAbility));
-            RaisePropertyChanged(nameof(CanUp));
-            RaisePropertyChanged(nameof(ListaEmeralds));
-            RaisePropertyChanged(nameof(EmeraldList));
-            RaisePropertyChanged(nameof(lineActive));
-            RaisePropertyChanged(nameof(abilityVM));
+
+           
         }
 
         public Visibility lineActive(int i, int id)
@@ -108,9 +109,9 @@ namespace Trabajo_DSI_G7.Game
 
         private int getOther(int i)
         {
-            if(i==0) return 1;
-            if(i==1) return 0;
-            if(i==2) return 3;
+            if (i == 0) return 1;
+            if (i == 1) return 0;
+            if (i == 2) return 3;
             return 2;
         }
 
@@ -119,32 +120,35 @@ namespace Trabajo_DSI_G7.Game
             return AbilityList[i];
         }
 
-        
 
         public void Mejorar_Button_Click(object sender, RoutedEventArgs e)
         {
-            ActAbility.level++;
-            foreach (AbilityEmerald a in ActAbility.list)
+            AbilityVM aux = ActAbility;
+            ActAbility= AbilityList[0];
+            aux.level++;
+            foreach (AbilityEmerald a in aux.list)
             {
                 a.emeraldVM.Amount -= a.cost;
                 EmeraldList[a.type] = a.emeraldVM;
             }
 
-            for (int i=0;i<ActAbility.lines.Count;++i)
+            for (int i = 0; i < aux.lines.Count; ++i)
             {
-                if (ActAbility.lines[i].c_exist)
+                if (aux.lines[i].c_exist)
                 {
-                    if (!ActAbility.lines[i].Root)
+                    if (!aux.lines[i].Root)
                     {
-                        ActAbility.lines[i].active = true;
-                        AbilityList[ActAbility.lines[i].id].lines[getOther(i)].active = true;
+                        aux.lines[i].active = true;
+                        AbilityList[aux.lines[i].id].lines[getOther(i)].active = true;
                     }
                     else
                     {
-                        AbilityList[ActAbility.lines[i].id].rootActive = true;
+                        AbilityList[aux.lines[i].id].rootActive = true;
                     }
                 }
             }
+
+            ActAbility = aux;
             //ActAbility.lines[0].active = true;
             //ActAbility.lines[1].active = true;
             //ActAbility.lines[2].active = true;
@@ -156,7 +160,6 @@ namespace Trabajo_DSI_G7.Game
             RaisePropertyChanged(nameof(EmeraldList));
             RaisePropertyChanged(nameof(lineActive));
             RaisePropertyChanged(nameof(abilityVM));
-            RaisePropertyChanged(nameof(ActAbility.list));
         }
     }
 }
