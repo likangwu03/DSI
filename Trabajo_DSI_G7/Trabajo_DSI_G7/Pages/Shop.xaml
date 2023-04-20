@@ -66,7 +66,7 @@
                                 <RowDefinition Height="1*"/>
                             </Grid.RowDefinitions>
                             <Rectangle  Grid.Row="1" Grid.Column="1" Fill="#FFF5BF51" RadiusX="10" RadiusY="10" Stroke="Black" ></Rectangle>
-                            <Rectangle  Grid.Row="1" Grid.Column="1" Fill="#FF5D5D5D" RadiusX="10" RadiusY="10" Stroke="Black" ></Rectangle>
+                            <Rectangle  Grid.Row="1" Grid.Column="1" Fill="#FF5D5D5D" RadiusX="10" RadiusY="10" Stroke="Black" Visibility="{x:Bind ActivBLock()}" ></Rectangle>
                             <Grid Grid.Row="1" Grid.Column="1">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="2*"/>
@@ -79,7 +79,7 @@
                                     <RowDefinition Height="2*"/>
                                 </Grid.RowDefinitions>
                                 <Rectangle Grid.Row="1" Grid.Column="1"  Fill="#FFAE8022" RadiusX="10" RadiusY="10" Stroke="Black"></Rectangle>
-                                <Rectangle Grid.Row="1" Grid.Column="1"  Fill="#FF7C7C7C" RadiusX="10" RadiusY="10" Stroke="Black"></Rectangle>
+                                <Rectangle Grid.Row="1" Grid.Column="1"  Fill="#FF7C7C7C" RadiusX="10" RadiusY="10" Stroke="Black" Visibility="{x:Bind ActivBLock()}"></Rectangle>
                                 <Grid Grid.Row="1" Grid.Column="1" >
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="1*"/>
@@ -91,7 +91,7 @@
                                         <RowDefinition Height="20*"/>
                                         <RowDefinition Height="1*"/>
                                     </Grid.RowDefinitions>
-                                    <Image  Grid.Row="1" Grid.Column="1" Source="{x:Bind Img.Source}" Stretch="Uniform"></Image>
+                                    <Image  Grid.Row="1" Grid.Column="1" Source="{x:Bind Img.Source}" Stretch="Uniform"  Opacity="{x:Bind Opacity_Img()}"></Image>
                                 </Grid>
                             </Grid>
                         </Grid>
@@ -106,11 +106,11 @@
                                 <ColumnDefinition Width="2*"/>
                             </Grid.ColumnDefinitions>
                             <Viewbox  Grid.Column="1">
-                                <Image Source="/Assets/icons/coin_01d.png" Stretch="Uniform" ></Image>
+                                <Image Source="/Assets/icons/coin_01d.png" Stretch="Uniform" Visibility="{x:Bind ActiveDescripcion()}"></Image>
                             </Viewbox>
                             <Viewbox Grid.Column="2">
                                 <TextBlock   HorizontalAlignment="Center" VerticalAlignment="Center" 
-                                Text="{x:Bind Price}" Style="{StaticResource ThemeText}"></TextBlock>
+                                Text="{x:Bind Price}" Style="{StaticResource ThemeText}" Visibility="{x:Bind ActiveDescripcion()}"></TextBlock>
                             </Viewbox>
                         </Grid>
                     </Grid>
@@ -173,11 +173,11 @@
                     </Grid.RowDefinitions>
                     <Image Source="/Assets/icons/coin_05d.png" Stretch="Uniform"></Image>
                     <Viewbox Grid.Column="1">
-                        <TextBlock   HorizontalAlignment="Right" VerticalAlignment="Center" Text="{x:Bind money}" Style="{ThemeResource TitleTextBlockStyle}" FontSize="40" FontWeight="Bold"></TextBlock>
+                        <TextBlock   HorizontalAlignment="Right" VerticalAlignment="Center" Text="{x:Bind Logic.money,Mode=OneWay}" Style="{ThemeResource TitleTextBlockStyle}" FontSize="40" FontWeight="Bold"></TextBlock>
                     </Viewbox>
                     <Image Grid.Row="2"  Source="/Assets/icons/heart pixel art 254x254.png"  Stretch="Uniform" ></Image>
                     <Viewbox Grid.Row="2" Grid.Column="1">
-                        <TextBlock   HorizontalAlignment="Left" VerticalAlignment="Center" Text="{x:Bind actLife}" Style="{ThemeResource TitleTextBlockStyle}" FontSize="40" FontWeight="Bold"></TextBlock>
+                        <TextBlock   HorizontalAlignment="Left" VerticalAlignment="Center" Text="{x:Bind Logic.actLife}" Style="{ThemeResource TitleTextBlockStyle}" FontSize="40" FontWeight="Bold"></TextBlock>
                     </Viewbox>
 
 
@@ -273,7 +273,7 @@
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
                     <controls:AdaptiveGridView Grid.Row="1" Grid.Column="1" TabFocusNavigation="Once" XYFocusKeyboardNavigation="Enabled"
-                    ItemsSource="{x:Bind PotionList}"
+                    ItemsSource="{x:Bind Logic.PotionList,Mode=OneWay}"
                     ItemTemplate="{StaticResource PotionItemTemplate}" ItemClick="Posion_ItemClick" IsItemClickEnabled="True">
                     </controls:AdaptiveGridView>
                 </Grid>
@@ -324,12 +324,12 @@
                     </Grid.RowDefinitions>
                     <Rectangle Width="120" Height="120"  Fill="#FFF5BF51" RadiusX="10" RadiusY="10" Stroke="Black" HorizontalAlignment="Center" VerticalAlignment="Center" ></Rectangle>
                     <Rectangle Width="100" Height="100"   Fill="#FFAE8022" RadiusX="10" RadiusY="10" Stroke="Black"  HorizontalAlignment="Center" VerticalAlignment="Center"></Rectangle>
-                    <Image  Source="{x:Bind actPotion.Img.Source}" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" Width="90" Height="90"></Image>
+                    <Image  Source="{x:Bind Logic.ActPotion.Img.Source,Mode=OneWay}" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" Width="90" Height="90"></Image>
 
-                    <TextBlock Grid.Row="1" TextAlignment="Center" TextWrapping="Wrap" FontSize="30"  Style="{StaticResource ThemeText}" Text="{x:Bind actPotion.Name}"/>
+                    <TextBlock Grid.Row="1" TextAlignment="Center" TextWrapping="Wrap" FontSize="30"  Style="{StaticResource ThemeText}" Text="{x:Bind Logic.ActPotion.Name,Mode=OneWay}"/>
 
                     <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
-                        <TextBlock TextAlignment="Center" TextWrapping="Wrap" FontSize="30"  Style="{StaticResource ThemeText}" Text="{x:Bind actPotion.Price}"/>
+                        <TextBlock TextAlignment="Center" TextWrapping="Wrap" FontSize="30"  Style="{StaticResource ThemeText}" Text="{x:Bind Logic.ActPotion.Price,Mode=OneWay}"/>
                         <TextBlock TextAlignment="Center" TextWrapping="Wrap" FontSize="30"  Style="{StaticResource ThemeText}" Text="/u"/>
                     </StackPanel>
 
@@ -349,7 +349,7 @@
                                 <RowDefinition Height="6*"/>
                         </Grid.RowDefinitions>
                         <TextBlock TextAlignment="Center" TextWrapping="Wrap" FontSize="30"  Style="{StaticResource ThemeText}" Text="Descripción"/>
-                        <TextBlock Grid.Row="1" TextAlignment="Center" TextWrapping="Wrap" FontSize="30"  Style="{StaticResource ThemeText}" Text="{x:Bind actPotion.Description}"/>
+                        <TextBlock Grid.Row="1" TextAlignment="Center" TextWrapping="Wrap" FontSize="30"  Style="{StaticResource ThemeText}" Text="{x:Bind Logic.ActPotion.Description,Mode=OneWay}"/>
                     </Grid>
 
                     <Grid Grid.Row="1">
@@ -357,7 +357,7 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Button Grid.Row="1"   Padding="0" Margin="50,10,20,0"  VerticalAlignment="Stretch"  Background="#cca035" CornerRadius="10" BorderBrush="#7f6321" BorderThickness="1,1,0,10"   HorizontalAlignment="Stretch" Grid.ColumnSpan="2">
+                        <Button Click="Button_Click" Grid.Row="1"   Padding="0" Margin="50,10,20,0"  VerticalAlignment="Stretch"  Background="#cca035" CornerRadius="10" BorderBrush="#7f6321" BorderThickness="1,1,0,10"   HorizontalAlignment="Stretch" Grid.ColumnSpan="2">
                             
                             <TextBlock  TextAlignment="Center" VerticalAlignment="Center" FontSize="30"  Style="{StaticResource ThemeText}" Text="Comprar" />
                         </Button>

@@ -95,7 +95,7 @@ namespace Trabajo_DSI_G7.Models
             },
             new Potion() {
                 Id=8,
-                Name="Potion_7",
+                Name="???",
                 ImageFile="Assets\\icons\\potion_03a.png",
                 Description="..........",
                 Amount=0,
@@ -104,7 +104,7 @@ namespace Trabajo_DSI_G7.Models
             },
             new Potion() {
                 Id=9,
-                Name="Potion_7",
+                Name="???",
                 ImageFile="Assets\\icons\\potion_03a.png",
                 Description="..........",
                 Amount=0,
@@ -113,7 +113,7 @@ namespace Trabajo_DSI_G7.Models
             },
             new Potion() {
                 Id=10,
-                Name="Potion_7",
+                Name="???",
                 ImageFile="Assets\\icons\\potion_03a.png",
                 Description="..........",
                 Amount=0,
@@ -122,7 +122,7 @@ namespace Trabajo_DSI_G7.Models
             },
             new Potion() {
                 Id=11,
-                Name="Potion_7",
+                Name="???",
                 ImageFile="Assets\\icons\\potion_03a.png",
                 Description="..........",
                 Amount=0,
@@ -131,7 +131,7 @@ namespace Trabajo_DSI_G7.Models
             },
             new Potion() {
                 Id=12,
-                Name="Potion_7",
+                Name="???",
                 ImageFile="Assets\\icons\\potion_03a.png",
                 Description="..........",
                 Amount=0,
@@ -140,7 +140,7 @@ namespace Trabajo_DSI_G7.Models
             },
             new Potion() {
                 Id=13,
-                Name="Potion_7",
+                Name="???",
                 ImageFile="Assets\\icons\\potion_03a.png",
                 Description="..........",
                 Amount=0,
@@ -149,7 +149,7 @@ namespace Trabajo_DSI_G7.Models
             },
             new Potion() {
                 Id=14,
-                Name="Potion_7",
+                Name="???",
                 ImageFile="Assets\\icons\\potion_03a.png",
                 Description="..........",
                 Amount=0,

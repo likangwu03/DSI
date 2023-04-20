@@ -32,11 +32,8 @@ namespace Trabajo_DSI_G7.Pages
     public sealed partial class Shop : Page
     {
         Game.GameManager gm;
-        Game.SkillTreeLogic Logic;
-        public ObservableCollection<PotionVM> PotionList;
-        public PotionVM actPotion;
-        public int money { get; set; }
-        public int actLife { get; set; }
+        Game.ShopLogic Logic;
+        
         public Shop()
         {
             this.InitializeComponent();           
@@ -47,11 +44,8 @@ namespace Trabajo_DSI_G7.Pages
             if (e?.Parameter is Game.GameManager gameManager)
             {
                 gm = gameManager;
-                Logic = new Game.SkillTreeLogic(gm);
-                this.money = gameManager.money;
-                this.actLife=gameManager.actLife;
-                PotionList=gameManager.PotionList;
-                actPotion= PotionList.First();
+                Logic = new Game.ShopLogic(gm);
+               
             }
             base.OnNavigatedTo(e);
         }
@@ -62,9 +56,13 @@ namespace Trabajo_DSI_G7.Pages
         }
         private async void Posion_ItemClick(object sender, ItemClickEventArgs e)
         {
-
-            ShopWindow.XamlRoot = this.Content.XamlRoot;
-            await ShopWindow.ShowAsync();
+            Logic.Posion_ItemClick(sender, e);
+            if (Logic.ActPotion.Active_())
+            {
+                ShopWindow.XamlRoot = this.Content.XamlRoot;
+                await ShopWindow.ShowAsync();
+            }
+           
         }
 
         private void OptionsBackButton_Click(object sender, RoutedEventArgs e)
@@ -88,6 +86,11 @@ namespace Trabajo_DSI_G7.Pages
         private void Page_KeyDown(object sender, KeyRoutedEventArgs e)
         {
 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Logic.Buy_Posion();
         }
     }
 }

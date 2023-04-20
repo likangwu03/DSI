@@ -58,11 +58,33 @@ namespace Trabajo_DSI_G7.Game
             }
         }
 
-        private async void Posion_ItemClick(object sender, ItemClickEventArgs e)
+        public ShopLogic(GameManager gm)
+        {
+            this.gm = gm;
+            this.money = gm.money;
+            this.actLife = gm.actLife;
+            PotionList = gm.PotionList;
+            ActPotion = PotionList[0];
+        }
+
+
+        public void Posion_ItemClick(object sender, ItemClickEventArgs e)
         {
             ContentControl O = FocusManager.GetFocusedElement() as ContentControl;
-            ActPotion = O.DataContext as PotionVM;
-            RaisePropertyChanged(nameof(ActPotion));
+            ActPotion = O.Content as PotionVM;
         }
+
+        public bool CanBuy()
+        {
+            return ActPotion.Price < money;
+        }
+
+        public void Buy_Posion()
+        {
+            money -= ActPotion.Price;
+            ActPotion.Amount++;
+
+        }
+       
     }
 }
