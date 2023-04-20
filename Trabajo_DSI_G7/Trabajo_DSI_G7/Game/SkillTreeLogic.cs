@@ -156,6 +156,7 @@ namespace Trabajo_DSI_G7.Game
             RaisePropertyChanged(nameof(EmeraldList));
             RaisePropertyChanged(nameof(lineActive));
             RaisePropertyChanged(nameof(abilityVM));
+            RaisePropertyChanged(nameof(ActAbility.list));
         }
     }
 }
