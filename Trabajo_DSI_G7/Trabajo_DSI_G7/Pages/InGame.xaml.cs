@@ -58,7 +58,6 @@ namespace Trabajo_DSI_G7.Pages
             public float Rotation { get { return rotation; } }
         };
 
-
         private CardPosition[][] cardPosition = new CardPosition[5][]
         {
            new CardPosition[]{
@@ -99,29 +98,34 @@ namespace Trabajo_DSI_G7.Pages
             //Play_Confirmation_Dialog.XamlRoot = this.XamlRoot;
 
         }
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
 
+            if (e?.Parameter is GameManager gm)
+                this.GM = gm;
+
+            base.OnNavigatedTo(e);
+
+            GM.copyCards(unusedCards);
+            iniciaLizeEnemies();
+            inicializeCard();
+            iniciaLizePotions();
+            GM.actEnergy = GM.maxEnergy;
+            GM.actMagic = GM.actMagic;
+
+        }
+
+        //ENEMIGOS...........................................................................................
         private void iniciaLizeEnemies()
         {
-            reinicializeEnemy();
+            GM.copyEnemies(enemies);//hacer copiar desde GM
+
             createEnemy(Enemy1, 0);
             createEnemy(Enemy2, 1);
             createEnemy(Enemy3, 2);
         }
-
-
-        private void iniciaLizePotions()
-        {
-            for (int i = 0; i < potionsId.Length; i++)
-            {
-                PotionVM potion = GM.getPotion(i);
-                inventory.Add(potion);
-                (((Inventory.Children[i] as Grid).Children[0] as Button).Content as Image).Source = inventory[i].Img.Source;
-                if (potion.Amount <= 0)
-                    ((Inventory.Children[i] as Grid).Children[0] as Button).IsEnabled = false;
-                (((Inventory.Children[i] as Grid).Children[1] as Grid).Children[1] as TextBlock).Text = potion.Amount.ToString();
-            }
-        }
-
+      
+        //crear enemigos como content control para ser mostrado en xaml
         private void createEnemy(StackPanel enemy, int i)
         {
             enemy.Name = "Enemy" + (i + 1);
@@ -199,239 +203,7 @@ namespace Trabajo_DSI_G7.Pages
             enemy.Children.Add(pb);
             enemy.Children.Add(tb);
         }
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-
-            if (e?.Parameter is GameManager gm)
-                this.GM = gm;
-
-            base.OnNavigatedTo(e);
-
-            GM.copyCards(unusedCards);
-            iniciaLizeEnemies();
-            inicializeCard();
-            iniciaLizePotions();
-            GM.actEnergy = GM.maxEnergy;
-            GM.actMagic = GM.actMagic;
-
-        }
-        private void inicializeCard()
-        {
-            unusedCards.Clear();
-            usedCards.Clear();
-            usingCards.Clear();
-
-            reinicializeCard();
-            for (int i = 0; i < 5; i++) drawCard(i);
-
-        }
-        private void reinicializeCard()
-        {
-            GM.copyCards(unusedCards);
-        }
-        private void reinicializeEnemy()
-        {
-            GM.copyEnemies(enemies);
-        }
-
-        private void CardDragStarting(UIElement sender, DragStartingEventArgs args)
-        {
-            ContentControl CC = sender as ContentControl;
-            string id = CC.Name.ToString();
-            args.Data.SetText(id);
-            args.Data.RequestedOperation = DataPackageOperation.Link;
-        }
-
-
-        private void CardPointOver(object sender, PointerRoutedEventArgs e)
-        {
-
-            ContentControl CC = sender as ContentControl;
-            CC.Width = 250;
-            //(CC.Content as Image).Opacity = 0.5;
-        }
-
-        private void CardPointerExit(object sender, PointerRoutedEventArgs e)
-        {
-            ContentControl CC = sender as ContentControl;
-            CC.Width = CARD_W;
-            // (CC.Content as Image).Opacity = 1;
-
-
-        }
-
-        private void CC_FocusEngaged(Control sender, FocusEngagedEventArgs args)
-        {
-            ContentControl CC = sender as ContentControl;
-            CC.Width = 250;
-        }
-
-
-        private void CC_FocusDisengaged(Control sender, FocusDisengagedEventArgs args)
-        {
-            ContentControl CC = sender as ContentControl;
-            CC.Width = CARD_W;
-        }
-
-        private void CC_GotFocus(object sender, RoutedEventArgs e)
-        {
-            ContentControl CC = sender as ContentControl;
-            CC.Width = 250;
-        }
-        private void CC_LosingFocus(UIElement sender, LosingFocusEventArgs args)
-        {
-            ContentControl CC = sender as ContentControl;
-            CC.Width = CARD_W;
-        }
-
-        private void CC_KeyDown(object sender, KeyRoutedEventArgs e)
-        {
-            if (e.Key == VirtualKey.GamepadX)
-            {
-
-                // Mimic Shift+Tab when user hits up arrow key.
-                FocusManager.TryMoveFocus(FocusNavigationDirection.Up);
-            }
-            else if (e.Key == VirtualKey.GamepadY)
-            {
-
-                ContentControl Enem =FocusManager.FindFirstFocusableElement(Enemies) as ContentControl;
-                Enem.Focus(FocusState.Programmatic);
-               // Focus(FocusState.Programmatic);
-                //await FocusManager.TryFocusAsync(Enemies, FocusState.Programmatic);
-                // Mimic Tab when user hits down arrow key.
-               // FocusManager.TryMoveFocus(FocusNavigationDirection.Next);
-            }
-        }
-
-        // Coger 5 cartas
-        private void drawCard(int i)
-        {
-
-            CardVM card = unusedCards.ElementAt(random.Next(0, unusedCards.Count()));
-            ContentControl CC = new ContentControl();
-            CC.Name = "Card" + (i + 1);
-            CC.DragStarting += CardDragStarting;
-            CC.UseSystemFocusVisuals = true;
-            CC.IsTabStop = true;
-            CC.PointerEntered += CardPointOver;
-            CC.PointerExited += CardPointerExit;
-            CC.FocusEngaged += CC_FocusEngaged; ;
-            CC.FocusDisengaged += CC_FocusDisengaged;
-            CC.GotFocus += CC_GotFocus;
-            CC.LosingFocus += CC_LosingFocus;
-            CC.FocusVisualMargin = new Thickness(100);
-            CC.KeyDown += CC_KeyDown;
-
-            //ContentControl CC = Cards.Children[i] as ContentControl;
-            CC.Width = CARD_W;
-            CC.HorizontalAlignment = HorizontalAlignment.Center;
-            CC.VerticalAlignment = VerticalAlignment.Bottom;
-            CC.RenderTransformOrigin = new Point(0.5, 1);
-            CC.CanDrag = true;
-            CC.Margin = cardPosition[4][i].Margin;
-
-            CompositeTransform Transformacion = new CompositeTransform();
-            Transformacion.TranslateX = 0.0;
-            Transformacion.TranslateY = 0.0;
-            Transformacion.Rotation = cardPosition[4][i].Rotation;
-            CC.RenderTransform = Transformacion;
-
-            Image image = new Image();
-            image.Source = card.Img.Source;
-
-            CC.Content = image;
-            Cards.Children.Add(CC);
-            // ((Cards.Children[i] as ContentControl).Content as Image).Source = card.Img.Source;
-
-            unusedCards.Remove(card);
-            usingCards.Add(card);
-
-        }
-
-
-
-        void repositionateCards()
-        {
-            for (int i = 0; i < Cards.Children.Count; i++)
-            {
-                ContentControl CC = Cards.Children[i] as ContentControl;
-                CompositeTransform Transformacion = new CompositeTransform();
-                Transformacion.TranslateX = 0.0;
-                Transformacion.TranslateY = 0.0;
-                Transformacion.Rotation = cardPosition[Cards.Children.Count - 1][i].Rotation;
-                CC.Margin = cardPosition[Cards.Children.Count - 1][i].Margin;
-                CC.RenderTransform = Transformacion;
-            }
-
-        }
-        private void onButtonHolding(object sender, PointerRoutedEventArgs e)
-        {
-            Image img = (sender as Button).Content as Image;
-
-            ((sender as Button).Content as Image).Source = new Windows.UI.Xaml.Media.Imaging.BitmapImage(new Uri(System.IO.Directory.GetCurrentDirectory() + "\\Assets\\ui\\button_hover\\" + img.Name + "_hover.png"));
-
-        }
-
-        private void onButtonExit(object sender, PointerRoutedEventArgs e)
-        {
-            Image img = (sender as Button).Content as Image;
-
-            ((sender as Button).Content as Image).Source = new Windows.UI.Xaml.Media.Imaging.BitmapImage(new Uri(System.IO.Directory.GetCurrentDirectory() + "\\Assets\\ui\\button_yellow/" + img.Name + ".png"));
-        }
-
-        private async void OnSaveAndExitClick(object sender, RoutedEventArgs e)
-        {
-            InGameOptions.Hide();
-            ConfirmMenu.XamlRoot = this.Content.XamlRoot;
-            await ConfirmMenu.ShowAsync();
-        }
-
-        private void OnRestartGameClick(object sender, RoutedEventArgs e)
-        {
-            ConfirmMenu.Hide();
-            InGameOptions.Hide();
-            Frame.Navigate(typeof(InGame), GM);
-        }
-
-        private void OnConfirmExitClick(object sender, RoutedEventArgs e)
-        {
-            if (!Frame.CanGoBack) return;
-            ConfirmMenu.Hide();
-            InGameOptions.Hide();
-            Frame.GoBack();
-        }
-
-        private void OnConfirmCancelClick(object sender, RoutedEventArgs e)
-        {
-            ConfirmMenu.Hide();
-
-        }
-
-        private async void OnSettingClick(object sender, RoutedEventArgs e)
-        {
-            InGameOptions.XamlRoot = this.Content.XamlRoot;
-            await InGameOptions.ShowAsync();
-        }
-
-        private void OnExitSettingClick(object sender, RoutedEventArgs e)
-        {
-            InGameOptions.Hide();
-        }
-
-        private void onTextButtonHolding(object sender, PointerRoutedEventArgs e)
-        {
-
-        }
-
-        private void PotionDragStarting(UIElement sender, DragStartingEventArgs args)
-        {
-            Button button = (sender as Image).Parent as Button;
-            string id = button.Name.ToString();
-            args.Data.SetText(id);
-            args.Data.RequestedOperation = DataPackageOperation.Link;
-        }
-
+        //al trasladar un obj sobre el enemigo
         private async void DragOverOnEnemy(object sender, DragEventArgs e)
         {
             var Oname = await e.DataView.GetTextAsync(); //obtiene la id
@@ -444,7 +216,43 @@ namespace Trabajo_DSI_G7.Pages
             }
 
         }
+        private async void DropOnEnemy(object sender, DragEventArgs e)
+        {
+            var Oname = await e.DataView.GetTextAsync(); //obtiene la id
 
+            if ((((FindName(Oname.ToString())) as Button)?.Parent as Grid)?.Parent as StackPanel == Inventory)
+                usePotion((FindName(Oname.ToString())) as Button, sender as StackPanel);
+
+            else if (((FindName(Oname.ToString())) as ContentControl)?.Parent == Cards)
+                useCard(((FindName(Oname.ToString())) as ContentControl));
+
+            ((((sender as StackPanel)?.Children[0] as StackPanel)?.Children[1] as Grid)?.Children[0] as Ellipse).Visibility = Visibility.Collapsed;
+        }
+        private void EnemyDragLeave(object sender, DragEventArgs e)
+        {
+            ((((sender as StackPanel)?.Children[0] as StackPanel)?.Children[1] as Grid)?.Children[0] as Ellipse).Visibility = Visibility.Collapsed;
+        }
+
+        //POCIONES...........................................................................................
+        private void iniciaLizePotions()
+        {
+            for (int i = 0; i < potionsId.Length; i++)
+            {
+                PotionVM potion = GM.getPotion(i);
+                inventory.Add(potion);
+                (((Inventory.Children[i] as Grid).Children[0] as Button).Content as Image).Source = inventory[i].Img.Source;
+                if (potion.Amount <= 0)
+                    ((Inventory.Children[i] as Grid).Children[0] as Button).IsEnabled = false;
+                (((Inventory.Children[i] as Grid).Children[1] as Grid).Children[1] as TextBlock).Text = potion.Amount.ToString();
+            }
+        }
+        private void PotionDragStarting(UIElement sender, DragStartingEventArgs args)
+        {
+            Button button = (sender as Image).Parent as Button;
+            string id = button.Name.ToString();
+            args.Data.SetText(id);
+            args.Data.RequestedOperation = DataPackageOperation.Link;
+        }
         //usar una poción
         private void usePotion(Button button, StackPanel stackPanel)
         {
@@ -471,6 +279,18 @@ namespace Trabajo_DSI_G7.Pages
             }
 
         } //Button es del inventario y Stackpanel,contenedor de enemigo
+
+        //CARTAS..............................................................................................
+        private void inicializeCard()
+        {
+            unusedCards.Clear();
+            usedCards.Clear();
+            usingCards.Clear();
+
+            GM.copyCards(unusedCards);
+            for (int i = 0; i < 5; i++) drawCard(i);
+
+        }
 
         //usar una carta
         private void useCard(ContentControl CC) //CC es la carta
@@ -517,25 +337,49 @@ namespace Trabajo_DSI_G7.Pages
 
         }
 
-        //ENEMIGOS..................................................................................................
-        private async void DropOnEnemy(object sender, DragEventArgs e)
+        // Coger 5 cartas
+        private void drawCard(int i)
         {
-            var Oname = await e.DataView.GetTextAsync(); //obtiene la id
 
-            if ((((FindName(Oname.ToString())) as Button)?.Parent as Grid)?.Parent as StackPanel == Inventory)
-                usePotion((FindName(Oname.ToString())) as Button, sender as StackPanel);
+            CardVM card = unusedCards.ElementAt(random.Next(0, unusedCards.Count()));
+            ContentControl CC = new ContentControl();
+            CC.Name = "Card" + (i + 1);
+            CC.DragStarting += CardDragStarting;
+            CC.UseSystemFocusVisuals = true;
+            CC.IsTabStop = true;
+            CC.PointerEntered += CardPointOver;
+            CC.PointerExited += CardPointerExit;
 
-            else if (((FindName(Oname.ToString())) as ContentControl)?.Parent == Cards)
-                useCard(((FindName(Oname.ToString())) as ContentControl));
+            CC.GotFocus += CC_GotFocus;
+            CC.LosingFocus += CC_LosingFocus;
+            CC.FocusVisualMargin = new Thickness(100);
+            CC.KeyDown += CC_KeyDown;
 
-            ((((sender as StackPanel)?.Children[0] as StackPanel)?.Children[1] as Grid)?.Children[0] as Ellipse).Visibility = Visibility.Collapsed;
+            //ContentControl CC = Cards.Children[i] as ContentControl;
+            CC.Width = CARD_W;
+            CC.HorizontalAlignment = HorizontalAlignment.Center;
+            CC.VerticalAlignment = VerticalAlignment.Bottom;
+            CC.RenderTransformOrigin = new Point(0.5, 1);
+            CC.CanDrag = true;
+            CC.Margin = cardPosition[4][i].Margin;
+
+            CompositeTransform Transformacion = new CompositeTransform();
+            Transformacion.TranslateX = 0.0;
+            Transformacion.TranslateY = 0.0;
+            Transformacion.Rotation = cardPosition[4][i].Rotation;
+            CC.RenderTransform = Transformacion;
+
+            Image image = new Image();
+            image.Source = card.Img.Source;
+
+            CC.Content = image;
+            Cards.Children.Add(CC);
+            // ((Cards.Children[i] as ContentControl).Content as Image).Source = card.Img.Source;
+
+            unusedCards.Remove(card);
+            usingCards.Add(card);
+
         }
-
-        private void EnemyDragLeave(object sender, DragEventArgs e)
-        {
-            ((((sender as StackPanel)?.Children[0] as StackPanel)?.Children[1] as Grid)?.Children[0] as Ellipse).Visibility = Visibility.Collapsed;
-        }
-
         //mover a la lista de cartas usadas (pila de descartes)
         private void addToUsedCard()
         {
@@ -563,6 +407,78 @@ namespace Trabajo_DSI_G7.Pages
             }
             for (int j = 0; j < 5; j++) drawCard(j); //coge 5 cartas
         }
+        private void CardDragStarting(UIElement sender, DragStartingEventArgs args)
+        {
+            ContentControl CC = sender as ContentControl;
+            string id = CC.Name.ToString();
+            args.Data.SetText(id);
+            args.Data.RequestedOperation = DataPackageOperation.Link;
+        }
+
+        //mover sobre las cartas
+        private void CardPointOver(object sender, PointerRoutedEventArgs e)
+        {
+
+            ContentControl CC = sender as ContentControl;
+            CC.Width = 250;
+            //(CC.Content as Image).Opacity = 0.5;
+        }
+
+        private void CardPointerExit(object sender, PointerRoutedEventArgs e)
+        {
+            ContentControl CC = sender as ContentControl;
+            CC.Width = CARD_W;
+            // (CC.Content as Image).Opacity = 1;
+        }
+
+        //para mando
+        private void CC_GotFocus(object sender, RoutedEventArgs e)
+        {
+            ContentControl CC = sender as ContentControl;
+            CC.Width = 250;
+        }
+        //para mando
+        private void CC_LosingFocus(UIElement sender, LosingFocusEventArgs args)
+        {
+            ContentControl CC = sender as ContentControl;
+            CC.Width = CARD_W;
+        }
+
+        private void CC_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == VirtualKey.GamepadX)
+            {
+
+                // Mimic Shift+Tab when user hits up arrow key.
+                FocusManager.TryMoveFocus(FocusNavigationDirection.Up);
+            }
+            else if (e.Key == VirtualKey.GamepadY)
+            {
+
+                ContentControl Enem =FocusManager.FindFirstFocusableElement(Enemies) as ContentControl;
+                Enem.Focus(FocusState.Programmatic);
+               // Focus(FocusState.Programmatic);
+                //await FocusManager.TryFocusAsync(Enemies, FocusState.Programmatic);
+                // Mimic Tab when user hits down arrow key.
+               // FocusManager.TryMoveFocus(FocusNavigationDirection.Next);
+            }
+        }
+        //reposicionar las cartas al cambiar su cantidad
+        void repositionateCards()
+        {
+            for (int i = 0; i < Cards.Children.Count; i++)
+            {
+                ContentControl CC = Cards.Children[i] as ContentControl;
+                CompositeTransform Transformacion = new CompositeTransform();
+                Transformacion.TranslateX = 0.0;
+                Transformacion.TranslateY = 0.0;
+                Transformacion.Rotation = cardPosition[Cards.Children.Count - 1][i].Rotation;
+                CC.Margin = cardPosition[Cards.Children.Count - 1][i].Margin;
+                CC.RenderTransform = Transformacion;
+            }
+
+        }
+
         //al pusar el botón de finalizar turno
         private void OnFinishTurnClick(object sender, RoutedEventArgs e)
         {
@@ -573,6 +489,66 @@ namespace Trabajo_DSI_G7.Pages
             Energy.Text = $"{GM.actEnergy}/{GM.maxEnergy}";
         }
 
+        //UI.........................................................................................
+
+        //para cambio de imágenes al estar sobre un botón
+        private void onButtonHolding(object sender, PointerRoutedEventArgs e)
+        {
+            Image img = (sender as Button).Content as Image;
+
+            ((sender as Button).Content as Image).Source = new Windows.UI.Xaml.Media.Imaging.BitmapImage(new Uri(System.IO.Directory.GetCurrentDirectory() + "\\Assets\\ui\\button_hover\\" + img.Name + "_hover.png"));
+
+        }
+
+        //al alejarse de un botón
+        private void onButtonExit(object sender, PointerRoutedEventArgs e)
+        {
+            Image img = (sender as Button).Content as Image;
+
+            ((sender as Button).Content as Image).Source = new Windows.UI.Xaml.Media.Imaging.BitmapImage(new Uri(System.IO.Directory.GetCurrentDirectory() + "\\Assets\\ui\\button_yellow/" + img.Name + ".png"));
+        }
+        //al pulsar sobre el botón de querer salir de la partida
+        private async void OnSaveAndExitClick(object sender, RoutedEventArgs e)
+        {
+            InGameOptions.Hide();
+            ConfirmMenu.XamlRoot = this.Content.XamlRoot;
+            await ConfirmMenu.ShowAsync();
+        }
+        //para botón de reempezar partida
+        private void OnRestartGameClick(object sender, RoutedEventArgs e)
+        {
+            ConfirmMenu.Hide();
+            InGameOptions.Hide();
+            Frame.Navigate(typeof(InGame), GM);
+        }
+
+        //confirmación de salir de la partida
+        private void OnConfirmExitClick(object sender, RoutedEventArgs e)
+        {
+            if (!Frame.CanGoBack) return;
+            ConfirmMenu.Hide();
+            InGameOptions.Hide();
+            Frame.GoBack();
+        }
+
+        //cancelación de salir de partida
+        private void OnConfirmCancelClick(object sender, RoutedEventArgs e)
+        {
+            ConfirmMenu.Hide();
+
+        }
+
+        //entrar en el menú de opciones
+        private async void OnSettingClick(object sender, RoutedEventArgs e)
+        {
+            InGameOptions.XamlRoot = this.Content.XamlRoot;
+            await InGameOptions.ShowAsync();
+        }
+        //salir del menú de opciones
+        private void OnExitSettingClick(object sender, RoutedEventArgs e)
+        {
+            InGameOptions.Hide();
+        }
 
         private void Page_KeyUp(object sender, KeyRoutedEventArgs e)
         {
