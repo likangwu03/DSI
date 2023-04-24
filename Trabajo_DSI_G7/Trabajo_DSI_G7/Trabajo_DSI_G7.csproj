@@ -126,9 +126,6 @@
     <Compile Include="Input\Controlador.cs" />
     <Compile Include="Input\GameLoop.cs" />
     <Compile Include="Input\Input.cs" />
-    <Compile Include="MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Models\AbilityModel.cs" />
     <Compile Include="Models\AbilityViewModel.cs" />
     <Compile Include="Models\CardModel.cs" />
@@ -844,6 +841,10 @@
     <Content Include="Assets\icons\tile446.png" />
     <Content Include="Assets\icons\tile447.png" />
     <Content Include="Assets\icons\wood_01a.png" />
+    <Content Include="Assets\sonidos\02_chest_close_3.wav" />
+    <Content Include="Assets\sonidos\Minimalist4.mp3" />
+    <Content Include="Assets\sonidos\rpg_village02_loop.mp3" />
+    <Content Include="Assets\sonidos\select.mp3" />
     <Content Include="Assets\ui\button_hover\button_about_hover.png" />
     <Content Include="Assets\ui\button_hover\button_arrow_bottom_hover.png" />
     <Content Include="Assets\ui\button_hover\button_arrow_left_hover.png" />
@@ -913,10 +914,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Pages\InGame.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

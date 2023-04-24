@@ -62,7 +62,7 @@ namespace Trabajo_DSI_G7.Game
         {
             this.gm = gm;
             this.money = gm.money;
-            this.actLife = gm.actLife;
+            this.actLife = gm.maxLife;
             PotionList = gm.PotionList;
             ActPotion = PotionList[0];
         }

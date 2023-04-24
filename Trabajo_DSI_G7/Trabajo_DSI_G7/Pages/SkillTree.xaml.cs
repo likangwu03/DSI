@@ -14,6 +14,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Documents;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
@@ -51,6 +52,7 @@ namespace Trabajo_DSI_G7.Pages
         private void OnCloseClick(object sender, RoutedEventArgs e)
         {
             AbilityWindow.Hide();
+            gm.playClickedSound();
         }
 
         private async void Ability_Click(object sender, RoutedEventArgs e)
@@ -61,17 +63,20 @@ namespace Trabajo_DSI_G7.Pages
                 AbilityWindow.XamlRoot = this.Content.XamlRoot;
                 await AbilityWindow.ShowAsync();
             }
+            gm.playClickedSound();
         }
 
         private void OptionsBackButton_Click(object sender, RoutedEventArgs e)
         {
             if (!Frame.CanGoBack) return;
             Frame.GoBack();
+            gm.playClickedSound();
         }
 
         private void Mejorar_Button_Click(object sender, RoutedEventArgs e)
         {
             Logic.Mejorar_Button_Click(sender, e);
+            gm.playClickedSound();
         }
 
 
@@ -81,11 +86,13 @@ namespace Trabajo_DSI_G7.Pages
             {
                 // Mimic Shift+Tab when user hits up arrow key.
                 FocusManager.TryMoveFocus(FocusNavigationDirection.Previous);
+                gm.playHoverSound();
             }
             else if (e.Key == VirtualKey.GamepadRightShoulder)
             {
                 // Mimic Tab when user hits down arrow key.
                 FocusManager.TryMoveFocus(FocusNavigationDirection.Next);
+                gm.playHoverSound();
             }
         }
 

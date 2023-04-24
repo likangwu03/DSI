@@ -39,14 +39,13 @@
 
         <!--SUP DR-->
         <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="40"  XYFocusKeyboardNavigation="Enabled" TabFocusNavigation="Once">
-            <Button  Padding="0" Style="{StaticResource MainMenuButton}" Margin="50 0" PointerEntered="onButtonHolding" PointerExited="onButtonExit"  >
+            <Button  Padding="0" Style="{StaticResource MainMenuButton}" Margin="50 0" PointerEntered="onButtonHolding" PointerExited="onButtonExit"  Click="{x:Bind GM.playClickedSound}" >
                 <Image x:Name="button_about" Source="/Assets/ui/button_yellow/button_about.png"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0"></Image>
             </Button>
             <Button  Padding="0" Style="{StaticResource MainMenuButton}" PointerEntered="onButtonHolding" PointerExited="onButtonExit" Click="onSettingClick" KeyDown="OptionsKeyDown">
                 <Image x:Name="button_setting" Source="/Assets/ui/button_yellow/button_setting.png"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0" ></Image>
                 <Button.KeyboardAccelerators>
                     <KeyboardAccelerator Key="Escape"></KeyboardAccelerator>
-                    <!--<KeyboardAccelerator Key="GamepadMenu"></KeyboardAccelerator>-->
                 </Button.KeyboardAccelerators>
             </Button>
 
@@ -60,7 +59,7 @@
             <Button  Padding="0" Style="{StaticResource MainMenuButton}" PointerEntered="onButtonHolding" PointerExited="onButtonExit" Margin="20 0" Click="OnShopClick" >
                 <Image x:Name="button_store" Source="/Assets/ui/button_yellow/button_store.png"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0"></Image>
             </Button>
-            <Button  Padding="0" Style="{StaticResource MainMenuButton}" PointerEntered="onButtonHolding" PointerExited="onButtonExit" Margin="20 0" >
+            <Button  Padding="0" Style="{StaticResource MainMenuButton}" PointerEntered="onButtonHolding" PointerExited="onButtonExit" Margin="20 0" Click="{x:Bind GM.playClickedSound}">
                 <Image x:Name="button_star" Source="/Assets/ui/button_yellow/button_star.png"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0"></Image>
             </Button>
 
@@ -73,11 +72,11 @@
             <Grid>
 
                 <Rectangle Fill="#4e3a13" Margin="0 0 0 -20" RadiusX="20" RadiusY="20"></Rectangle>
-            <Button Padding="0" Style="{StaticResource ThemeButton}" Click="ShowDialog_Click">
-                <TextBlock  TextAlignment="Center" TextWrapping="Wrap" FontSize="60" Width="380"  Style="{StaticResource ThemeText}" Text="Continuar la aventura"/>
-            </Button>
+                <Button Padding="0" Style="{StaticResource ThemeButton}" Click="ShowDialog_Click">
+                    <TextBlock  TextAlignment="Center" TextWrapping="Wrap" FontSize="60" Width="380"  Style="{StaticResource ThemeText}" Text="Continuar la aventura"/>
+                </Button>
             </Grid>
-          
+
 
 
         </StackPanel>
@@ -85,11 +84,11 @@
         <!--DIALOG-->
 
 
-        <ContentDialog x:Name="MainMenuOptions" Grid.RowSpan="2" Grid.ColumnSpan="2"
+        <ContentDialog x:Name="MainMenuOptions"
         Foreground="Black" 
         FontSize="40"
         Background="#999999"
-        CornerRadius="15">
+        CornerRadius="15" Margin="0,0,0,358">
 
             <Grid Width="500" Height="600" Margin="0" Padding="0">
                 <Grid.RowDefinitions>
@@ -115,13 +114,13 @@
                 <Button x:Name="OptionsBackButton" Style="{StaticResource BackButton}" HorizontalAlignment="Right" VerticalAlignment="Top" Height="60" Width="60" Grid.ColumnSpan="2" Grid.Column="1" Click="OnCloseMenuOptionsClick" Margin="0,0,2,0"/>
                 <StackPanel Orientation="Horizontal" Grid.ColumnSpan="3" Margin="0,134,0,1" Grid.RowSpan="2">
                     <TextBlock Style="{StaticResource ThemeText}" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="10,0,20,0" FontSize="30">Música</TextBlock>
-                    <Slider Style="{StaticResource Slider}" Width="363" Value="50" Height="86" VerticalAlignment="Center" Foreground="#f7bf50"  CornerRadius="10"  Background="#403738" Maximum="100" />
+                    <Slider Style="{StaticResource Slider}" Width="363"  Value="{x:Bind GM.musicVolume,Mode=TwoWay}" Height="86" VerticalAlignment="Center" Foreground="#f7bf50"  CornerRadius="10"  Background="#403738" Maximum="100" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3" Margin="0,72,0,0" Grid.RowSpan="2">
                     <TextBlock Style="{StaticResource ThemeText}" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,20,0" FontSize="30">Sonido</TextBlock>
-                    <Slider Style="{StaticResource Slider}" Value="50" VerticalAlignment="Center" Foreground="#f7bf50" CornerRadius="10" Background="#403738" Maximum="100" Width="365" />
+                    <Slider Style="{StaticResource Slider}" Value="{x:Bind GM.soundVolume,Mode=TwoWay}"  VerticalAlignment="Center" Foreground="#f7bf50" CornerRadius="10" Background="#403738" Maximum="100" Width="365" />
                 </StackPanel>
-                <Button Grid.Row="3" Grid.Column="1"   Padding="0"  VerticalAlignment="Stretch" Margin="0,20,45,21" Background="#933232" CornerRadius="10" BorderBrush="#5f2020" BorderThickness="1,1,0,10" HorizontalAlignment="Stretch" Grid.ColumnSpan="2" >
+                <Button Grid.Row="3" Grid.Column="1"   Padding="0"  VerticalAlignment="Stretch" Margin="0,20,45,21" Background="#933232" CornerRadius="10" BorderBrush="#5f2020" BorderThickness="1,1,0,10" HorizontalAlignment="Stretch" Grid.ColumnSpan="2 " >
                     <TextBlock  TextAlignment="Center" TextWrapping="Wrap" FontSize="30" Width="380"  Style="{StaticResource ThemeText}" Text="Empezar de nuevo"/>
                 </Button>
                 <Button Grid.Row="4"  Grid.Column="1"   Padding="0"  VerticalAlignment="Stretch" Margin="0,20,45,20" Background="#cca035" CornerRadius="10" BorderBrush="#7f6321" BorderThickness="1,1,0,10"   HorizontalAlignment="Stretch" Grid.ColumnSpan="2">
@@ -150,12 +149,12 @@
                 </Grid.RowDefinitions>
 
                 <Grid HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="92" Width="500">
-                    <Image Source="/Assets/ui/ribbon.png" Stretch="Fill" VerticalAlignment="Center" />
+                    <Image Source="/Assets/ui/ribbon.png" Stretch="Fill" VerticalAlignment="Center" HorizontalAlignment="Left" Width="500" />
                     <TextBlock Grid.ColumnSpan="3" Style="{StaticResource ThemeText}" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="35" Margin="0 0 0 20">Continuar la aventura</TextBlock>
                 </Grid>
                 <TextBlock Grid.Row="1" TextWrapping="Wrap" Style="{StaticResource ThemeText}" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center"  FontSize="25" Width="400" Height="57" >Se ha detectado un combate no acabado, ¿se desea continuar?</TextBlock>
 
-                <Button x:Name="ConfirmBackButton" Style="{StaticResource BackButton}" HorizontalAlignment="Right" VerticalAlignment="Top" Height="60" Width="60" Grid.ColumnSpan="2" Grid.Column="1" Click="OnCloseMenuOptionsClick" Margin="0,0,2,20"/>
+                <Button x:Name="ConfirmBackButton" Style="{StaticResource BackButton}" HorizontalAlignment="Right" VerticalAlignment="Top" Height="60" Width="60" Grid.ColumnSpan="2" Grid.Column="1" Click="OnCloseConfirmClick" Margin="0,0,2,20"/>
 
                 <Grid Grid.Row="2" >
                     <Grid.ColumnDefinitions>

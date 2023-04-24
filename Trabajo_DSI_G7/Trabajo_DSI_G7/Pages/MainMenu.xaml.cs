@@ -70,10 +70,9 @@ namespace Trabajo_DSI_G7.Pages
 
         private async void ShowDialog_Click(object sender, RoutedEventArgs e)
         {
-
-
             ConfirmMenu.XamlRoot = this.Content.XamlRoot;
             await ConfirmMenu.ShowAsync();
+            GM.playClickedSound();
         }
 
         private async void openOptionMenu()
@@ -84,6 +83,7 @@ namespace Trabajo_DSI_G7.Pages
         private void onSettingClick(object sender, RoutedEventArgs e)
         {
             openOptionMenu();
+            GM.playClickedSound();
         }
         private void OptionsKeyDown(object sender, KeyRoutedEventArgs e)
         {
@@ -94,37 +94,35 @@ namespace Trabajo_DSI_G7.Pages
         private void OnCloseMenuOptionsClick(object sender, RoutedEventArgs e)
         {
             MainMenuOptions.Hide();
+            GM.playClickedSound();
         }
 
         private void OnStartNewGameClick(object sender, RoutedEventArgs e)
         {
             ConfirmMenu.Hide();
             Frame.Navigate(typeof(InGame), GM);
+            GM.playClickedSound();
         }
 
         private void OnCloseConfirmClick(object sender, RoutedEventArgs e)
         {
             ConfirmMenu.Hide();
+            GM.playClickedSound();
         }
 
         private void OnSkillTreeClick(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(SkillTree), GM);
+            GM.playClickedSound();
 
         }
 
         private void OnShopClick(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(Shop), GM);
+            GM.playClickedSound();
 
         }
-
-
-
-
-      
-
-      
 
         private void Page_KeyUp(object sender, KeyRoutedEventArgs e)
         {
@@ -144,5 +142,7 @@ namespace Trabajo_DSI_G7.Pages
         {
 
         }
+
+        
     }
 }

@@ -33,7 +33,8 @@ namespace Trabajo_DSI_G7
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
-            gameManager = new GameManager();    
+            gameManager = new GameManager();
+          //  ElementSoundPlayer.State = ElementSoundPlayerState.On;
         }
 
         /// <summary>

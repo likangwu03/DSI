@@ -91,6 +91,7 @@ namespace Trabajo_DSI_G7.Pages
         const float CARD_W = 200;
         int actEnergy;
         int actMagic;
+        int actLife;
         ContentControl selectedCard;
 
         GameManager GM = null;
@@ -130,6 +131,7 @@ namespace Trabajo_DSI_G7.Pages
             Energy.Text = $"{actEnergy}/{GM.maxEnergy}";
             Energy.Foreground = new SolidColorBrush(Colors.White);
             actMagic = GM.maxMagic;
+            actLife = GM.maxLife;
             Magic.Text = $"{actMagic}/{GM.maxMagic}";
             Magic.Foreground = new SolidColorBrush(Colors.White);
         }
@@ -491,6 +493,7 @@ namespace Trabajo_DSI_G7.Pages
         {
             ContentControl CC = sender as ContentControl;
             CC.Width = 250;
+            GM.playHoverSound();
         }
         //para mando
         private void CC_LosingFocus(UIElement sender, LosingFocusEventArgs args)
@@ -515,7 +518,6 @@ namespace Trabajo_DSI_G7.Pages
                 Enem.Focus(FocusState.Programmatic);
                 //Enem.FocusEngaged+=
                 //  ((((Enem.Content as StackPanel)?.Children[0] as StackPanel)?.Children[1] as Grid)?.Children[0] as Ellipse).Visibility = Visibility.Visible;
-
                 // Focus(FocusState.Programmatic);
                 //await FocusManager.TryFocusAsync(Enemies, FocusState.Programmatic);
                 // Mimic Tab when user hits down arrow key.
@@ -546,8 +548,11 @@ namespace Trabajo_DSI_G7.Pages
             addToUsedCard();
             addNewCards();
             //Reiniciar Energía
+            Energy.Foreground = new SolidColorBrush(Colors.White); 
+            Magic.Foreground = new SolidColorBrush(Colors.White);
             actEnergy = GM.maxEnergy;
             Energy.Text = $"{actEnergy}/{GM.maxEnergy}";
+            GM.playClickedSound();
         }
 
         //UI.........................................................................................
@@ -574,6 +579,7 @@ namespace Trabajo_DSI_G7.Pages
             InGameOptions.Hide();
             ConfirmMenu.XamlRoot = this.Content.XamlRoot;
             await ConfirmMenu.ShowAsync();
+            GM.playClickedSound();
         }
         //para botón de reempezar partida
         private void OnRestartGameClick(object sender, RoutedEventArgs e)
@@ -581,6 +587,7 @@ namespace Trabajo_DSI_G7.Pages
             ConfirmMenu.Hide();
             InGameOptions.Hide();
             restartGame();
+            GM.playClickedSound();
         }
 
         //confirmación de salir de la partida
@@ -590,18 +597,20 @@ namespace Trabajo_DSI_G7.Pages
             ConfirmMenu.Hide();
             InGameOptions.Hide();
             Frame.GoBack();
+            GM.playClickedSound();
         }
 
         //cancelación de salir de partida
         private void OnConfirmCancelClick(object sender, RoutedEventArgs e)
         {
             ConfirmMenu.Hide();
-
+            GM.playClickedSound();
         }
 
         //entrar en el menú de opciones
         private async void OnSettingClick(object sender, RoutedEventArgs e)
         {
+            GM.playClickedSound();
             InGameOptions.XamlRoot = this.Content.XamlRoot;
             await InGameOptions.ShowAsync();
         }
@@ -609,6 +618,7 @@ namespace Trabajo_DSI_G7.Pages
         private void OnExitSettingClick(object sender, RoutedEventArgs e)
         {
             InGameOptions.Hide();
+            GM.playClickedSound();
         }
 
         private void Page_KeyUp(object sender, KeyRoutedEventArgs e)
@@ -617,21 +627,25 @@ namespace Trabajo_DSI_G7.Pages
             {
                 // Mimic Shift+Tab when user hits up arrow key.
                 FocusManager.TryMoveFocus(FocusNavigationDirection.Previous);
+                GM.playHoverSound();
             }
             else if (e.Key == VirtualKey.GamepadRightShoulder)
             {
                 // Mimic Tab when user hits down arrow key.
                 FocusManager.TryMoveFocus(FocusNavigationDirection.Next);
+                GM.playHoverSound();
             }
             if (e.OriginalKey == VirtualKey.GamepadLeftThumbstickRight)
             {
                 // Mimic Shift+Tab when user hits up arrow key.
                 FocusManager.TryMoveFocus(FocusNavigationDirection.Next);
+                GM.playHoverSound();
             }
             else if (e.OriginalKey == VirtualKey.GamepadLeftThumbstickLeft)
             {
                 // Mimic Tab when user hits down arrow key.
                 FocusManager.TryMoveFocus(FocusNavigationDirection.Previous);
+                GM.playHoverSound();
             }
             //if (e.OriginalKey == VirtualKey.GamepadLeftThumbstickRight)
             //{
@@ -668,5 +682,10 @@ namespace Trabajo_DSI_G7.Pages
 
 
         }
+
+        //private void MusicSliderValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        //{
+        //    GM.changeMusicVolume((sender as Slider).Value);
+        //}
     }
 }

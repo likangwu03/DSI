@@ -23,7 +23,7 @@
 
         <DataTemplate x:Key="InventoryItemTemplate"
                       x:DataType="model:Enemy" >
-            <Button  Padding="0" Style="{StaticResource InventoryButton}"  PointerEntered="onButtonHolding" PointerExited="onButtonExit" >
+            <Button  Padding="0" Style="{StaticResource InventoryButton}"  PointerEntered="onButtonHolding" PointerExited="onButtonExit"  >
                 <Image  Source="{x:Bind ImageFile}"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0"></Image>
             </Button>
         </DataTemplate>
@@ -79,7 +79,7 @@
         <Viewbox  Grid.Column="5" Grid.Row="0">
             <ScrollViewer TabFocusNavigation="Once" XYFocusKeyboardNavigation="Enabled">
                 <StackPanel Orientation="Horizontal"  Height="50" Width="161" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,27,10,0">
-                    <Button  Padding="0" Style="{StaticResource MainMenuButton}" Margin="30 0" PointerEntered="onButtonHolding" PointerExited="onButtonExit"  >
+                    <Button  Padding="0" Style="{StaticResource MainMenuButton}" Margin="30 0" PointerEntered="onButtonHolding" PointerExited="onButtonExit"  Click="{x:Bind GM.playClickedSound}" >
                         <Image x:Name="button_about" Source="/Assets/ui/button_yellow/button_about.png"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0"></Image>
                         <Button.KeyboardAccelerators>
                             <KeyboardAccelerator Key="Escape"></KeyboardAccelerator>
@@ -185,24 +185,19 @@
                             <StackPanel Orientation="Horizontal" >
                                 <Image Source="/Assets/icons/Layer 1.png"  Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 5"/>
                                 <TextBlock x:Name="Energy" HorizontalAlignment="Center" FontSize="25"  VerticalAlignment="Center"  Style="{StaticResource ThemeText}">
-                              <Run Text="{x:Bind GM.actEnergy, Mode=OneWay}"/>
-                              <Run Text=" / "/>
-                              <Run Text="{x:Bind GM.maxEnergy , Mode=OneWay}"/>
                                 </TextBlock>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" >
                                 <Image Source="/Assets/icons/Layer 1 copy.png"  Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 5"/>
                                 <TextBlock x:Name="Magic" HorizontalAlignment="Center" FontSize="25"  VerticalAlignment="Center"  Style="{StaticResource ThemeText}">
-                              <Run Text="{x:Bind GM.actMagic, Mode=OneWay}"/>
-                              <Run Text=" / "/>
-                              <Run Text="{x:Bind GM.maxMagic, Mode=OneWay}"/>
+
                                 </TextBlock>
                             </StackPanel>
                         </StackPanel>
                     </Grid>
-                    <ProgressBar HorizontalAlignment="Stretch" Foreground="Red" Background="White" Maximum="{x:Bind GM.maxLife}" Value="{x:Bind GM.actLife}" Height="20" CornerRadius="15" ></ProgressBar>
+                    <ProgressBar HorizontalAlignment="Stretch" Foreground="Red" Background="White" Maximum="{x:Bind GM.maxLife}" Value="{x:Bind actLife}" Height="20" CornerRadius="15" ></ProgressBar>
                     <TextBlock HorizontalAlignment="Center" FontSize="25"  VerticalAlignment="Center"  Style="{StaticResource ThemeText}">
-                              <Run Text="{x:Bind GM.actLife, Mode=OneWay}"/>
+                              <Run Text="{x:Bind actLife, Mode=OneWay}"/>
                               <Run Text=" / "/>
                               <Run Text="{x:Bind GM.maxLife, Mode=OneWay}"/>
                     </TextBlock>
@@ -266,7 +261,7 @@
                 </Button>
 
                 <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0" HorizontalAlignment="Center">
-                    <Button Background="Transparent" Margin="20 0" >
+                    <Button   Click="{x:Bind GM.playClickedSound}" Background="Transparent" Margin="20 0" >
                         <StackPanel Orientation="Vertical">
                             <Image Source="/Assets/ui/mazoCartas.png" Width="100"/>
                             <Grid HorizontalAlignment="Right">
@@ -275,7 +270,7 @@
                             </Grid>
                         </StackPanel>
                     </Button>
-                    <Button  Padding="0" Background="Transparent"  Margin="20 0">
+                    <Button  Click="{x:Bind GM.playClickedSound}" Padding="0" Background="Transparent"  Margin="20 0">
                         <StackPanel Orientation="Vertical" Margin="0" HorizontalAlignment="Center"  VerticalAlignment="Top">
                             <Image Source="/Assets/ui/pilaDescartes.png" Width="100" />
                             <Grid HorizontalAlignment="Right">
@@ -321,15 +316,15 @@
                     <TextBlock Grid.ColumnSpan="3" Style="{StaticResource ThemeText}" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="35" Margin="0 0 0 20">Configuración</TextBlock>
 
                 </Grid>
-                <Button x:Name="OptionsBackButton" Style="{StaticResource BackButton}" HorizontalAlignment="Right" VerticalAlignment="Top" Height="60" Width="60" Grid.ColumnSpan="2" Grid.Column="1" Click="OnExitSettingClick" Margin="0,0,2,0"/>
+                <Button  x:Name="OptionsBackButton" Style="{StaticResource BackButton}" HorizontalAlignment="Right" VerticalAlignment="Top" Height="60" Width="60" Grid.ColumnSpan="2" Grid.Column="1" Click="OnExitSettingClick" Margin="0,0,2,0"/>
                 <StackPanel Orientation="Horizontal" Grid.ColumnSpan="3" Margin="0,134,0,1" Grid.RowSpan="2">
                     <TextBlock Style="{StaticResource ThemeText}" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="10,0,20,0" FontSize="30">Música</TextBlock>
-                    <Slider Style="{StaticResource Slider}" Width="363" Foreground="#f7bf50"  CornerRadius="10"  Value="50" Background="#403738" Maximum="100"/>
+                    <Slider Style="{StaticResource Slider}" Width="363" Foreground="#f7bf50"  CornerRadius="10"  Value="{x:Bind GM.musicVolume,Mode=TwoWay}"  Background="#403738" Maximum="100"/>
 
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3" Margin="0,72,0,0" Grid.RowSpan="2">
                     <TextBlock Style="{StaticResource ThemeText}" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,20,0" FontSize="30">Sonido</TextBlock>
-                    <Slider Style="{StaticResource Slider}" VerticalAlignment="Center" Foreground="#f7bf50" Value="50"  CornerRadius="10" Background="#403738" Maximum="100" Width="365"  />
+                    <Slider Style="{StaticResource Slider}" VerticalAlignment="Center" Foreground="#f7bf50" Value="{x:Bind GM.soundVolume,Mode=TwoWay}"  CornerRadius="10"  Background="#403738" Maximum="100" Width="365"  />
                 </StackPanel>
 
                 <Grid Grid.Row="3" Grid.Column="1" VerticalAlignment="Stretch" Margin="0,0,45,21" BorderThickness="15" HorizontalAlignment="Stretch" Grid.ColumnSpan="2" >
@@ -350,7 +345,7 @@
             </Grid>
 
         </ContentDialog>
-
+        <!--ventana de confirmación-->
         <ContentDialog 
         x:Name="ConfirmMenu" 
         Grid.RowSpan="3" 
@@ -386,7 +381,7 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" Padding="0"  CornerRadius="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,10,0" Click="OnConfirmExitClick" Width="180" >
+                    <Button  Grid.Column="0" Padding="0"  CornerRadius="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,10,0" Click="OnConfirmExitClick" Width="180" >
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Grid x:Name="RootGrid" >
@@ -471,5 +466,5 @@
         </ContentDialog>
 
     </Grid>
-    <!--</Viewbox>-->
+
 </Page>
