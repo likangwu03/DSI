@@ -10,11 +10,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     KeyUp="Page_KeyUp">
     <Page.Resources>
-
-
     
-
-
         <DataTemplate x:Key="SkillTemplate" x:DataType="Model:AbilityVM">
             <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Grid>

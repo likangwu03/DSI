@@ -13,7 +13,19 @@
     </Page.Background>
     <Grid>
         <!--PERFIL-->
-        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="80 40 0 0" >
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="20*"/>
+                <ColumnDefinition Width="50*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="17*"/>
+                <RowDefinition Height="40*"/>
+            </Grid.RowDefinitions>
+            <Viewbox Grid.Row="1" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+        <Grid Grid.Row="1" Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -36,10 +48,25 @@
             </StackPanel>
 
         </Grid>
+            </Viewbox>
+        </Grid>
 
         <!--SUP DR-->
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="40"  XYFocusKeyboardNavigation="Enabled" TabFocusNavigation="Once">
-            <Button  Padding="0" Style="{StaticResource MainMenuButton}" Margin="50 0" PointerEntered="onButtonHolding" PointerExited="onButtonExit"  Click="{x:Bind GM.playClickedSound}" >
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50*"/>
+                <ColumnDefinition Width="20*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="6*"/>
+                <RowDefinition Height="50*"/>
+            </Grid.RowDefinitions>
+            <Viewbox Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right">
+
+        <StackPanel Orientation="Horizontal"   XYFocusKeyboardNavigation="Enabled" TabFocusNavigation="Once">
+            <Button  Padding="0" Style="{StaticResource MainMenuButton}" Margin="40 0" PointerEntered="onButtonHolding" PointerExited="onButtonExit"  Click="{x:Bind GM.playClickedSound}" >
                 <Image x:Name="button_about" Source="/Assets/ui/button_yellow/button_about.png"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0"></Image>
             </Button>
             <Button  Padding="0" Style="{StaticResource MainMenuButton}" PointerEntered="onButtonHolding" PointerExited="onButtonExit" Click="onSettingClick" KeyDown="OptionsKeyDown">
@@ -50,9 +77,24 @@
             </Button>
 
         </StackPanel>
+            </Viewbox>
+        </Grid>
 
         <!--JUGAR-->
-        <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="50">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50*"/>
+                <ColumnDefinition Width="20*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+            <Viewbox Grid.Row="1" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                
+        <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" HorizontalAlignment="Right" >
 
             <TextBlock HorizontalAlignment="Center" FontSize="40"  Text="{x:Bind GM.level}" FontWeight="Bold" FontFamily="Times New Roman" Foreground="#ae8022"/>
             <Grid>
@@ -66,30 +108,32 @@
 
 
         </StackPanel>
+            </Viewbox>
+        </Grid>
         
         <!--INF IZ-->
         <Grid>
             <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="15*"/>
-                        <ColumnDefinition Width="50*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="20*"/>
-                        <RowDefinition Height="10*"/>
-                        <RowDefinition Height="1*"/>
-                    </Grid.RowDefinitions>
-        <Viewbox Grid.Row="1" Grid.Column="1">
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="20*"/>
+                <ColumnDefinition Width="50*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50*"/>
+                <RowDefinition Height="6*"/>
+                <RowDefinition Height="4*"/>
+            </Grid.RowDefinitions>
+            <Viewbox Grid.Row="1" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Left">
             
         <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left"  XYFocusKeyboardNavigation="Enabled" TabFocusNavigation="Once">
             
-            <Button  Padding="0" Style="{StaticResource MainMenuButton}"  PointerEntered="onButtonHolding" PointerExited="onButtonExit"  Margin="20 0" Click="OnSkillTreeClick">
+            <Button  Padding="0" Style="{StaticResource MainMenuButton}"  PointerEntered="onButtonHolding" PointerExited="onButtonExit"  Margin=" 0" Click="OnSkillTreeClick">
                 <Image x:Name="button_tree" Source="/Assets/ui/button_yellow/button_tree.png"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0"></Image>
             </Button>
-            <Button  Padding="0" Style="{StaticResource MainMenuButton}" PointerEntered="onButtonHolding" PointerExited="onButtonExit" Margin="20 0" Click="OnShopClick" >
+            <Button  Padding="0" Style="{StaticResource MainMenuButton}" PointerEntered="onButtonHolding" PointerExited="onButtonExit" Margin="40 0" Click="OnShopClick" >
                 <Image x:Name="button_store" Source="/Assets/ui/button_yellow/button_store.png"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0"></Image>
             </Button>
-            <Button  Padding="0" Style="{StaticResource MainMenuButton}" PointerEntered="onButtonHolding" PointerExited="onButtonExit" Margin="20 0" Click="{x:Bind GM.playClickedSound}">
+            <Button  Padding="0" Style="{StaticResource MainMenuButton}" PointerEntered="onButtonHolding" PointerExited="onButtonExit" Margin="0 0" Click="{x:Bind GM.playClickedSound}">
                 <Image x:Name="button_star" Source="/Assets/ui/button_yellow/button_star.png"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0"></Image>
             </Button>
 
