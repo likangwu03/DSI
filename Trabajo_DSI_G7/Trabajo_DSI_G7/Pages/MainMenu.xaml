@@ -140,7 +140,7 @@
                 <Button  Click="{x:Bind GM.playClickedSound}" Grid.Row="3" Grid.Column="1"   Padding="0"  VerticalAlignment="Stretch" Margin="0,20,45,21" Background="#933232" CornerRadius="10" BorderBrush="#5f2020" BorderThickness="1,1,0,10" HorizontalAlignment="Stretch" Grid.ColumnSpan="2 " >
                     <TextBlock  TextAlignment="Center" TextWrapping="Wrap" FontSize="30" Width="380"  Style="{StaticResource ThemeText}" Text="Empezar de nuevo"/>
                 </Button>
-                <Button  Click="{x:Bind GM.playClickedSound}" Grid.Row="4"  Grid.Column="1"   Padding="0"  VerticalAlignment="Stretch" Margin="0,20,45,20" Background="#cca035" CornerRadius="10" BorderBrush="#7f6321" BorderThickness="1,1,0,10"   HorizontalAlignment="Stretch" Grid.ColumnSpan="2">
+                <Button  Click="Button_Click" Grid.Row="4"  Grid.Column="1"   Padding="0"  VerticalAlignment="Stretch" Margin="0,20,45,20" Background="#cca035" CornerRadius="10" BorderBrush="#7f6321" BorderThickness="1,1,0,10"   HorizontalAlignment="Stretch" Grid.ColumnSpan="2">
                     <TextBlock  TextAlignment="Center" TextWrapping="Wrap" FontSize="40" Width="380"  Style="{StaticResource ThemeText}" Text="Salir" Margin="20"/>
                 </Button>
 

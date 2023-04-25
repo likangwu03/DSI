@@ -96,7 +96,7 @@
 
         <!--INVENTARIO-->
         <Viewbox  Grid.Row="1" Grid.Column="0">
-            <StackPanel TabFocusNavigation="Once" XYFocusKeyboardNavigation="Enabled" x:Name="Inventory" Orientation="Vertical" Background="#f7bf50" CornerRadius="10"  Height="288" Width="96"  VerticalAlignment="Stretch" HorizontalAlignment="Left" Margin="50,0,0,0" >
+            <StackPanel x:Name="Inventory" Orientation="Vertical" Background="#f7bf50" CornerRadius="10"  Height="288" Width="96"  VerticalAlignment="Stretch" HorizontalAlignment="Left" Margin="50,0,0,0" >
                 <Grid>
                     <Button  Click="Potion_Click" x:Name="Potion1" Padding="0" Style="{StaticResource InventoryButton}">
                         <Image x:Name="Potion1Image" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10" CanDrag="True" DragStarting="PotionDragStarting"></Image>
@@ -135,7 +135,7 @@
                     </Grid>
                 </Grid>
                 <Grid>
-                    <Button  x:Name="Potion3" Padding="0" Style="{StaticResource InventoryButton}"  >
+                    <Button Click="Potion_Click" x:Name="Potion3" Padding="0" Style="{StaticResource InventoryButton}"  >
                         <Button.Resources>
                             <ResourceDictionary>
                                 <ResourceDictionary.ThemeDictionaries>
@@ -250,18 +250,18 @@
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
                     <Rectangle RadiusX="9" RadiusY="9" Fill="#ae7e20" Stroke="#f7bf50" StrokeDashArray="3,2" StrokeThickness="8"/>
-                    <Button Template="{StaticResource ReturnCardButton}" Background="#ad7e20" Padding="0"  BorderThickness="0" HorizontalAlignment="Left" Margin="8">
+                    <Button IsTabStop="False"  Template="{StaticResource ReturnCardButton}" Background="#ad7e20" Padding="0"  BorderThickness="0" HorizontalAlignment="Left" Margin="8">
                         <TextBlock  TextAlignment="Center" TextWrapping="Wrap" FontSize="35" Width="213"  Style="{StaticResource ThemeText}" Text="Deshacer Carta" Height="82"/>
                     </Button>
                 </Grid>
 
 
-                <Button  Grid.Row="1" Padding="0" Style="{StaticResource ThemeButton}"  Height="100" VerticalAlignment="Stretch" CornerRadius="5" BorderThickness="7" HorizontalAlignment="Center" Margin="30" Click="OnFinishTurnClick">
+                <Button IsTabStop="False"  Grid.Row="1" Padding="0" Style="{StaticResource ThemeButton}"  Height="100" VerticalAlignment="Stretch" CornerRadius="5" BorderThickness="7" HorizontalAlignment="Center" Margin="30" Click="OnFinishTurnClick">
                     <TextBlock  TextAlignment="Center" VerticalAlignment="Center" Margin="20" FontSize="35"  Style="{StaticResource ThemeText}" Text="Finalizar Turno"/>
                 </Button>
 
                 <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0" HorizontalAlignment="Center">
-                    <Button   Click="{x:Bind GM.playClickedSound}" Background="Transparent" Margin="20 0" >
+                    <Button IsTabStop="False"    Click="{x:Bind GM.playClickedSound}" Background="Transparent" Margin="20 0" >
                         <StackPanel Orientation="Vertical">
                             <Image Source="/Assets/ui/mazoCartas.png" Width="100"/>
                             <Grid HorizontalAlignment="Right">
@@ -284,7 +284,7 @@
         </Viewbox>
 
         <!--Cartas-->
-        <Viewbox  Grid.Row="2" Grid.Column="2" XYFocusKeyboardNavigation="Enabled" >
+        <Viewbox  Grid.Row="2" Grid.Column="2" >
             <StackPanel  x:Name="Cards" XYFocusKeyboardNavigation="Enabled" Orientation="Horizontal"  VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
         </Viewbox>
 

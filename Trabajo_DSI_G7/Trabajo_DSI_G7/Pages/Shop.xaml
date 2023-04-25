@@ -78,7 +78,7 @@
                             </Grid>
                         </Grid>
                         <Viewbox Grid.Row="1" >
-                            <TextBlock Text="{x:Bind Name}" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource ThemeText}"  />
+                            <TextBlock Text="{x:Bind Name}" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource ThemeText2}"  />
                         </Viewbox>
 
                         <Grid Grid.Row="2">
@@ -92,7 +92,7 @@
                             </Viewbox>
                             <Viewbox Grid.Column="2">
                                 <TextBlock   HorizontalAlignment="Center" VerticalAlignment="Center" 
-                                Text="{x:Bind Price}" Style="{StaticResource ThemeText}" Visibility="{x:Bind ActiveDescripcion()}"></TextBlock>
+                                Text="{x:Bind Price}" Style="{StaticResource ThemeText2}" Visibility="{x:Bind ActiveDescripcion()}"></TextBlock>
                             </Viewbox>
                         </Grid>
                     </Grid>
@@ -123,8 +123,6 @@
         <Style  x:Key="Option" TargetType="Button">
             <Setter Property="BorderThickness" Value="3"/>
             <Setter Property="Background" Value="#FFBEBEBE"/>
-
-
         </Style>
     </Page.Resources>
 
@@ -205,7 +203,7 @@
                     >
                         <Viewbox>
 
-                            <TextBlock  TextAlignment="Center" VerticalAlignment="Center" FontSize="35"  Style="{StaticResource ThemeText}" Text="Cartas" />
+                            <TextBlock  TextAlignment="Center" VerticalAlignment="Center" FontSize="35"  Style="{StaticResource ThemeText2}" Text="Cartas" />
                         </Viewbox>
                     </Button>
                     <Button Grid.Row="3"
@@ -227,7 +225,7 @@
                     VerticalContentAlignment="Center"
                     Style="{StaticResource Option}">
                         <Viewbox>
-                            <TextBlock  TextAlignment="Center" VerticalAlignment="Center" FontSize="30"  Style="{StaticResource ThemeText}" Text="Esmeraldas" />
+                            <TextBlock  TextAlignment="Center" VerticalAlignment="Center" FontSize="30"  Style="{StaticResource ThemeText2}" Text="Esmeraldas" />
                         </Viewbox>
                     </Button>
 
@@ -331,11 +329,11 @@
                         <Rectangle Width="100" Height="100"   Fill="#FFAE8022" RadiusX="10" RadiusY="10" Stroke="Black"  HorizontalAlignment="Center" VerticalAlignment="Center"></Rectangle>
                         <Image  Source="{x:Bind Logic.ActPotion.Img.Source,Mode=OneWay}" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" Width="90" Height="90"></Image>
 
-                        <TextBlock Grid.Row="1" TextAlignment="Center" TextWrapping="Wrap" FontSize="30"  Style="{StaticResource ThemeText}" Text="{x:Bind Logic.ActPotion.Name,Mode=OneWay}"/>
+                        <TextBlock Grid.Row="1" TextAlignment="Center" TextWrapping="Wrap" FontSize="30"  Style="{StaticResource ThemeText2}" Text="{x:Bind Logic.ActPotion.Name,Mode=OneWay}"/>
 
                         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
-                            <TextBlock TextAlignment="Center" TextWrapping="Wrap" FontSize="30"  Style="{StaticResource ThemeText}" Text="{x:Bind Logic.ActPotion.Price,Mode=OneWay}"/>
-                            <TextBlock TextAlignment="Center" TextWrapping="Wrap" FontSize="30"  Style="{StaticResource ThemeText}" Text="/u"/>
+                            <TextBlock TextAlignment="Center" TextWrapping="Wrap" FontSize="30"  Style="{StaticResource ThemeText2}" Text="{x:Bind Logic.ActPotion.Price,Mode=OneWay}"/>
+                            <TextBlock TextAlignment="Center" TextWrapping="Wrap" FontSize="30"  Style="{StaticResource ThemeText2}" Text="/u"/>
                         </StackPanel>
 
 
@@ -353,8 +351,8 @@
                                 <RowDefinition Height="3*"/>
                                 <RowDefinition Height="6*"/>
                             </Grid.RowDefinitions>
-                            <TextBlock TextAlignment="Center" TextWrapping="Wrap" FontSize="30"  Style="{StaticResource ThemeText}" Text="Descripción"/>
-                            <TextBlock Grid.Row="1" TextAlignment="Center" TextWrapping="Wrap" FontSize="30"  Style="{StaticResource ThemeText}" Text="{x:Bind Logic.ActPotion.Description,Mode=OneWay}"/>
+                            <TextBlock TextAlignment="Center" TextWrapping="Wrap" FontSize="30"  Style="{StaticResource ThemeText2}" Text="Descripción"/>
+                            <TextBlock Grid.Row="1" TextAlignment="Center" TextWrapping="Wrap" FontSize="30"  Style="{StaticResource ThemeText2}" Text="{x:Bind Logic.ActPotion.Description,Mode=OneWay}"/>
                         </Grid>
 
                         <Grid Grid.Row="1">
@@ -374,7 +372,7 @@
                                     <FontIcon Glyph="&#xE949;" FontWeight="Bold" FontSize="25"/>
                                 </Button >
 
-                                <TextBlock Grid.Column="1"  TextAlignment="Center" VerticalAlignment="Top" FontSize="40"  Style="{StaticResource ThemeText}" Text="{x:Bind Logic.Num,Mode=OneWay}" />
+                                <TextBlock Grid.Column="1"  TextAlignment="Center" VerticalAlignment="Top" FontSize="40"  Style="{StaticResource ThemeText2}" Text="{x:Bind Logic.Num,Mode=OneWay}" />
                                 <Button Click="Add_Click" Grid.Column="2" CornerRadius="30" Width="45" Height="45" HorizontalAlignment="Left" VerticalAlignment="Top"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                                     <FontIcon  Glyph="&#xE948;" FontWeight="Bold" FontSize="25"/>
                                 </Button >
@@ -392,13 +390,13 @@
                                 </Viewbox>
                                 <Viewbox Grid.Column="2" HorizontalAlignment="Left">
                                     <TextBlock Margin="5" Grid.Column="2"  FontSize="20"  HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Start" 
-                                Text="{x:Bind Logic.Total,Mode=OneWay}" Style="{StaticResource ThemeText}"></TextBlock>
+                                Text="{x:Bind Logic.Total,Mode=OneWay}" Style="{StaticResource ThemeText2}"></TextBlock>
                                 </Viewbox>
                             </Grid>
 
                             <Button IsEnabled="{x:Bind Logic.CanBuy(),Mode=OneWay}" Click="Button_Click" Grid.Row="2"   Padding="0" Margin="50,10,20,0"  VerticalAlignment="Stretch"  Background="#cca035" CornerRadius="10" BorderBrush="#7f6321" BorderThickness="1,1,0,10"   HorizontalAlignment="Stretch" Grid.ColumnSpan="2">
 
-                                <TextBlock  TextAlignment="Center" VerticalAlignment="Center" FontSize="30"  Style="{StaticResource ThemeText}" Text="Comprar" />
+                                <TextBlock  TextAlignment="Center" VerticalAlignment="Center" FontSize="30"  Style="{StaticResource ThemeText2}" Text="Comprar" />
                             </Button>
                         </Grid>
                     </Grid>

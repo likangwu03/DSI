@@ -12,11 +12,7 @@
     <Page.Resources>
 
 
-        <Style x:Key="ThemeText" TargetType="TextBlock">
-            <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="FontFamily" Value="Times New Roman"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-        </Style>
+    
 
 
         <DataTemplate x:Key="SkillTemplate" x:DataType="Model:AbilityVM">
@@ -475,9 +471,9 @@
                     <TextBlock Grid.Row="2" TextAlignment="Left" TextWrapping="Wrap" FontSize="15"  Style="{StaticResource ThemeText2}" Text="{x:Bind Logic.ActAbility.Description,Mode=OneWay}"/>
                 </Grid>
 
-                <GridView Grid.Row="3" HorizontalAlignment="Center" Height="80" Visibility="{x:Bind Logic.ActAbility.EmeraldVisibility_(),Mode=OneWay}"
+                <GridView  Grid.Row="3" HorizontalAlignment="Center" Height="80" Visibility="{x:Bind Logic.ActAbility.EmeraldVisibility_(),Mode=OneWay}"
                           ItemsSource="{x:Bind Logic.ListaEmeralds() ,Mode=OneWay}" 
-                           ItemTemplate="{StaticResource Emerald_ItemTemplate}">
+                           ItemTemplate="{StaticResource Emerald_ItemTemplate}" >
                 </GridView>
 
                 <Button IsEnabled="{x:Bind Logic.CanUp(),Mode=OneWay}" Click="Mejorar_Button_Click" Grid.Row="4"   Padding="0" Margin="40,20,40,10"  VerticalAlignment="Stretch"  Background="#cca035" CornerRadius="10" BorderBrush="#7f6321" BorderThickness="1,1,0,10"   HorizontalAlignment="Stretch" Grid.ColumnSpan="2">
