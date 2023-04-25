@@ -644,15 +644,15 @@ namespace Trabajo_DSI_G7.Pages
 
         private void Page_KeyUp(object sender, KeyRoutedEventArgs e)
         {
-            if (e.Key == VirtualKey.GamepadLeftShoulder)
-            {
-                // Mimic Shift+Tab when user hits up arrow key.
-                FocusManager.TryMoveFocus(FocusNavigationDirection.Previous);
-            }
-            else if (e.Key == VirtualKey.GamepadRightShoulder)
-            {
-                // Mimic Tab when user hits down arrow key.
-                FocusManager.TryMoveFocus(FocusNavigationDirection.Next);
+            //if (e.Key == VirtualKey.GamepadLeftShoulder)
+            //{
+            //    // Mimic Shift+Tab when user hits up arrow key.
+            //    FocusManager.TryMoveFocus(FocusNavigationDirection.Previous);
+            //}
+            //else if (e.Key == VirtualKey.GamepadRightShoulder)
+            //{
+            //    // Mimic Tab when user hits down arrow key.
+            //    FocusManager.TryMoveFocus(FocusNavigationDirection.Next);
             }
             //if (e.OriginalKey == VirtualKey.GamepadLeftThumbstickRight)
             //{
@@ -677,29 +677,91 @@ namespace Trabajo_DSI_G7.Pages
             //    FocusManager.TryMoveFocus(FocusNavigationDirection.Previous);
             //    e.Handled = true;
             //}
-        }
+        
 
         private void Page_KeyDown(object sender, KeyRoutedEventArgs e)
         {
-            {
-                if (e.OriginalKey == VirtualKey.GamepadLeftThumbstickRight)
-                {
-                    FocusManager.TryMoveFocus(FocusNavigationDirection.Next);
-                    e.Handled = true;
 
-                }
-                else if (e.OriginalKey == VirtualKey.GamepadLeftThumbstickLeft)
-                {
-                    FocusManager.TryMoveFocus(FocusNavigationDirection.Previous);
-                    e.Handled = true;
-                }
+            if (e.OriginalKey == VirtualKey.GamepadLeftThumbstickRight)
+            {
+                FocusManager.TryMoveFocus(FocusNavigationDirection.Next);
+                e.Handled = true;
+
             }
+            else if (e.OriginalKey == VirtualKey.GamepadLeftThumbstickLeft)
+            {
+                FocusManager.TryMoveFocus(FocusNavigationDirection.Previous);
+                e.Handled = true;
+            }
+
 
 
         }
 
-        
-      
+
+
+        private void Top_Right_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.OriginalKey == VirtualKey.GamepadRightShoulder)
+            {
+                ContentControl Enem = FocusManager.FindFirstFocusableElement(Enemies) as ContentControl;
+                Enem.Focus(FocusState.Programmatic);
+            }
+            else if (e.OriginalKey == VirtualKey.GamepadLeftShoulder)
+            {
+                (FocusManager.FindFirstFocusableElement(Bottom_Buttons) as Button).Focus(FocusState.Programmatic);
+            }
+        }
+
+        private void Carts_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.OriginalKey == VirtualKey.GamepadRightShoulder)
+            {
+                (FocusManager.FindFirstFocusableElement(Bottom_Buttons) as Button).Focus(FocusState.Programmatic);
+            }
+            else if (e.OriginalKey == VirtualKey.GamepadLeftShoulder)
+            {
+                (FocusManager.FindFirstFocusableElement(Inventory) as Button).Focus(FocusState.Programmatic);
+            }
+        }
+
+        private void Enemies_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.OriginalKey == VirtualKey.GamepadRightShoulder)
+            {
+                (FocusManager.FindFirstFocusableElement(Inventory) as Button).Focus(FocusState.Programmatic);
+            }
+            else if (e.OriginalKey == VirtualKey.GamepadLeftShoulder)
+            {
+                (FocusManager.FindFirstFocusableElement(Top_Buttons) as Button).Focus(FocusState.Programmatic);
+            }
+        }
+
+        private void Bottom_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.OriginalKey == VirtualKey.GamepadRightShoulder)
+            {
+                (FocusManager.FindFirstFocusableElement(Top_Buttons) as Button).Focus(FocusState.Programmatic);
+            }
+            else if (e.OriginalKey == VirtualKey.GamepadLeftShoulder)
+            {
+                (FocusManager.FindFirstFocusableElement(Cards) as ContentControl).Focus(FocusState.Programmatic);
+            }
+        }
+
+        private void Inventory_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.OriginalKey == VirtualKey.GamepadRightShoulder)
+            {
+                (FocusManager.FindFirstFocusableElement(Cards) as ContentControl).Focus(FocusState.Programmatic);
+            }
+            else if (e.OriginalKey == VirtualKey.GamepadLeftShoulder)
+            {
+                ContentControl Enem = FocusManager.FindFirstFocusableElement(Enemies) as ContentControl;
+                Enem.Focus(FocusState.Programmatic);
+            }
+        }
+
 
         //private void MusicSliderValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         //{

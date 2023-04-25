@@ -76,8 +76,8 @@
 
         <!--SUP DR-->
 
-        <Viewbox  Grid.Column="5" Grid.Row="0">
-            <ScrollViewer TabFocusNavigation="Once" XYFocusKeyboardNavigation="Enabled">
+        <Viewbox KeyDown="Top_Right_KeyDown" Grid.Column="5" Grid.Row="0">
+            <ScrollViewer x:Name="Top_Buttons" TabFocusNavigation="Once" XYFocusKeyboardNavigation="Enabled">
                 <StackPanel Orientation="Horizontal"  Height="50" Width="161" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,27,10,0">
                     <Button  Width="50" Padding="0" Style="{StaticResource MainMenuButton}" Margin="30 0" PointerEntered="onButtonHolding" PointerExited="onButtonExit"  Click="{x:Bind GM.playClickedSound}" >
                         <Image x:Name="button_about" Source="/Assets/ui/button_yellow/button_about.png"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0"></Image>
@@ -95,7 +95,7 @@
 
 
         <!--INVENTARIO-->
-        <Viewbox  Grid.Row="1" Grid.Column="0">
+        <Viewbox KeyDown="Inventory_KeyDown" Grid.Row="1" Grid.Column="0" >
             <StackPanel x:Name="Inventory" Orientation="Vertical" Background="#f7bf50" CornerRadius="10"  Height="288" Width="96"  VerticalAlignment="Stretch" HorizontalAlignment="Left" Margin="50,0,0,0" >
                 <Grid>
                     <Button  Click="Potion_Click" x:Name="Potion1" Padding="0" Style="{StaticResource InventoryButton}">
@@ -212,7 +212,7 @@
         <!--Enemigos-->
 
 
-        <Viewbox  Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center">
+        <Viewbox KeyDown="Enemies_KeyDown"  Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center">
             <ScrollViewer>
 
                 <StackPanel TabFocusNavigation="Once" XYFocusKeyboardNavigation="Enabled" x:Name="Enemies" Orientation="Horizontal">
@@ -234,8 +234,8 @@
 
 
         <!--JUGAR-->
-        <Viewbox  VerticalAlignment="Bottom"  HorizontalAlignment="Right" Grid.Column="3" Grid.Row="1"  Grid.ColumnSpan="3" Grid.RowSpan="2">
-            <Grid Margin="0,0,40,0" TabFocusNavigation="Once" XYFocusKeyboardNavigation="Enabled" >
+        <Viewbox KeyDown="Bottom_KeyDown" VerticalAlignment="Bottom"  HorizontalAlignment="Right" Grid.Column="3" Grid.Row="1"  Grid.ColumnSpan="3" Grid.RowSpan="2">
+            <Grid x:Name="Bottom_Buttons" Margin="0,0,40,0"    >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="3*"/>
@@ -250,18 +250,18 @@
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
                     <Rectangle RadiusX="9" RadiusY="9" Fill="#ae7e20" Stroke="#f7bf50" StrokeDashArray="3,2" StrokeThickness="8"/>
-                    <Button IsTabStop="False"  Template="{StaticResource ReturnCardButton}" Background="#ad7e20" Padding="0"  BorderThickness="0" HorizontalAlignment="Left" Margin="8">
+                    <Button Template="{StaticResource ReturnCardButton}" Background="#ad7e20" Padding="0"  BorderThickness="0" HorizontalAlignment="Left" Margin="8">
                         <TextBlock  TextAlignment="Center" TextWrapping="Wrap" FontSize="35" Width="213"  Style="{StaticResource ThemeText}" Text="Deshacer Carta" Height="82"/>
                     </Button>
                 </Grid>
 
 
-                <Button IsTabStop="False"  Grid.Row="1" Padding="0" Style="{StaticResource ThemeButton}"  Height="100" VerticalAlignment="Stretch" CornerRadius="5" BorderThickness="7" HorizontalAlignment="Center" Margin="30" Click="OnFinishTurnClick">
+                <Button  Grid.Row="1" Padding="0" Style="{StaticResource ThemeButton}"  Height="100" VerticalAlignment="Stretch" CornerRadius="5" BorderThickness="7" HorizontalAlignment="Center" Margin="30" Click="OnFinishTurnClick">
                     <TextBlock  TextAlignment="Center" VerticalAlignment="Center" Margin="20" FontSize="35"  Style="{StaticResource ThemeText}" Text="Finalizar Turno"/>
                 </Button>
 
                 <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0" HorizontalAlignment="Center">
-                    <Button IsTabStop="False"    Click="{x:Bind GM.playClickedSound}" Background="Transparent" Margin="20 0" >
+                    <Button Click="{x:Bind GM.playClickedSound}" Background="Transparent" Margin="20 0" >
                         <StackPanel Orientation="Vertical">
                             <Image Source="/Assets/ui/mazoCartas.png" Width="100"/>
                             <Grid HorizontalAlignment="Right">
@@ -284,7 +284,7 @@
         </Viewbox>
 
         <!--Cartas-->
-        <Viewbox  Grid.Row="2" Grid.Column="2" >
+        <Viewbox KeyDown="Carts_KeyDown"  Grid.Row="2" Grid.Column="2" >
             <StackPanel  x:Name="Cards" XYFocusKeyboardNavigation="Enabled" Orientation="Horizontal"  VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
         </Viewbox>
 
