@@ -124,6 +124,7 @@ namespace Trabajo_DSI_G7.Game
         public void Mejorar_Button_Click(object sender, RoutedEventArgs e)
         {
             AbilityVM aux = ActAbility;
+            AbilityVM aux2;       
             ActAbility= AbilityList[0];
             aux.level++;
             foreach (AbilityEmerald a in aux.list)
@@ -139,11 +140,17 @@ namespace Trabajo_DSI_G7.Game
                     if (!aux.lines[i].Root)
                     {
                         aux.lines[i].active = true;
-                        AbilityList[aux.lines[i].id].lines[getOther(i)].active = true;
+                        aux2 = AbilityList[aux.lines[i].id];
+                        aux2.lines[getOther(i)].active = true;
+                        AbilityList[aux.lines[i].id] = null;
+                        AbilityList[aux.lines[i].id] = aux2;
                     }
                     else
                     {
-                        AbilityList[aux.lines[i].id].rootActive = true;
+                        aux2 = AbilityList[aux.lines[i].id];
+                        AbilityList[aux.lines[i].id] = null;
+                        aux2.rootActive = true;
+                        AbilityList[aux.lines[i].id] = aux2;
                     }
                 }
             }
