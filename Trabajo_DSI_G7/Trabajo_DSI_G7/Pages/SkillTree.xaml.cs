@@ -57,6 +57,7 @@ namespace Trabajo_DSI_G7.Pages
 
         private async void Ability_Click(object sender, RoutedEventArgs e)
         {
+           
             Logic.Ability_Click(sender, e);
             if (Logic.ActAbility.rootActive)
             {
@@ -96,9 +97,10 @@ namespace Trabajo_DSI_G7.Pages
             }
         }
 
-        private void Page_KeyDown(object sender, KeyRoutedEventArgs e)
+        private void ContentControl_GotFocus(object sender, RoutedEventArgs e)
         {
-
+            ContentControl O = sender as ContentControl;
+            ((((O.ContentTemplateRoot as Grid).Children[1] as Grid).Children[2] as Viewbox).Child as Button).Focus(FocusState.Programmatic);     
         }
     }
 }

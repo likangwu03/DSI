@@ -51,20 +51,6 @@
 
         </StackPanel>
 
-        <!--INF IZ-->
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="50"  XYFocusKeyboardNavigation="Enabled" TabFocusNavigation="Once">
-            <Button  Padding="0" Style="{StaticResource MainMenuButton}"  PointerEntered="onButtonHolding" PointerExited="onButtonExit"  Margin="20 0" Click="OnSkillTreeClick">
-                <Image x:Name="button_tree" Source="/Assets/ui/button_yellow/button_tree.png"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0"></Image>
-            </Button>
-            <Button  Padding="0" Style="{StaticResource MainMenuButton}" PointerEntered="onButtonHolding" PointerExited="onButtonExit" Margin="20 0" Click="OnShopClick" >
-                <Image x:Name="button_store" Source="/Assets/ui/button_yellow/button_store.png"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0"></Image>
-            </Button>
-            <Button  Padding="0" Style="{StaticResource MainMenuButton}" PointerEntered="onButtonHolding" PointerExited="onButtonExit" Margin="20 0" Click="{x:Bind GM.playClickedSound}">
-                <Image x:Name="button_star" Source="/Assets/ui/button_yellow/button_star.png"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0"></Image>
-            </Button>
-
-        </StackPanel>
-
         <!--JUGAR-->
         <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="50">
 
@@ -80,6 +66,21 @@
 
 
         </StackPanel>
+        
+        <!--INF IZ-->
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="50"  XYFocusKeyboardNavigation="Enabled" TabFocusNavigation="Once">
+            <Button  Padding="0" Style="{StaticResource MainMenuButton}"  PointerEntered="onButtonHolding" PointerExited="onButtonExit"  Margin="20 0" Click="OnSkillTreeClick">
+                <Image x:Name="button_tree" Source="/Assets/ui/button_yellow/button_tree.png"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0"></Image>
+            </Button>
+            <Button  Padding="0" Style="{StaticResource MainMenuButton}" PointerEntered="onButtonHolding" PointerExited="onButtonExit" Margin="20 0" Click="OnShopClick" >
+                <Image x:Name="button_store" Source="/Assets/ui/button_yellow/button_store.png"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0"></Image>
+            </Button>
+            <Button  Padding="0" Style="{StaticResource MainMenuButton}" PointerEntered="onButtonHolding" PointerExited="onButtonExit" Margin="20 0" Click="{x:Bind GM.playClickedSound}">
+                <Image x:Name="button_star" Source="/Assets/ui/button_yellow/button_star.png"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0"></Image>
+            </Button>
+
+        </StackPanel>
+
 
         <!--DIALOG-->
 

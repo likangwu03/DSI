@@ -147,19 +147,7 @@ namespace Trabajo_DSI_G7.Game
                     }
                 }
             }
-
             ActAbility = aux;
-            //ActAbility.lines[0].active = true;
-            //ActAbility.lines[1].active = true;
-            //ActAbility.lines[2].active = true;
-            //ActAbility.lines[3].active = true;
-
-            RaisePropertyChanged(nameof(ActAbility));
-            RaisePropertyChanged(nameof(CanUp));
-            RaisePropertyChanged(nameof(ListaEmeralds));
-            RaisePropertyChanged(nameof(EmeraldList));
-            RaisePropertyChanged(nameof(lineActive));
-            RaisePropertyChanged(nameof(abilityVM));
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Trabajo_DSI_G7.Models;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 
@@ -21,7 +22,7 @@ namespace Trabajo_DSI_G7.Game
             set
             {
                 Set(ref money_, value);
-                RaisePropertyChanged(nameof(money));
+                gm.money = money;
             }
         }
         public int actLife
@@ -30,7 +31,28 @@ namespace Trabajo_DSI_G7.Game
             set
             {
                 Set(ref actLife_, value);
-                RaisePropertyChanged(nameof(actLife));
+            }
+        }
+
+
+
+        private int num = 0;
+        public int Num
+        {
+            get { return num; }
+            set
+            {
+                Set(ref num, value);
+            }
+        }
+
+        private int total = 0;
+        public int Total
+        {
+            get { return total; }
+            set
+            {
+                Set(ref total, value);
             }
         }
 
@@ -55,6 +77,7 @@ namespace Trabajo_DSI_G7.Game
             {
                 Set(ref ActPotion_, value);
                 RaisePropertyChanged(nameof(ActPotion));
+                RaisePropertyChanged(nameof(PotionList));
             }
         }
 
@@ -70,21 +93,43 @@ namespace Trabajo_DSI_G7.Game
 
         public void Posion_ItemClick(object sender, ItemClickEventArgs e)
         {
+            Total = 0;
+            Num = 0;
+            RaisePropertyChanged(nameof(CanBuy));
             ContentControl O = FocusManager.GetFocusedElement() as ContentControl;
             ActPotion = O.Content as PotionVM;
         }
 
         public bool CanBuy()
         {
-            return ActPotion.Price < money;
+            return Total < money;
         }
 
         public void Buy_Posion()
         {
-            money -= ActPotion.Price;
-            ActPotion.Amount++;
-
+            money -= Total;
+            PotionList[ActPotion.Id] = null;
+            ActPotion.Amount += Num;
+            PotionList[ActPotion.Id] = ActPotion;
+            RaisePropertyChanged(nameof(CanBuy));
         }
-       
+
+
+        public void sub_ItemClick(object sender, RoutedEventArgs e)
+        {
+            if (Num > 1) Num--;
+            Total = Num * ActPotion.Price;
+            RaisePropertyChanged(nameof(CanBuy));
+        }
+
+        public void add_ItemClick(object sender, RoutedEventArgs e)
+        {
+            Num++;
+            Total = Num * ActPotion.Price;
+            RaisePropertyChanged(nameof(CanBuy));
+        }
+
+
+
     }
 }

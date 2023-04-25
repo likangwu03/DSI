@@ -64,5 +64,9 @@ namespace Trabajo_DSI_G7.Models
             return 0.4;
         }
 
+        public string P_Amount()
+        {
+            return Amount.ToString();
+        }
     }
 }

@@ -121,6 +121,11 @@ namespace Trabajo_DSI_G7.Models
             return 0;
         }
 
+        public bool Root()
+        {
+            return rootActive;
+        }
+
 
 
     }

@@ -37,7 +37,7 @@ namespace Trabajo_DSI_G7.Models
                 Description="..........",
                 Amount=3,
                 Attack=200,
-                Price=100,
+                Price=150,
             },
             new Potion() {
                 Id=2,
@@ -46,7 +46,7 @@ namespace Trabajo_DSI_G7.Models
                 Description="..........",
                 Amount=3,
                 Attack=100,
-                Price=100,
+                Price=170,
             },
             new Potion() {
                 Id=3,
@@ -55,7 +55,7 @@ namespace Trabajo_DSI_G7.Models
                 Description="..........",
                 Amount=0,
                 Attack=100,
-                Price=100,
+                Price=120,
             },
             new Potion() {
                 Id=4,

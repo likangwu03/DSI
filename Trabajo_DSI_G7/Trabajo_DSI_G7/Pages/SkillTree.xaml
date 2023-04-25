@@ -8,27 +8,8 @@
     mc:Ignorable="d"
      xmlns:Model="using:Trabajo_DSI_G7.Models"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-    KeyDown="Page_KeyDown" KeyUp="Page_KeyUp">
+    KeyUp="Page_KeyUp">
     <Page.Resources>
-
-        <Style x:Key="BackButton" TargetType="Button">
-            <Setter Property="BorderThickness" Value="5" />
-            <Setter Property="Background" Value="#555555" />
-            <Setter Property="BorderBrush" Value="#ffc956"/>
-            <Setter Property="CornerRadius" Value="30"/>
-
-            <Setter Property="Content" Value="X" />
-            <Setter Property="FontSize" Value="30"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Foreground" Value="#ffc956" />
-        </Style>
-
-        <Style x:Key="ThemeText" TargetType="TextBlock">
-            <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="FontFamily" Value="Times New Roman"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-        </Style>
-
 
         <DataTemplate x:Key="SkillTemplate" x:DataType="Model:AbilityVM">
             <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -70,7 +51,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="5*"/>
                         <RowDefinition Height="20*"/>
-                        <RowDefinition Height="5*"/>
+                        <RowDefinition Height="8*"/>
                     </Grid.RowDefinitions>
                     <Viewbox Grid.Column="1" Grid.Row="1">
                         <Rectangle Width="25" Height="25"  Fill="#FF5D5D5D" Stroke="#FF7C7C7C" StrokeThickness="2" FocusVisualPrimaryBrush="#FF5D5D5D" VerticalAlignment="Center" HorizontalAlignment="Center"></Rectangle>
@@ -95,7 +76,6 @@
             </Grid>
         </DataTemplate>
 
-
         <DataTemplate x:Key="Emerald_ItemTemplate"
                       x:DataType="Model:AbilityEmerald" >
             <Grid VerticalAlignment="Center"  Width="80" Height="80">
@@ -108,16 +88,14 @@
                 <Image  Source="{x:Bind emeraldVM.Img.Source}" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" Width="35" Height="35"></Image>
 
                 <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
-                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" FontSize="25"  Style="{StaticResource ThemeText}" Text="{x:Bind emeraldVM.Amount,Mode=OneWay}" Visibility="{x:Bind Text1(),Mode=OneWay}"/>
-                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" FontSize="25"  Style="{StaticResource ThemeText}" Text="{x:Bind emeraldVM.Amount,Mode=OneWay}" Foreground="#FF690606"  Visibility="{x:Bind Text2(),Mode=OneWay}"/>
-                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" FontSize="25"  Style="{StaticResource ThemeText}" Text="/"/>
-                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" FontSize="25"  Style="{StaticResource ThemeText}" Text="{x:Bind cost}"/>
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" FontSize="25"  Style="{StaticResource ThemeText2}" Text="{x:Bind emeraldVM.Amount,Mode=OneWay}" Visibility="{x:Bind Text1(),Mode=OneWay}"/>
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" FontSize="25"  Style="{StaticResource ThemeText2}" Text="{x:Bind emeraldVM.Amount,Mode=OneWay}" Foreground="#FF690606"  Visibility="{x:Bind Text2(),Mode=OneWay}"/>
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" FontSize="25"  Style="{StaticResource ThemeText2}" Text="/"/>
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" FontSize="25"  Style="{StaticResource ThemeText2}" Text="{x:Bind cost}"/>
                 </StackPanel>
             </Grid >
 
         </DataTemplate>
-
-
 
     </Page.Resources>
     <Grid>
@@ -196,26 +174,25 @@
                             <RowDefinition Height="1*"/>
                             <RowDefinition Height="1*"/>
                         </Grid.RowDefinitions>
-                        <ContentControl Grid.Column="{x:Bind Logic.AbilityList[0].Col}" Grid.Row="{x:Bind Logic.AbilityList[0].Row}" DataContext="{x:Bind Logic.abilityVM(0),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
-                        <ContentControl Grid.Column="{x:Bind Logic.AbilityList[1].Col}" Grid.Row="{x:Bind Logic.AbilityList[1].Row}" DataContext="{x:Bind Logic.abilityVM(1),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
-                        <ContentControl Grid.Column="{x:Bind Logic.AbilityList[2].Col}" Grid.Row="{x:Bind Logic.AbilityList[2].Row}" DataContext="{x:Bind Logic.abilityVM(2),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
-                        <ContentControl Grid.Column="{x:Bind Logic.AbilityList[3].Col}" Grid.Row="{x:Bind Logic.AbilityList[3].Row}" DataContext="{x:Bind Logic.abilityVM(3),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
-                        <ContentControl Grid.Column="{x:Bind Logic.AbilityList[4].Col}" Grid.Row="{x:Bind Logic.AbilityList[4].Row}" DataContext="{x:Bind Logic.abilityVM(4),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
-                        <ContentControl Grid.Column="{x:Bind Logic.AbilityList[5].Col}" Grid.Row="{x:Bind Logic.AbilityList[5].Row}" DataContext="{x:Bind Logic.abilityVM(5),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
-                        <ContentControl Grid.Column="{x:Bind Logic.AbilityList[6].Col}" Grid.Row="{x:Bind Logic.AbilityList[6].Row}" DataContext="{x:Bind Logic.abilityVM(6),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
-                        <ContentControl Grid.Column="{x:Bind Logic.AbilityList[7].Col}" Grid.Row="{x:Bind Logic.AbilityList[7].Row}" DataContext="{x:Bind Logic.abilityVM(7),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
-                        <ContentControl Grid.Column="{x:Bind Logic.AbilityList[8].Col}" Grid.Row="{x:Bind Logic.AbilityList[8].Row}" DataContext="{x:Bind Logic.abilityVM(8),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
-                        <ContentControl Grid.Column="{x:Bind Logic.AbilityList[9].Col}" Grid.Row="{x:Bind Logic.AbilityList[9].Row}" DataContext="{x:Bind Logic.abilityVM(9),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
-                        <ContentControl Grid.Column="{x:Bind Logic.AbilityList[10].Col}" Grid.Row="{x:Bind Logic.AbilityList[10].Row}" DataContext="{x:Bind Logic.abilityVM(10),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
-                        <ContentControl Grid.Column="{x:Bind Logic.AbilityList[11].Col}" Grid.Row="{x:Bind Logic.AbilityList[11].Row}" DataContext="{x:Bind Logic.abilityVM(11),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
-                        <ContentControl Grid.Column="{x:Bind Logic.AbilityList[12].Col}" Grid.Row="{x:Bind Logic.AbilityList[12].Row}" DataContext="{x:Bind Logic.abilityVM(12),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
-                        <ContentControl Grid.Column="{x:Bind Logic.AbilityList[13].Col}" Grid.Row="{x:Bind Logic.AbilityList[13].Row}" DataContext="{x:Bind Logic.abilityVM(13),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
-                        <ContentControl Grid.Column="{x:Bind Logic.AbilityList[14].Col}" Grid.Row="{x:Bind Logic.AbilityList[14].Row}" DataContext="{x:Bind Logic.abilityVM(14),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
-                        <ContentControl Grid.Column="{x:Bind Logic.AbilityList[15].Col}" Grid.Row="{x:Bind Logic.AbilityList[15].Row}" DataContext="{x:Bind Logic.abilityVM(15),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
-                        <ContentControl Grid.Column="{x:Bind Logic.AbilityList[16].Col}" Grid.Row="{x:Bind Logic.AbilityList[16].Row}" DataContext="{x:Bind Logic.abilityVM(16),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
-                        <ContentControl Grid.Column="{x:Bind Logic.AbilityList[17].Col}" Grid.Row="{x:Bind Logic.AbilityList[17].Row}" DataContext="{x:Bind Logic.abilityVM(17),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
-                        <ContentControl Grid.Column="{x:Bind Logic.AbilityList[18].Col}" Grid.Row="{x:Bind Logic.AbilityList[18].Row}" DataContext="{x:Bind Logic.abilityVM(18),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}"></ContentControl>
-                                                                                                         
+                        <ContentControl IsTabStop="False" Grid.Column="{x:Bind Logic.AbilityList[0].Col}" Grid.Row="{x:Bind Logic.AbilityList[0].Row}" DataContext="{x:Bind Logic.abilityVM(0),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}" UseSystemFocusVisuals="True" IsEnabled="{x:Bind Logic.AbilityList[0].Root(),Mode=OneWay}"></ContentControl>
+                        <ContentControl IsTabStop="False" Grid.Column="{x:Bind Logic.AbilityList[1].Col}" Grid.Row="{x:Bind Logic.AbilityList[1].Row}" DataContext="{x:Bind Logic.abilityVM(1),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}" UseSystemFocusVisuals="True" IsEnabled="{x:Bind Logic.AbilityList[1].Root(),Mode=OneWay}"></ContentControl>
+                        <ContentControl IsTabStop="False" Grid.Column="{x:Bind Logic.AbilityList[2].Col}" Grid.Row="{x:Bind Logic.AbilityList[2].Row}" DataContext="{x:Bind Logic.abilityVM(2),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}" UseSystemFocusVisuals="True" IsEnabled="{x:Bind Logic.AbilityList[2].Root(),Mode=OneWay}"></ContentControl>
+                        <ContentControl IsTabStop="False" Grid.Column="{x:Bind Logic.AbilityList[3].Col}" Grid.Row="{x:Bind Logic.AbilityList[3].Row}" DataContext="{x:Bind Logic.abilityVM(3),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}" UseSystemFocusVisuals="True" IsEnabled="{x:Bind Logic.AbilityList[3].Root(),Mode=OneWay}"></ContentControl>
+                        <ContentControl IsTabStop="False" Grid.Column="{x:Bind Logic.AbilityList[4].Col}" Grid.Row="{x:Bind Logic.AbilityList[4].Row}" DataContext="{x:Bind Logic.abilityVM(4),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}" UseSystemFocusVisuals="True" IsEnabled="{x:Bind Logic.AbilityList[4].Root(),Mode=OneWay}"></ContentControl>
+                        <ContentControl IsTabStop="False" Grid.Column="{x:Bind Logic.AbilityList[5].Col}" Grid.Row="{x:Bind Logic.AbilityList[5].Row}" DataContext="{x:Bind Logic.abilityVM(5),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}" UseSystemFocusVisuals="True" IsEnabled="{x:Bind Logic.AbilityList[5].Root(),Mode=OneWay}"></ContentControl>
+                        <ContentControl IsTabStop="False" Grid.Column="{x:Bind Logic.AbilityList[6].Col}" Grid.Row="{x:Bind Logic.AbilityList[6].Row}" DataContext="{x:Bind Logic.abilityVM(6),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}" UseSystemFocusVisuals="True" IsEnabled="{x:Bind Logic.AbilityList[6].Root(),Mode=OneWay}"></ContentControl>
+                        <ContentControl IsTabStop="False" Grid.Column="{x:Bind Logic.AbilityList[7].Col}" Grid.Row="{x:Bind Logic.AbilityList[7].Row}" DataContext="{x:Bind Logic.abilityVM(7),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}" UseSystemFocusVisuals="True" IsEnabled="{x:Bind Logic.AbilityList[7].Root(),Mode=OneWay}"></ContentControl>
+                        <ContentControl IsTabStop="False" Grid.Column="{x:Bind Logic.AbilityList[8].Col}" Grid.Row="{x:Bind Logic.AbilityList[8].Row}" DataContext="{x:Bind Logic.abilityVM(8),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}" UseSystemFocusVisuals="True" IsEnabled="{x:Bind Logic.AbilityList[8].Root(),Mode=OneWay}"></ContentControl>
+                        <ContentControl IsTabStop="False" Grid.Column="{x:Bind Logic.AbilityList[9].Col}" Grid.Row="{x:Bind Logic.AbilityList[9].Row}" DataContext="{x:Bind Logic.abilityVM(9),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}" UseSystemFocusVisuals="True" IsEnabled="{x:Bind Logic.AbilityList[9].Root(),Mode=OneWay}"></ContentControl>
+                        <ContentControl IsTabStop="False" Grid.Column="{x:Bind Logic.AbilityList[10].Col}" Grid.Row="{x:Bind Logic.AbilityList[10].Row}" DataContext="{x:Bind Logic.abilityVM(10),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}"  UseSystemFocusVisuals="True" IsEnabled="{x:Bind Logic.AbilityList[10].Root(),Mode=OneWay}"></ContentControl>
+                        <ContentControl IsTabStop="False" Grid.Column="{x:Bind Logic.AbilityList[11].Col}" Grid.Row="{x:Bind Logic.AbilityList[11].Row}" DataContext="{x:Bind Logic.abilityVM(11),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}"  UseSystemFocusVisuals="True" IsEnabled="{x:Bind Logic.AbilityList[11].Root(),Mode=OneWay}"></ContentControl>
+                        <ContentControl IsTabStop="False" Grid.Column="{x:Bind Logic.AbilityList[12].Col}" Grid.Row="{x:Bind Logic.AbilityList[12].Row}" DataContext="{x:Bind Logic.abilityVM(12),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}"  UseSystemFocusVisuals="True" IsEnabled="{x:Bind Logic.AbilityList[12].Root(),Mode=OneWay}"></ContentControl>
+                        <ContentControl IsTabStop="False" Grid.Column="{x:Bind Logic.AbilityList[13].Col}" Grid.Row="{x:Bind Logic.AbilityList[13].Row}" DataContext="{x:Bind Logic.abilityVM(13),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}"  UseSystemFocusVisuals="True" IsEnabled="{x:Bind Logic.AbilityList[13].Root(),Mode=OneWay}"></ContentControl>
+                        <ContentControl IsTabStop="False" Grid.Column="{x:Bind Logic.AbilityList[14].Col}" Grid.Row="{x:Bind Logic.AbilityList[14].Row}" DataContext="{x:Bind Logic.abilityVM(14),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}"  UseSystemFocusVisuals="True" IsEnabled="{x:Bind Logic.AbilityList[14].Root(),Mode=OneWay}"></ContentControl>
+                        <ContentControl IsTabStop="False" Grid.Column="{x:Bind Logic.AbilityList[15].Col}" Grid.Row="{x:Bind Logic.AbilityList[15].Row}" DataContext="{x:Bind Logic.abilityVM(15),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}"  UseSystemFocusVisuals="True" IsEnabled="{x:Bind Logic.AbilityList[15].Root(),Mode=OneWay}"></ContentControl>
+                        <ContentControl IsTabStop="False" Grid.Column="{x:Bind Logic.AbilityList[16].Col}" Grid.Row="{x:Bind Logic.AbilityList[16].Row}" DataContext="{x:Bind Logic.abilityVM(16),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}"  UseSystemFocusVisuals="True" IsEnabled="{x:Bind Logic.AbilityList[16].Root(),Mode=OneWay}"></ContentControl>
+                        <ContentControl IsTabStop="False" Grid.Column="{x:Bind Logic.AbilityList[17].Col}" Grid.Row="{x:Bind Logic.AbilityList[17].Row}" DataContext="{x:Bind Logic.abilityVM(17),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}"  UseSystemFocusVisuals="True" IsEnabled="{x:Bind Logic.AbilityList[17].Root(),Mode=OneWay}"></ContentControl>
+                        <ContentControl IsTabStop="False" Grid.Column="{x:Bind Logic.AbilityList[18].Col}" Grid.Row="{x:Bind Logic.AbilityList[18].Row}" DataContext="{x:Bind Logic.abilityVM(18),Mode=OneWay}" ContentTemplate="{StaticResource SkillTemplate}"  UseSystemFocusVisuals="True" IsEnabled="{x:Bind Logic.AbilityList[18].Root(),Mode=OneWay}"></ContentControl>
                         <Grid Grid.Row="2" Grid.Column="1">
                             <Viewbox>
                                 <Grid>
@@ -469,7 +446,7 @@
                     </Grid.ColumnDefinitions>
                     <Rectangle Width="90" Height="90"  Fill="White" FocusVisualPrimaryBrush="#FF5D5D5D" VerticalAlignment="Center" HorizontalAlignment="Center"></Rectangle>
                     <Image  Source="{x:Bind Logic.ActAbility.Img.Source,Mode=TwoWay}" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Height="80"></Image>
-                    <TextBlock Grid.Column="1" TextAlignment="Center" TextWrapping="Wrap" FontSize="30"  Style="{StaticResource ThemeText}" Text="{x:Bind Logic.ActAbility.Name}"/>
+                    <TextBlock Grid.Column="1" TextAlignment="Center" TextWrapping="Wrap" FontSize="30"  Style="{StaticResource ThemeText2}" Text="{x:Bind Logic.ActAbility.Name}"/>
                     <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" >
                         <TextBlock Text="{x:Bind Logic.ActAbility.level,Mode=OneWay}" Style="{StaticResource ThemeText}" FontSize="30"  />
 
@@ -485,8 +462,8 @@
                         <RowDefinition Height="3*"/>
                         <RowDefinition Height="6*"/>
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="1" TextAlignment="Left" TextWrapping="Wrap" FontSize="20"  Style="{StaticResource ThemeText}" Text="Descripción"/>
-                    <TextBlock Grid.Row="2" TextAlignment="Left" TextWrapping="Wrap" FontSize="15"  Style="{StaticResource ThemeText}" Text="{x:Bind Logic.ActAbility.Description,Mode=OneWay}"/>
+                    <TextBlock Grid.Row="1" TextAlignment="Left" TextWrapping="Wrap" FontSize="20"  Style="{StaticResource ThemeText2}" Text="Descripción"/>
+                    <TextBlock Grid.Row="2" TextAlignment="Left" TextWrapping="Wrap" FontSize="15"  Style="{StaticResource ThemeText2}" Text="{x:Bind Logic.ActAbility.Description,Mode=OneWay}"/>
                 </Grid>
 
                 <GridView Grid.Row="3" HorizontalAlignment="Center" Height="80" Visibility="{x:Bind Logic.ActAbility.EmeraldVisibility_(),Mode=OneWay}"
@@ -495,7 +472,7 @@
                 </GridView>
 
                 <Button IsEnabled="{x:Bind Logic.CanUp(),Mode=OneWay}" Click="Mejorar_Button_Click" Grid.Row="4"   Padding="0" Margin="40,20,40,10"  VerticalAlignment="Stretch"  Background="#cca035" CornerRadius="10" BorderBrush="#7f6321" BorderThickness="1,1,0,10"   HorizontalAlignment="Stretch" Grid.ColumnSpan="2">
-                    <TextBlock  TextAlignment="Center" VerticalAlignment="Center" FontSize="30"  Style="{StaticResource ThemeText}" Text="Mejorar" />
+                    <TextBlock  TextAlignment="Center" VerticalAlignment="Center" FontSize="30"  Style="{StaticResource ThemeText2}" Text="Mejorar" />
                 </Button>
 
 
@@ -503,13 +480,5 @@
 
             </Grid>
         </ContentDialog>
-
-
-        <!--<GridView 
-            HorizontalAlignment="Center" VerticalAlignment="Center"
-            ItemsSource="{x:Bind Logic.ActAbility.list }" 
-            ItemTemplate="{StaticResource Emerald_ItemTemplate}">
-        </GridView>-->
-
     </Grid>
 </Page>

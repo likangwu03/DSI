@@ -87,15 +87,22 @@ namespace Trabajo_DSI_G7.Pages
             }
         }
 
-        private void Page_KeyDown(object sender, KeyRoutedEventArgs e)
-        {
-
-        }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+
             Logic.Buy_Posion();
             gm.playClickedSound();
+        }
+
+        private void Add_Click(object sender, RoutedEventArgs e)
+        {
+            Logic.add_ItemClick(sender, e);
+            gm.playHoverSound();
+        }
+        private void Sub_Click(object sender, RoutedEventArgs e)
+        {
+            Logic.sub_ItemClick(sender, e);
+            gm.playHoverSound();
         }
     }
 }

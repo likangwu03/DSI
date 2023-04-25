@@ -285,6 +285,13 @@
             <Setter Property="FontFamily" Value="Times New Roman"/>
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
+
+        <Style x:Key="ThemeText2" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
         <Style x:Key="MainMenuButton" TargetType="Button">
             <Setter Property="Width" Value="50"/>
             <Setter Property="CornerRadius" Value="10"/>
