@@ -93,6 +93,7 @@ namespace Trabajo_DSI_G7.Pages
         int actMagic;
         int actLife;
         ContentControl selectedCard;
+        Button selectedPotion;
 
         GameManager GM = null;
         public InGame()
@@ -115,6 +116,7 @@ namespace Trabajo_DSI_G7.Pages
         void restartGame()
         {
             selectedCard = null;
+            selectedPotion = null;
             Cards.Children.Clear();
             GM.copyCards(unusedCards);
             reinicializeEnemies();
@@ -273,14 +275,28 @@ namespace Trabajo_DSI_G7.Pages
             switch (e.OriginalKey)
             {
                 case VirtualKey.GamepadA:
-                    if (selectedCard == null) return;
-                    useCard(selectedCard);
-                    selectedCard = null;
+                    if (selectedCard != null)
+                    {
+                        useCard(selectedCard);
+                        selectedCard = null;
+                    }
+                    else if (selectedPotion != null)
+                    {
+                        usePotion(selectedPotion, (sender as ContentControl).Content as StackPanel);
+                        selectedPotion = null;
+                    }
                     break;
                 case VirtualKey.GamepadB:
-                    if (selectedCard == null) return;
-                    (sender as ContentControl).Focus(FocusState.Unfocused);
-                    selectedCard = null;
+                    if (selectedCard != null)
+                    {
+                        (sender as ContentControl).Focus(FocusState.Unfocused);
+                        selectedCard = null;
+                    }
+                    if (selectedPotion != null)
+                    {
+                        (sender as ContentControl).Focus(FocusState.Unfocused);
+                        selectedPotion = null;
+                    }
                     break;
 
             }
@@ -334,8 +350,27 @@ namespace Trabajo_DSI_G7.Pages
                 (stackPanel.Children[1] as ProgressBar).Value = enemy.ActLife;
                 (stackPanel.Children[2] as TextBlock).Text = $"{enemy.ActLife} / {enemy.MaxLife}";
             }
+            selectedPotion = null;
 
         } //Button es del inventario y Stackpanel,contenedor de enemigo
+
+        private void Potion_Click(object sender, RoutedEventArgs e)
+        {
+            selectedPotion = sender as Button; //pocion elegida
+            ContentControl Enem = FocusManager.FindFirstFocusableElement(Enemies) as ContentControl;
+            Enem.Focus(FocusState.Programmatic);
+        }
+
+        //private void Potion_KeyDown(object sender, KeyRoutedEventArgs e)
+        //{
+        //    var a = e;
+        //    if (e.OriginalKey == VirtualKey.GamepadA)
+        //    {
+        //        selectedPotion = sender as Button; //pocion elegida
+        //        ContentControl Enem = FocusManager.FindFirstFocusableElement(Enemies) as ContentControl;
+        //        Enem.Focus(FocusState.Programmatic);
+        //    }
+        //}
 
         //CARTAS..............................................................................................
         private void inicializeCard()
@@ -352,7 +387,6 @@ namespace Trabajo_DSI_G7.Pages
         //usar una carta
         private void useCard(ContentControl CC) //CC es la carta
         {
-
             CardVM card = usingCards[Cards.Children.IndexOf(CC)];
 
             //Comprueba y actualiza Energía/Magia
@@ -504,23 +538,11 @@ namespace Trabajo_DSI_G7.Pages
         //pasar foco de carta a enemigo
         private void CC_KeyDown(object sender, KeyRoutedEventArgs e)
         {
-            if (e.OriginalKey == VirtualKey.GamepadX)
-            {
-
-                // Mimic Shift+Tab when user hits up arrow key.
-                FocusManager.TryMoveFocus(FocusNavigationDirection.Up);
-            }
-            else if (e.OriginalKey == VirtualKey.GamepadA)
+          if (e.OriginalKey == VirtualKey.GamepadA)
             {
                 selectedCard = sender as ContentControl; //carta elegida
                 ContentControl Enem = FocusManager.FindFirstFocusableElement(Enemies) as ContentControl;
                 Enem.Focus(FocusState.Programmatic);
-                //Enem.FocusEngaged+=
-                //  ((((Enem.Content as StackPanel)?.Children[0] as StackPanel)?.Children[1] as Grid)?.Children[0] as Ellipse).Visibility = Visibility.Visible;
-                // Focus(FocusState.Programmatic);
-                //await FocusManager.TryFocusAsync(Enemies, FocusState.Programmatic);
-                // Mimic Tab when user hits down arrow key.
-                // FocusManager.TryMoveFocus(FocusNavigationDirection.Next);
             }
         }
 
@@ -547,7 +569,7 @@ namespace Trabajo_DSI_G7.Pages
             addToUsedCard();
             addNewCards();
             //Reiniciar Energía
-            Energy.Foreground = new SolidColorBrush(Colors.White); 
+            Energy.Foreground = new SolidColorBrush(Colors.White);
             Magic.Foreground = new SolidColorBrush(Colors.White);
             actEnergy = GM.maxEnergy;
             Energy.Text = $"{actEnergy}/{GM.maxEnergy}";
@@ -632,16 +654,16 @@ namespace Trabajo_DSI_G7.Pages
                 // Mimic Tab when user hits down arrow key.
                 FocusManager.TryMoveFocus(FocusNavigationDirection.Next);
             }
-            if (e.OriginalKey == VirtualKey.GamepadLeftThumbstickRight)
-            {
-                // Mimic Shift+Tab when user hits up arrow key.
-                FocusManager.TryMoveFocus(FocusNavigationDirection.Next);
-            }
-            else if (e.OriginalKey == VirtualKey.GamepadLeftThumbstickLeft)
-            {
-                // Mimic Tab when user hits down arrow key.
-                FocusManager.TryMoveFocus(FocusNavigationDirection.Previous);
-            }
+            //if (e.OriginalKey == VirtualKey.GamepadLeftThumbstickRight)
+            //{
+            //    // Mimic Shift+Tab when user hits up arrow key.
+            //    FocusManager.TryMoveFocus(FocusNavigationDirection.Next);
+            //}
+            //else if (e.OriginalKey == VirtualKey.GamepadLeftThumbstickLeft)
+            //{
+            //    // Mimic Tab when user hits down arrow key.
+            //    FocusManager.TryMoveFocus(FocusNavigationDirection.Previous);
+            //}
             //if (e.OriginalKey == VirtualKey.GamepadLeftThumbstickRight)
             //{
             //    // Mimic Shift+Tab when user hits up arrow key.
@@ -662,14 +684,12 @@ namespace Trabajo_DSI_G7.Pages
             {
                 if (e.OriginalKey == VirtualKey.GamepadLeftThumbstickRight)
                 {
-                    // Mimic Shift+Tab when user hits up arrow key.
                     FocusManager.TryMoveFocus(FocusNavigationDirection.Next);
                     e.Handled = true;
 
                 }
                 else if (e.OriginalKey == VirtualKey.GamepadLeftThumbstickLeft)
                 {
-                    // Mimic Tab when user hits down arrow key.
                     FocusManager.TryMoveFocus(FocusNavigationDirection.Previous);
                     e.Handled = true;
                 }
@@ -677,6 +697,9 @@ namespace Trabajo_DSI_G7.Pages
 
 
         }
+
+        
+      
 
         //private void MusicSliderValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         //{

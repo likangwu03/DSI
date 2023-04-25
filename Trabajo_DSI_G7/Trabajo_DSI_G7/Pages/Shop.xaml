@@ -13,14 +13,6 @@
 
     <Page.Resources>
 
-        <Style x:Key="ThemeText" TargetType="TextBlock">
-            <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="FontFamily" Value="Times New Roman"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-        </Style>
-
-
-
         <DataTemplate x:Key="PotionItemTemplate"
                       x:DataType="Model:PotionVM">
             <local:AspectContentControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" IsEnabled="{x:Bind Active_()}">

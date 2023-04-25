@@ -98,7 +98,7 @@
         <Viewbox  Grid.Row="1" Grid.Column="0">
             <StackPanel TabFocusNavigation="Once" XYFocusKeyboardNavigation="Enabled" x:Name="Inventory" Orientation="Vertical" Background="#f7bf50" CornerRadius="10"  Height="288" Width="96"  VerticalAlignment="Stretch" HorizontalAlignment="Left" Margin="50,0,0,0" >
                 <Grid>
-                    <Button x:Name="Potion1" Padding="0" Style="{StaticResource InventoryButton}">
+                    <Button  Click="Potion_Click" x:Name="Potion1" Padding="0" Style="{StaticResource InventoryButton}">
                         <Image x:Name="Potion1Image" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10" CanDrag="True" DragStarting="PotionDragStarting"></Image>
                         <Button.Resources>
                             <ResourceDictionary>
@@ -117,7 +117,7 @@
                 </Grid>
                 <Grid>
 
-                    <Button  x:Name="Potion2" Padding="0" Style="{StaticResource InventoryButton}" >
+                    <Button  Click="Potion_Click" x:Name="Potion2" Padding="0" Style="{StaticResource InventoryButton}" >
                         <Button.Resources>
                             <ResourceDictionary>
                                 <ResourceDictionary.ThemeDictionaries>
@@ -135,7 +135,7 @@
                     </Grid>
                 </Grid>
                 <Grid>
-                    <Button x:Name="Potion3" Padding="0" Style="{StaticResource InventoryButton}"  >
+                    <Button  x:Name="Potion3" Padding="0" Style="{StaticResource InventoryButton}"  >
                         <Button.Resources>
                             <ResourceDictionary>
                                 <ResourceDictionary.ThemeDictionaries>
