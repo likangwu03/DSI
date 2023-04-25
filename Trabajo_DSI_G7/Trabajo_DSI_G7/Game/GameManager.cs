@@ -22,7 +22,6 @@ namespace Trabajo_DSI_G7.Game
         public ObservableCollection<EmeraldVM> EmeraldList { get; } = new ObservableCollection<EmeraldVM>(); //de la lista
 
         private MediaPlayer music { get; set; }
-        public MediaPlayer buttonHoverSound { get; set; }
         public MediaPlayer buttonClickedSound { get; set; }
 
         public double musicVolume
@@ -36,10 +35,9 @@ namespace Trabajo_DSI_G7.Game
         }
         public double soundVolume
         {
-            get { return buttonHoverSound.Volume * 100; }
+            get { return buttonClickedSound.Volume * 100; }
             set
             {
-                buttonHoverSound.Volume = value / 100;
                 buttonClickedSound.Volume = value / 100;
                 RaisePropertyChanged(nameof(soundVolume));
             }
@@ -81,10 +79,6 @@ namespace Trabajo_DSI_G7.Game
 
             buttonClickedSound = new MediaPlayer();
             buttonClickedSound.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/sonidos/02_chest_close_3.wav"));
-
-            buttonHoverSound = new MediaPlayer();
-            buttonHoverSound.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/sonidos/select.mp3"));
-
             soundVolume = 50;
         }
 
@@ -176,10 +170,7 @@ namespace Trabajo_DSI_G7.Game
         {
             buttonClickedSound.Play();
         }
-        public void playHoverSound()
-        {
-            buttonHoverSound.Play();
-        }
+      
 
     }
 }

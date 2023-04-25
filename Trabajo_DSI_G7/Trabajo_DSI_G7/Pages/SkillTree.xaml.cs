@@ -87,13 +87,11 @@ namespace Trabajo_DSI_G7.Pages
             {
                 // Mimic Shift+Tab when user hits up arrow key.
                 FocusManager.TryMoveFocus(FocusNavigationDirection.Previous);
-                gm.playHoverSound();
             }
             else if (e.Key == VirtualKey.GamepadRightShoulder)
             {
                 // Mimic Tab when user hits down arrow key.
                 FocusManager.TryMoveFocus(FocusNavigationDirection.Next);
-                gm.playHoverSound();
             }
         }
 

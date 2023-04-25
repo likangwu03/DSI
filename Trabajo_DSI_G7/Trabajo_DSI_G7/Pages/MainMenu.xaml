@@ -100,9 +100,7 @@
         
 
 
-        <!--DIALOG-->
-
-
+        <!--Menú de opciones-->
         <ContentDialog x:Name="MainMenuOptions"
         Foreground="Black" 
         FontSize="40"
@@ -139,17 +137,17 @@
                     <TextBlock Style="{StaticResource ThemeText}" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,20,0" FontSize="30">Sonido</TextBlock>
                     <Slider Style="{StaticResource Slider}" Value="{x:Bind GM.soundVolume,Mode=TwoWay}"  VerticalAlignment="Center" Foreground="#f7bf50" CornerRadius="10" Background="#403738" Maximum="100" Width="365" />
                 </StackPanel>
-                <Button Grid.Row="3" Grid.Column="1"   Padding="0"  VerticalAlignment="Stretch" Margin="0,20,45,21" Background="#933232" CornerRadius="10" BorderBrush="#5f2020" BorderThickness="1,1,0,10" HorizontalAlignment="Stretch" Grid.ColumnSpan="2 " >
+                <Button  Click="{x:Bind GM.playClickedSound}" Grid.Row="3" Grid.Column="1"   Padding="0"  VerticalAlignment="Stretch" Margin="0,20,45,21" Background="#933232" CornerRadius="10" BorderBrush="#5f2020" BorderThickness="1,1,0,10" HorizontalAlignment="Stretch" Grid.ColumnSpan="2 " >
                     <TextBlock  TextAlignment="Center" TextWrapping="Wrap" FontSize="30" Width="380"  Style="{StaticResource ThemeText}" Text="Empezar de nuevo"/>
                 </Button>
-                <Button Grid.Row="4"  Grid.Column="1"   Padding="0"  VerticalAlignment="Stretch" Margin="0,20,45,20" Background="#cca035" CornerRadius="10" BorderBrush="#7f6321" BorderThickness="1,1,0,10"   HorizontalAlignment="Stretch" Grid.ColumnSpan="2">
+                <Button  Click="{x:Bind GM.playClickedSound}" Grid.Row="4"  Grid.Column="1"   Padding="0"  VerticalAlignment="Stretch" Margin="0,20,45,20" Background="#cca035" CornerRadius="10" BorderBrush="#7f6321" BorderThickness="1,1,0,10"   HorizontalAlignment="Stretch" Grid.ColumnSpan="2">
                     <TextBlock  TextAlignment="Center" TextWrapping="Wrap" FontSize="40" Width="380"  Style="{StaticResource ThemeText}" Text="Salir" Margin="20"/>
                 </Button>
 
             </Grid>
 
         </ContentDialog>
-
+        <!--Menú de confirmación-->
         <ContentDialog 
         x:Name="ConfirmMenu" 
           Foreground="Black" 

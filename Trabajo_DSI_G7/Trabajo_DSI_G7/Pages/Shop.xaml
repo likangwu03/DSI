@@ -12,6 +12,15 @@
     KeyUp="Page_KeyUp">
 
     <Page.Resources>
+
+        <Style x:Key="ThemeText" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+
+
         <DataTemplate x:Key="PotionItemTemplate"
                       x:DataType="Model:PotionVM">
             <local:AspectContentControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" IsEnabled="{x:Bind Active_()}">
@@ -253,9 +262,13 @@
                         <RowDefinition Height="5*"/>
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
-                    <Rectangle Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="#FFF5BE51" Stretch="UniformToFill"></Rectangle>
-                    <Viewbox Grid.Column="1" Grid.Row="1">
-                        <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center" Text="Tienda" Style="{StaticResource ThemeText}"/>
+
+                    <Viewbox  Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="2" Margin="0,0,0,-30" >
+                        <Grid Height="55">
+                            <Image Source="/Assets/ui/ribbon.png" Stretch="Fill" Height="40" VerticalAlignment="Top" Margin="0,5,0,0" />
+                            <TextBlock  Style="{StaticResource ThemeText}" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" FontSize="15" Margin="0 0 0 20">Tienda</TextBlock>
+
+                        </Grid>
                     </Viewbox>
                 </Grid>
 

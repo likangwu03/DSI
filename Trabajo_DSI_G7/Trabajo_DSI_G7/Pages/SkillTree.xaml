@@ -11,6 +11,14 @@
     KeyUp="Page_KeyUp">
     <Page.Resources>
 
+
+        <Style x:Key="ThemeText" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+
         <DataTemplate x:Key="SkillTemplate" x:DataType="Model:AbilityVM">
             <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Grid>
@@ -101,8 +109,6 @@
     <Grid>
         <Image Source="/Assets/bg/bgm.png" Stretch="Fill"/>
 
-    
-
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
@@ -132,10 +138,13 @@
                         <RowDefinition Height="5*"/>
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
-                    <Rectangle Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="#FFF5BE51" Stretch="UniformToFill"></Rectangle>
-                    <Viewbox  Grid.Column="1" Grid.Row="1">
+                
+                    <Viewbox  Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="2" Margin="0,0,0,-30" >
+                        <Grid Height="55">
+                            <Image Source="/Assets/ui/ribbon.png" Stretch="Fill" Height="45" VerticalAlignment="Center" />
+                            <TextBlock  Style="{StaticResource ThemeText}" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" FontSize="15" Margin="0 0 0 10">Árbol de habilidades</TextBlock>
 
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Arbol de habilidades" Foreground="Black" FontWeight="Bold" FontStyle="Normal" FontSize="40" FontFamily="Rockwell Extra Bold"/>
+                        </Grid>
                     </Viewbox>
                 </Grid>
 

@@ -13518,18 +13518,18 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\likan\\.nuget\\packages\\": {},
+    "C:\\Users\\kryst\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
     "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\likan\\Desktop\\DSI\\DSI\\Trabajo_DSI_G7\\Trabajo_DSI_G7\\Trabajo_DSI_G7.csproj",
+      "projectUniqueName": "C:\\Git\\DSI\\DSI\\Trabajo_DSI_G7\\Trabajo_DSI_G7\\Trabajo_DSI_G7.csproj",
       "projectName": "Trabajo_DSI_G7",
-      "projectPath": "C:\\Users\\likan\\Desktop\\DSI\\DSI\\Trabajo_DSI_G7\\Trabajo_DSI_G7\\Trabajo_DSI_G7.csproj",
-      "packagesPath": "C:\\Users\\likan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\likan\\Desktop\\DSI\\DSI\\Trabajo_DSI_G7\\Trabajo_DSI_G7\\obj\\",
+      "projectPath": "C:\\Git\\DSI\\DSI\\Trabajo_DSI_G7\\Trabajo_DSI_G7\\Trabajo_DSI_G7.csproj",
+      "packagesPath": "C:\\Users\\kryst\\.nuget\\packages\\",
+      "outputPath": "C:\\Git\\DSI\\DSI\\Trabajo_DSI_G7\\Trabajo_DSI_G7\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
@@ -13537,7 +13537,7 @@
         "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\likan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\kryst\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],

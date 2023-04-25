@@ -78,12 +78,10 @@ namespace Trabajo_DSI_G7.Pages
             if (e.Key == VirtualKey.GamepadLeftShoulder)
             {            
                 FocusManager.TryMoveFocus(FocusNavigationDirection.Previous);
-                gm.playHoverSound();
             }
             else if (e.Key == VirtualKey.GamepadRightShoulder)
             {
                 FocusManager.TryMoveFocus(FocusNavigationDirection.Next);
-                gm.playHoverSound();
             }
         }
 
@@ -97,12 +95,10 @@ namespace Trabajo_DSI_G7.Pages
         private void Add_Click(object sender, RoutedEventArgs e)
         {
             Logic.add_ItemClick(sender, e);
-            gm.playHoverSound();
         }
         private void Sub_Click(object sender, RoutedEventArgs e)
         {
             Logic.sub_ItemClick(sender, e);
-            gm.playHoverSound();
         }
     }
 }

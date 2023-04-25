@@ -70,9 +70,9 @@ namespace Trabajo_DSI_G7.Pages
 
         private async void ShowDialog_Click(object sender, RoutedEventArgs e)
         {
+            GM.playClickedSound();
             ConfirmMenu.XamlRoot = this.Content.XamlRoot;
             await ConfirmMenu.ShowAsync();
-            GM.playClickedSound();
         }
 
         private async void openOptionMenu()

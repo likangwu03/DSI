@@ -493,7 +493,6 @@ namespace Trabajo_DSI_G7.Pages
         {
             ContentControl CC = sender as ContentControl;
             CC.Width = 250;
-            GM.playHoverSound();
         }
         //para mando
         private void CC_LosingFocus(UIElement sender, LosingFocusEventArgs args)
@@ -576,28 +575,28 @@ namespace Trabajo_DSI_G7.Pages
         //al pulsar sobre el botón de querer salir de la partida
         private async void OnSaveAndExitClick(object sender, RoutedEventArgs e)
         {
+            GM.playClickedSound();
             InGameOptions.Hide();
             ConfirmMenu.XamlRoot = this.Content.XamlRoot;
             await ConfirmMenu.ShowAsync();
-            GM.playClickedSound();
         }
         //para botón de reempezar partida
         private void OnRestartGameClick(object sender, RoutedEventArgs e)
         {
+            GM.playClickedSound();
             ConfirmMenu.Hide();
             InGameOptions.Hide();
             restartGame();
-            GM.playClickedSound();
         }
 
         //confirmación de salir de la partida
         private void OnConfirmExitClick(object sender, RoutedEventArgs e)
         {
+            GM.playClickedSound();
             if (!Frame.CanGoBack) return;
             ConfirmMenu.Hide();
             InGameOptions.Hide();
             Frame.GoBack();
-            GM.playClickedSound();
         }
 
         //cancelación de salir de partida
@@ -627,25 +626,21 @@ namespace Trabajo_DSI_G7.Pages
             {
                 // Mimic Shift+Tab when user hits up arrow key.
                 FocusManager.TryMoveFocus(FocusNavigationDirection.Previous);
-                GM.playHoverSound();
             }
             else if (e.Key == VirtualKey.GamepadRightShoulder)
             {
                 // Mimic Tab when user hits down arrow key.
                 FocusManager.TryMoveFocus(FocusNavigationDirection.Next);
-                GM.playHoverSound();
             }
             if (e.OriginalKey == VirtualKey.GamepadLeftThumbstickRight)
             {
                 // Mimic Shift+Tab when user hits up arrow key.
                 FocusManager.TryMoveFocus(FocusNavigationDirection.Next);
-                GM.playHoverSound();
             }
             else if (e.OriginalKey == VirtualKey.GamepadLeftThumbstickLeft)
             {
                 // Mimic Tab when user hits down arrow key.
                 FocusManager.TryMoveFocus(FocusNavigationDirection.Previous);
-                GM.playHoverSound();
             }
             //if (e.OriginalKey == VirtualKey.GamepadLeftThumbstickRight)
             //{

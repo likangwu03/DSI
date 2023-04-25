@@ -79,13 +79,13 @@
         <Viewbox  Grid.Column="5" Grid.Row="0">
             <ScrollViewer TabFocusNavigation="Once" XYFocusKeyboardNavigation="Enabled">
                 <StackPanel Orientation="Horizontal"  Height="50" Width="161" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,27,10,0">
-                    <Button  Padding="0" Style="{StaticResource MainMenuButton}" Margin="30 0" PointerEntered="onButtonHolding" PointerExited="onButtonExit"  Click="{x:Bind GM.playClickedSound}" >
+                    <Button  Width="50" Padding="0" Style="{StaticResource MainMenuButton}" Margin="30 0" PointerEntered="onButtonHolding" PointerExited="onButtonExit"  Click="{x:Bind GM.playClickedSound}" >
                         <Image x:Name="button_about" Source="/Assets/ui/button_yellow/button_about.png"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0"></Image>
                         <Button.KeyboardAccelerators>
                             <KeyboardAccelerator Key="Escape"></KeyboardAccelerator>
                         </Button.KeyboardAccelerators>
                     </Button>
-                    <Button  Padding="0" Style="{StaticResource MainMenuButton}" PointerEntered="onButtonHolding" PointerExited="onButtonExit" Click="OnSettingClick">
+                    <Button  Width="50" Padding="0" Style="{StaticResource MainMenuButton}" PointerEntered="onButtonHolding" PointerExited="onButtonExit" Click="OnSettingClick">
                         <Image x:Name="button_setting" Source="/Assets/ui/button_yellow/button_setting.png"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0"></Image>
                     </Button>
 
@@ -288,6 +288,7 @@
             <StackPanel  x:Name="Cards" XYFocusKeyboardNavigation="Enabled" Orientation="Horizontal"  VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
         </Viewbox>
 
+        <!--Menú de opciones-->
         <ContentDialog x:Name="InGameOptions" Grid.RowSpan="3" Grid.ColumnSpan="6"
         Foreground="Black" 
         FontSize="40"
