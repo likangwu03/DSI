@@ -14,7 +14,7 @@
     <Page.Resources>
         <DataTemplate x:Key="PotionItemTemplate"
                       x:DataType="Model:PotionVM">
-            <local:AspectContentControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+            <local:AspectContentControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" IsEnabled="{x:Bind Active_()}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"/>

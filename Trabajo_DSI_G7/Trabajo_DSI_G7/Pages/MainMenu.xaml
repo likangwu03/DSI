@@ -68,7 +68,21 @@
         </StackPanel>
         
         <!--INF IZ-->
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="50"  XYFocusKeyboardNavigation="Enabled" TabFocusNavigation="Once">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="15*"/>
+                        <ColumnDefinition Width="50*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20*"/>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+        <Viewbox Grid.Row="1" Grid.Column="1">
+            
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left"  XYFocusKeyboardNavigation="Enabled" TabFocusNavigation="Once">
+            
             <Button  Padding="0" Style="{StaticResource MainMenuButton}"  PointerEntered="onButtonHolding" PointerExited="onButtonExit"  Margin="20 0" Click="OnSkillTreeClick">
                 <Image x:Name="button_tree" Source="/Assets/ui/button_yellow/button_tree.png"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0"></Image>
             </Button>
@@ -80,6 +94,10 @@
             </Button>
 
         </StackPanel>
+        </Viewbox>
+        </Grid>
+
+        
 
 
         <!--DIALOG-->
