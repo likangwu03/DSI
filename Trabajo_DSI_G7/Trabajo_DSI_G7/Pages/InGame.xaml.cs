@@ -450,7 +450,7 @@ namespace Trabajo_DSI_G7.Pages
             ContentControl CC = new ContentControl();
             CC.Name = "Card" + (i + 1);
             CC.DragStarting += CardDragStarting;
-            CC.UseSystemFocusVisuals = true;
+            CC.UseSystemFocusVisuals = false;
             CC.IsTabStop = true;
             CC.PointerEntered += CardPointOver;
             CC.PointerExited += CardPointerExit;
@@ -460,7 +460,6 @@ namespace Trabajo_DSI_G7.Pages
             CC.FocusVisualMargin = new Thickness(100);
             CC.KeyDown += CC_KeyDown;
 
-            //ContentControl CC = Cards.Children[i] as ContentControl;
             CC.Width = CARD_W;
             CC.HorizontalAlignment = HorizontalAlignment.Center;
             CC.VerticalAlignment = VerticalAlignment.Bottom;
@@ -479,7 +478,6 @@ namespace Trabajo_DSI_G7.Pages
 
             CC.Content = image;
             Cards.Children.Add(CC);
-            // ((Cards.Children[i] as ContentControl).Content as Image).Source = card.Img.Source;
 
             unusedCards.Remove(card);
             usingCards.Add(card);
@@ -668,6 +666,11 @@ namespace Trabajo_DSI_G7.Pages
 
         private void Page_KeyUp(object sender, KeyRoutedEventArgs e)
         {
+
+        }
+
+        private void Page_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
             if (e.OriginalKey == VirtualKey.GamepadLeftThumbstickRight)
             {
                 FocusManager.TryMoveFocus(FocusNavigationDirection.Next);
@@ -679,11 +682,6 @@ namespace Trabajo_DSI_G7.Pages
                 FocusManager.TryMoveFocus(FocusNavigationDirection.Previous);
                 e.Handled = true;
             }
-        }
-
-        private void Page_KeyDown(object sender, KeyRoutedEventArgs e)
-        {
-
         }
 
 

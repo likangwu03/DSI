@@ -67,9 +67,9 @@
 
                     <Viewbox  Grid.Column="1" Grid.Row="2">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center"  Visibility="{x:Bind TextVisibility_(),Mode=OneWay}">
-                            <TextBlock Text="{x:Bind level,Mode=OneWay}" Style="{StaticResource ThemeText}" FontSize="30"  />
+                            <TextBlock Text="{x:Bind level,Mode=OneWay}" Style="{StaticResource ThemeText2}" FontSize="30"  />
 
-                            <TextBlock Text="/3" Style="{StaticResource ThemeText}" FontSize="30" />
+                            <TextBlock Text="/3" Style="{StaticResource ThemeText2}" FontSize="30" />
                         </StackPanel>
                     </Viewbox>
                 </Grid>
@@ -449,9 +449,9 @@
                     <Image  Source="{x:Bind Logic.ActAbility.Img.Source,Mode=TwoWay}" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Height="80"></Image>
                     <TextBlock Grid.Column="1" TextAlignment="Center" TextWrapping="Wrap" FontSize="30"  Style="{StaticResource ThemeText2}" Text="{x:Bind Logic.ActAbility.Name}"/>
                     <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" >
-                        <TextBlock Text="{x:Bind Logic.ActAbility.level,Mode=OneWay}" Style="{StaticResource ThemeText}" FontSize="30"  />
+                        <TextBlock Text="{x:Bind Logic.ActAbility.level,Mode=OneWay}" Style="{StaticResource ThemeText2}" FontSize="30"  />
 
-                        <TextBlock Text="/3" Style="{StaticResource ThemeText}" FontSize="30" />
+                        <TextBlock Text="/3" Style="{StaticResource ThemeText2}" FontSize="30" />
                     </StackPanel>
 
 

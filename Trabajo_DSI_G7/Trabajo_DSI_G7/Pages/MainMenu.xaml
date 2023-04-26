@@ -141,9 +141,6 @@
         </Viewbox>
         </Grid>
 
-        
-
-
         <!--Menú de opciones-->
         <ContentDialog x:Name="MainMenuOptions"
         Foreground="Black" 

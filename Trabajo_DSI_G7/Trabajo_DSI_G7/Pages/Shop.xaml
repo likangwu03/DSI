@@ -368,13 +368,13 @@
                                     <ColumnDefinition Width="2*"/>
                                     <ColumnDefinition Width="2.5*"/>
                                 </Grid.ColumnDefinitions>
-                                <Button Click="Sub_Click" CornerRadius="30" Width="45" Height="45" HorizontalAlignment="Right" VerticalAlignment="Top"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                                <Button Click="Sub_Click" CornerRadius="30" Width="45" Height="45" HorizontalAlignment="Right" VerticalAlignment="Top"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#cca035">
                                     <FontIcon Glyph="&#xE949;" FontWeight="Bold" FontSize="25"/>
                                 </Button >
 
                                 <TextBlock Grid.Column="1"  TextAlignment="Center" VerticalAlignment="Top" FontSize="40"  Style="{StaticResource ThemeText2}" Text="{x:Bind Logic.Num,Mode=OneWay}" />
-                                <Button Click="Add_Click" Grid.Column="2" CornerRadius="30" Width="45" Height="45" HorizontalAlignment="Left" VerticalAlignment="Top"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
-                                    <FontIcon  Glyph="&#xE948;" FontWeight="Bold" FontSize="25"/>
+                                <Button Click="Add_Click" Grid.Column="2" CornerRadius="30" Width="45" Height="45" HorizontalAlignment="Left" VerticalAlignment="Top"  HorizontalContentAlignment="Center" Background="#cca035" VerticalContentAlignment="Center">
+                                    <FontIcon  Glyph="&#xE948;"  FontWeight="Bold" FontSize="25"/>
                                 </Button >
                             </Grid>
 
