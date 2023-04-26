@@ -145,9 +145,9 @@ namespace Trabajo_DSI_G7.Pages
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //Environment.Exit(0);
+           
             Application.Current.Exit();
-           // Window.Current.Close();
+         
         }
     }
 }

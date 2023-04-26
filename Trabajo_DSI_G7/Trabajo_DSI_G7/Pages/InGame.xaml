@@ -42,7 +42,6 @@
         </DataTemplate>
 
     </Page.Resources>
-    <!--<Viewbox>-->
 
     <Grid>
         <Grid.RowDefinitions>

@@ -306,6 +306,18 @@ namespace Trabajo_DSI_G7.Pages
             ((((sender as StackPanel)?.Children[0] as StackPanel)?.Children[1] as Grid)?.Children[0] as Ellipse).Visibility = Visibility.Collapsed;
         }
 
+        private void Enemies_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.OriginalKey == VirtualKey.GamepadRightShoulder)
+            {
+                (FocusManager.FindFirstFocusableElement(Inventory) as Button).Focus(FocusState.Programmatic);
+            }
+            else if (e.OriginalKey == VirtualKey.GamepadLeftShoulder)
+            {
+                (FocusManager.FindFirstFocusableElement(Top_Buttons) as Button).Focus(FocusState.Programmatic);
+            }
+        }
+
         //POCIONES...........................................................................................
         private void iniciaLizePotions()
         {
@@ -361,16 +373,18 @@ namespace Trabajo_DSI_G7.Pages
             Enem.Focus(FocusState.Programmatic);
         }
 
-        //private void Potion_KeyDown(object sender, KeyRoutedEventArgs e)
-        //{
-        //    var a = e;
-        //    if (e.OriginalKey == VirtualKey.GamepadA)
-        //    {
-        //        selectedPotion = sender as Button; //pocion elegida
-        //        ContentControl Enem = FocusManager.FindFirstFocusableElement(Enemies) as ContentControl;
-        //        Enem.Focus(FocusState.Programmatic);
-        //    }
-        //}
+        private void Inventory_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.OriginalKey == VirtualKey.GamepadRightShoulder)
+            {
+                (FocusManager.FindFirstFocusableElement(Cards) as ContentControl).Focus(FocusState.Programmatic);
+            }
+            else if (e.OriginalKey == VirtualKey.GamepadLeftShoulder)
+            {
+                ContentControl Enem = FocusManager.FindFirstFocusableElement(Enemies) as ContentControl;
+                Enem.Focus(FocusState.Programmatic);
+            }
+        }
 
         //CARTAS..............................................................................................
         private void inicializeCard()
@@ -545,7 +559,17 @@ namespace Trabajo_DSI_G7.Pages
                 Enem.Focus(FocusState.Programmatic);
             }
         }
-
+        private void Carts_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.OriginalKey == VirtualKey.GamepadRightShoulder)
+            {
+                (FocusManager.FindFirstFocusableElement(Bottom_Buttons) as Button).Focus(FocusState.Programmatic);
+            }
+            else if (e.OriginalKey == VirtualKey.GamepadLeftShoulder)
+            {
+                (FocusManager.FindFirstFocusableElement(Inventory) as Button).Focus(FocusState.Programmatic);
+            }
+        }
 
         //reposicionar las cartas al cambiar su cantidad
         void repositionateCards()
@@ -660,18 +684,6 @@ namespace Trabajo_DSI_G7.Pages
         private void Page_KeyDown(object sender, KeyRoutedEventArgs e)
         {
 
-            //if (e.OriginalKey == VirtualKey.GamepadLeftThumbstickRight)
-            //{
-            //    FocusManager.TryMoveFocus(FocusNavigationDirection.Next);
-            //    e.Handled = true;
-
-            //}
-            //else if (e.OriginalKey == VirtualKey.GamepadLeftThumbstickLeft)
-            //{
-            //    FocusManager.TryMoveFocus(FocusNavigationDirection.Previous);
-            //    e.Handled = true;
-            //}
-
         }
 
 
@@ -689,29 +701,7 @@ namespace Trabajo_DSI_G7.Pages
             }
         }
 
-        private void Carts_KeyDown(object sender, KeyRoutedEventArgs e)
-        {
-            if (e.OriginalKey == VirtualKey.GamepadRightShoulder)
-            {
-                (FocusManager.FindFirstFocusableElement(Bottom_Buttons) as Button).Focus(FocusState.Programmatic);
-            }
-            else if (e.OriginalKey == VirtualKey.GamepadLeftShoulder)
-            {
-                (FocusManager.FindFirstFocusableElement(Inventory) as Button).Focus(FocusState.Programmatic);
-            }
-        }
-
-        private void Enemies_KeyDown(object sender, KeyRoutedEventArgs e)
-        {
-            if (e.OriginalKey == VirtualKey.GamepadRightShoulder)
-            {
-                (FocusManager.FindFirstFocusableElement(Inventory) as Button).Focus(FocusState.Programmatic);
-            }
-            else if (e.OriginalKey == VirtualKey.GamepadLeftShoulder)
-            {
-                (FocusManager.FindFirstFocusableElement(Top_Buttons) as Button).Focus(FocusState.Programmatic);
-            }
-        }
+      
 
         private void Bottom_KeyDown(object sender, KeyRoutedEventArgs e)
         {
@@ -725,23 +715,6 @@ namespace Trabajo_DSI_G7.Pages
             }
         }
 
-        private void Inventory_KeyDown(object sender, KeyRoutedEventArgs e)
-        {
-            if (e.OriginalKey == VirtualKey.GamepadRightShoulder)
-            {
-                (FocusManager.FindFirstFocusableElement(Cards) as ContentControl).Focus(FocusState.Programmatic);
-            }
-            else if (e.OriginalKey == VirtualKey.GamepadLeftShoulder)
-            {
-                ContentControl Enem = FocusManager.FindFirstFocusableElement(Enemies) as ContentControl;
-                Enem.Focus(FocusState.Programmatic);
-            }
-        }
-
-
-        //private void MusicSliderValueChanged(object sender, RangeBaseValueChangedEventArgs e)
-        //{
-        //    GM.changeMusicVolume((sender as Slider).Value);
-        //}
+       
     }
 }

@@ -41,7 +41,6 @@ namespace Trabajo_DSI_G7.Pages
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            // If e.Parameter is a string, set the TextBlock's text with it.
             if (e?.Parameter is Game.GameManager gameManager)
             {
                 Logic = new Game.SkillTreeLogic(gameManager);
