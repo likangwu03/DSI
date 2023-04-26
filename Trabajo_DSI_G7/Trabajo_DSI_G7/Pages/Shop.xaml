@@ -170,11 +170,11 @@
                     </Grid.RowDefinitions>
                     <Image Source="/Assets/icons/coin_05d.png" Stretch="Uniform"></Image>
                     <Viewbox Grid.Column="1">
-                        <TextBlock   HorizontalAlignment="Right" VerticalAlignment="Center" Text="{x:Bind Logic.money,Mode=OneWay}" Style="{ThemeResource TitleTextBlockStyle}" FontSize="40" FontWeight="Bold"></TextBlock>
+                        <TextBlock   HorizontalAlignment="Right" VerticalAlignment="Center" Text="{x:Bind Logic.money,Mode=OneWay}" Style="{StaticResource ThemeText}" FontSize="40" FontWeight="Bold"></TextBlock>
                     </Viewbox>
                     <Image Grid.Row="2"  Source="/Assets/icons/heart pixel art 254x254.png"  Stretch="Uniform" ></Image>
                     <Viewbox Grid.Row="2" Grid.Column="1">
-                        <TextBlock   HorizontalAlignment="Left" VerticalAlignment="Center" Text="{x:Bind Logic.actLife}" Style="{ThemeResource TitleTextBlockStyle}" FontSize="40" FontWeight="Bold"></TextBlock>
+                        <TextBlock   HorizontalAlignment="Left" VerticalAlignment="Center" Text="{x:Bind Logic.actLife}" Style="{StaticResource ThemeText}" FontSize="40" FontWeight="Bold"></TextBlock>
                     </Viewbox>
 
 
