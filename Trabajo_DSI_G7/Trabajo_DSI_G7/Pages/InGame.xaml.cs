@@ -538,7 +538,7 @@ namespace Trabajo_DSI_G7.Pages
         //pasar foco de carta a enemigo
         private void CC_KeyDown(object sender, KeyRoutedEventArgs e)
         {
-          if (e.OriginalKey == VirtualKey.GamepadA)
+            if (e.OriginalKey == VirtualKey.GamepadA)
             {
                 selectedCard = sender as ContentControl; //carta elegida
                 ContentControl Enem = FocusManager.FindFirstFocusableElement(Enemies) as ContentControl;
@@ -644,44 +644,6 @@ namespace Trabajo_DSI_G7.Pages
 
         private void Page_KeyUp(object sender, KeyRoutedEventArgs e)
         {
-            //if (e.Key == VirtualKey.GamepadLeftShoulder)
-            //{
-            //    // Mimic Shift+Tab when user hits up arrow key.
-            //    FocusManager.TryMoveFocus(FocusNavigationDirection.Previous);
-            //}
-            //else if (e.Key == VirtualKey.GamepadRightShoulder)
-            //{
-            //    // Mimic Tab when user hits down arrow key.
-            //    FocusManager.TryMoveFocus(FocusNavigationDirection.Next);
-            }
-            //if (e.OriginalKey == VirtualKey.GamepadLeftThumbstickRight)
-            //{
-            //    // Mimic Shift+Tab when user hits up arrow key.
-            //    FocusManager.TryMoveFocus(FocusNavigationDirection.Next);
-            //}
-            //else if (e.OriginalKey == VirtualKey.GamepadLeftThumbstickLeft)
-            //{
-            //    // Mimic Tab when user hits down arrow key.
-            //    FocusManager.TryMoveFocus(FocusNavigationDirection.Previous);
-            //}
-            //if (e.OriginalKey == VirtualKey.GamepadLeftThumbstickRight)
-            //{
-            //    // Mimic Shift+Tab when user hits up arrow key.
-            //    FocusManager.TryMoveFocus(FocusNavigationDirection.Next);
-            //    e.Handled = true;
-
-            //}
-            //else if (e.OriginalKey == VirtualKey.GamepadLeftThumbstickLeft)
-            //{
-            //    // Mimic Tab when user hits down arrow key.
-            //    FocusManager.TryMoveFocus(FocusNavigationDirection.Previous);
-            //    e.Handled = true;
-            //}
-        
-
-        private void Page_KeyDown(object sender, KeyRoutedEventArgs e)
-        {
-
             if (e.OriginalKey == VirtualKey.GamepadLeftThumbstickRight)
             {
                 FocusManager.TryMoveFocus(FocusNavigationDirection.Next);
@@ -693,8 +655,22 @@ namespace Trabajo_DSI_G7.Pages
                 FocusManager.TryMoveFocus(FocusNavigationDirection.Previous);
                 e.Handled = true;
             }
+        }
 
+        private void Page_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
 
+            //if (e.OriginalKey == VirtualKey.GamepadLeftThumbstickRight)
+            //{
+            //    FocusManager.TryMoveFocus(FocusNavigationDirection.Next);
+            //    e.Handled = true;
+
+            //}
+            //else if (e.OriginalKey == VirtualKey.GamepadLeftThumbstickLeft)
+            //{
+            //    FocusManager.TryMoveFocus(FocusNavigationDirection.Previous);
+            //    e.Handled = true;
+            //}
 
         }
 

@@ -31,7 +31,8 @@ namespace Trabajo_DSI_G7.Pages
         Game.SkillTreeLogic Logic;
 
         Game.GameManager gm;
-       
+
+        bool exit_;
 
         public SkillTree()
         {
@@ -45,12 +46,14 @@ namespace Trabajo_DSI_G7.Pages
             {
                 Logic = new Game.SkillTreeLogic(gameManager);
                 gm = gameManager;
+                exit_ = true;
             }
             base.OnNavigatedTo(e);
         }
 
         private void OnCloseClick(object sender, RoutedEventArgs e)
         {
+            exit_ = true;
             AbilityWindow.Hide();
             gm.playClickedSound();
         }
@@ -61,6 +64,7 @@ namespace Trabajo_DSI_G7.Pages
             Logic.Ability_Click(sender, e);
             if (Logic.ActAbility.rootActive)
             {
+                exit_ = false;
                 AbilityWindow.XamlRoot = this.Content.XamlRoot;
                 await AbilityWindow.ShowAsync();
             }
@@ -93,12 +97,21 @@ namespace Trabajo_DSI_G7.Pages
                 // Mimic Tab when user hits down arrow key.
                 FocusManager.TryMoveFocus(FocusNavigationDirection.Next);
             }
+            else if (e.Key == VirtualKey.Escape)
+            {
+                if (exit_)
+                {
+                    if (!Frame.CanGoBack) return;
+                    Frame.GoBack();
+                }
+                else
+                {
+                    exit_ = true;
+                }
+
+            }
         }
 
-        private void ContentControl_GotFocus(object sender, RoutedEventArgs e)
-        {
-            ContentControl O = sender as ContentControl;
-            ((((O.ContentTemplateRoot as Grid).Children[1] as Grid).Children[2] as Viewbox).Child as Button).Focus(FocusState.Programmatic);     
-        }
+     
     }
 }

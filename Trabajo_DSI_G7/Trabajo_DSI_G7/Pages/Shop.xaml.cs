@@ -33,7 +33,7 @@ namespace Trabajo_DSI_G7.Pages
     {
         Game.GameManager gm;
         Game.ShopLogic Logic;
-        
+        bool exit_;
         public Shop()
         {
             this.InitializeComponent();           
@@ -45,13 +45,14 @@ namespace Trabajo_DSI_G7.Pages
             {
                 gm = gameManager;
                 Logic = new Game.ShopLogic(gm);
-               
+                exit_ = true;
             }
             base.OnNavigatedTo(e);
         }
 
         private void OnCloseBuyClick(object sender, RoutedEventArgs e)
         {
+            exit_ = true;
             ShopWindow.Hide();
             gm.playClickedSound();
         }
@@ -60,6 +61,7 @@ namespace Trabajo_DSI_G7.Pages
             Logic.Posion_ItemClick(sender, e);
             if (Logic.ActPotion.Active_())
             {
+                exit_ = false;
                 ShopWindow.XamlRoot = this.Content.XamlRoot;
                 await ShopWindow.ShowAsync();
             }
@@ -82,6 +84,19 @@ namespace Trabajo_DSI_G7.Pages
             else if (e.Key == VirtualKey.GamepadRightShoulder)
             {
                 FocusManager.TryMoveFocus(FocusNavigationDirection.Next);
+            }
+            else if (e.Key == VirtualKey.Escape )
+            {
+                if (exit_)
+                {
+                    if (!Frame.CanGoBack) return;
+                    Frame.GoBack();
+                }
+                else
+                {
+                    exit_ = true;
+                }
+                
             }
         }
 
